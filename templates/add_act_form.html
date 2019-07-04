@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Add your act</h>
+
+<form action="/act_add" method="POST">
+    <div>
+        <label>
+            Act name
+            <input type="name_of_act" name="name_of_act">       
+        </label>       
+    </div>    
+    <div>
+        <label>
+            Wedsite
+            <input type="wedsite" name="wedsite">       
+        </label>       
+    </div>
+    <div>
+        <label>
+            Type of act
+            <input type="act_type" name="act_type">       
+        </label>       
+    </div>
+
+    <div>     
+        <input type="submit" name="Add">                     
+    </div>
+    
+</form>
+
+{% endblock %}
