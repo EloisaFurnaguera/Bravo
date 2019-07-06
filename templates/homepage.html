@@ -5,16 +5,42 @@
 <h1>Homepage Wellcome<h1>
 
 
-<h2>Acts</h2>
+<h2>Please login</h2>
 
 
-<p><a href="/act">View as a performers</a></p>
+  <form action="/login" method="POST">
 
-<h2>Venues</h2>
+    <div>
+      
+      <label>Email:
+        <input type="email" name="email" required>
+      </label>
+    </div>
 
-<p><a href="/venue">View as a venue</a></p>
+    <div>
+      <label>Password:
+        <input type="password" name="password" required>
+      </label>
+    </div>
+
+  <div>
+  
+
+        <input type="radio" name="check" value="venue" required>Venue 
+        <input type="radio" name="check" value="performer" required>Performer  
+
+  </div>
 
 
 
+
+    <div>
+      <input type="submit" value="Log In">
+    </div>
+
+
+
+
+<p><a href="/register">New User</a></p>
 
 {% endblock %}

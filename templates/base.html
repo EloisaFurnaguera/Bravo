@@ -10,6 +10,22 @@
 <h3>This is my base<h3>
 
 
+{% if "user_id" in session %}
+  <a href="/logout">Logout</a>
+{% else %}
+  <a href="/login">Login</a>
+{% endif %}
+
+<hr>
+    
+
+
+{% for flash in get_flashed_messages() %}
+{{ flash }}
+{% endfor %}  
+
+
+
 
 {% block content %}
  

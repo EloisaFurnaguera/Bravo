@@ -21,10 +21,8 @@ class User(db.Model):
     email = db.Column(db.String(100), nullable=False)
     user_fname = db.Column(db.String(64), nullable=False)
     user_lname = db.Column(db.String(64), nullable=False)
-    user_type = db.Column(db.Boolean, nullable=False)
+    user_type = db.Column(db.String(64), nullable=False)
 
-    veneu = db.relationship('Venue')
-    act = db.relationship('Act')
     
 
     def __repr__(self):
@@ -91,7 +89,7 @@ if __name__ == "__main__":
 
     from server import app
     connect_to_db(app)
-    print("Connected to DB.")
+    print("Connected to DB  here.")
 
 
 
