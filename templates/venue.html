@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<h1>Venue Checklist<h1><br>
+
+
+  <form action="/venue" method="POST">
+
+      <div>
+
+       Location<input type="text" name="venue_location"> <br>
+       Type of venue<select name="venue_type"><br>
+                    <option value="theater">Theater</option>
+                    <option value="bar">Bar</option>
+                    <option value="hall">Hall</option>
+                    <option value="other">Other</option></select><br>
+        Size/capacity<input type="text" name="capacity"> <br>
+
+        Days available: 
+                    Monday<input type="radio" name="day" value="monday">
+                    Tusday<input type="radio" name="day" value="tusday">
+                    Wednesday<input type="radio" name="day" value="wednesday">
+                    Thursday<input type="radio" name="day" value="thursday">
+                    Friday<input type="radio" name="day" value="friday"><br>
+        How much for the space<input type="text" name="rent"> <br> 
+        Time available<input type="text" name="time_available"> <br> 
+
+        Is there a Dressroom: 
+                    Yes<input type="radio" name="dressroom" value="yes">
+                    No<input type="radio" name="dressroom" value="no">
+
+       </div>
+    
+ </form>
+
+    
+<h1><a href="/venue_add">Add venue</a><h1>
+
+<h2>Venue List<h1><br>
+
+{% endblock %}
+
+
+
+
+
+
+
