@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Register</h>
+
+<form action="/venue_add" method="POST">
+
+   <div>
+        <label>
+            Name of the Venue
+            <input type="vname" name="vname">                   
+        </label>       
+    </div>
+
+
+   <div>
+        <label>
+            Venue address
+            <input type="v_addess" name="v_addess">                   
+        </label>       
+    </div>
+
+
+    <div>
+        <label>
+            Venue City
+            <input type="venue_city" name="venue_city">                   
+        </label>       
+    </div>
+
+
+    <div>
+        <label>
+            Venue Zipcode
+            <input type="venue_zipcode" name="venue_zipcode">                   
+        </label>       
+    </div>
+
+    <div>
+        <label>
+            Venue size
+            <input type="venue_size" name="venue_size">                   
+        </label>       
+    </div>
+
+
+    <div>
+        <label>
+            Email
+            <input type="v_email" name="v_email">       
+        </label>       
+    </div>  
+
+
+    <div>
+        <label>
+            Wedsite
+            <input type="venue_url" name="venue_url">       
+        </label>       
+    </div>
+
+
+
+    <div>     
+        <input type="submit" name="Add">                     
+    </div>
+</form>
+
+{% endblock %}
+
+
+  
+
+
+

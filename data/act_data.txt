@@ -1,0 +1,9 @@
+act1,act1.com,act_type1
+act2,act2.com,act_type2
+act3,act3.com,act_type3
+act4,act4.com,act_type4
+act5,act5.com,act_type5
+act6,act6.com,act_type6
+act7,act7.com,act_type7
+act8,act8.com,act_type8
+act9,act9.com,act_type9

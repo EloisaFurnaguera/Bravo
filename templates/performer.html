@@ -5,29 +5,62 @@
 <h1>Performer's Checklist<h1><br>
 
 
-<!--     <div>
-      <label>Password:
-        <input type="password" name="password" required>
-      </label>
-    </div>
+  <form action="/performer" method="POST">
 
-  <div>
-  
+      <div>
 
-        <input type="box" name="check" value="venue" required>Venue 
-        <input type="box" name="check" value="performer" required>Performer  
+       Location preference (city)<input type="text" name="city"> <br>
+       What kind of act<select name="kind"><br>
+                    <option value="stand_up">stand_up</option>
+                    <option value="improv,">improv</option>
+                    <option value="music">music</option>
+                    <option value="spoken_word">spoken word</option>
+                    <option value="skecks">skecks</option></select><br>
+        How many people in the show (on stage and backstage)<input type="text" name="people_on"> <br>
 
-  </div>
- -->
+        Which days of the week: 
+                    Monday<input type="radio" name="day" value="monday">
+                    Tusday<input type="radio" name="day" value="tusday">
+                    Wednesday<input type="radio" name="day" value="wednesday">
+                    Thursday<input type="radio" name="day" value="thursday">
+                    Friday<input type="radio" name="day" value="friday"><br>
+        How much do you want to pay for rent <input type="text" name="rent"> <br> 
+        Time available<input type="text" name="time_available"> <br> 
 
+        Do you need a dressing room 
+                    Yes<input type="radio" name="dressroom" value="yes">
+                    No<input type="radio" name="dressroom" value="no">
+                     <input type="submit" value="Submit">
+
+        Is it a free show?
+                    Yes<input type="radio" name="dressroom" value="yes">
+                    No<input type="radio" name="dressroom" value="no"><br>
+
+        What time<input type="text" name="time"> <br> 
+
+
+                     <input type="submit" value="Submit">             
+
+       </div>
     
+ </form>
+
 
 
  <h1><a href="/act_add">Add an act here</a><h1>
 
-<h2>View List<h1><br>
+
+
+  <h1><a href="/act_list">View List</a><h1>
 
 
 
 
 {% endblock %}
+
+
+
+
+
+
+How much do you want to pay for rent 

@@ -18,7 +18,7 @@ class User(db.Model):
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     password = db.Column(db.String(64), nullable=False)
-    email = db.Column(db.String(100), nullable=False)
+    user_email = db.Column(db.String(100), nullable=False)
     user_fname = db.Column(db.String(64), nullable=False)
     user_lname = db.Column(db.String(64), nullable=False)
     user_type = db.Column(db.String(64), nullable=False)
@@ -37,11 +37,13 @@ class Venue(db.Model):
 
     venue_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     # user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    venue_name = db.Column(db.String(100), nullable=False)
-    venue_address = db.Column(db.String(100), nullable=False)
-    venue_zip = db.Column(db.String(10), nullable=False)
-    venue_size = db.Column(db.Integer, nullable=False)
-    venue_url = db.Column(db.String(200), nullable=True)
+    venue_name = db.Column(db.String(100))
+    venue_address = db.Column(db.String(100))
+    venue_city = db.Column(db.String(100))
+    venue_zipcode = db.Column(db.String(100))
+    venue_size = db.Column(db.Integer)
+    v_email = db.Column(db.String(100))
+    venue_url = db.Column(db.String(200))
 
     def __repr__(self):
         """Provide helpful representation when printed."""
@@ -58,9 +60,9 @@ class Act(db.Model):
 
     act_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     # user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    act_name = db.Column(db.String(100), nullable=False)
-    act_url = db.Column(db.String(200), nullable=True)
-    act_type = db.Column(db.String(100), nullable=False)
+    act_name = db.Column(db.String(100))
+    act_url = db.Column(db.String(200))
+    act_type = db.Column(db.String(100))
 
 
     def __repr__(self):  

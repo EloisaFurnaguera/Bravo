@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <h1>Veneues</h1>
+  <ul>
+  {% for venue in venues %}
+    <li>
+      <a href="/venue_list/{{ venue.venue_name}}">{{venue.venue_name}}</a>
+    </li>
+  {% endfor %}
+  </ul>
+{% endblock %}  
