@@ -1,9 +1,4 @@
-venue_name1,address1,city1,zipcode1,24,venue1@gmail.com,veneu1.com
-venue_name2,address2,city2,zipcode2,24,venue2@gmail.com,veneu2.com
-venue_name3,address3,city3,zipcode3,24,venue3@gmail.com,veneu3.com
-venue_name4,address4,city4,zipcode4,24,venue4@gmail.com,veneu4.com
-venue_name5,address5,city5,zipcode5,24,venue5@gmail.com,veneu5.com
-venue_name6,address6,city6,zipcode6,24,venue6@gmail.com,veneu6.com
-venue_name7,address7,city7,zipcode7,24,venue7@gmail.com,veneu7.com
-venue_name8,address8,city8,zipcode8,24,venue8@gmail.com,veneu8.com
-venue_name9,address9,city9,zipcode9,24,venue19@gmail.com,veneu9.com
+6,venue_name6,address6,city6,zipcode6,24,venue6@gmail.com,veneu6.com
+7,venue_name7,address7,city7,zipcode7,24,venue7@gmail.com,veneu7.com
+8,venue_name8,address8,city8,zipcode8,24,venue8@gmail.com,veneu8.com
+9,venue_name9,address9,city9,zipcode9,24,venue19@gmail.com,veneu9.com

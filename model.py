@@ -36,7 +36,7 @@ class Venue(db.Model):
     __tablename__ = "venues"
 
     venue_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    # user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     venue_name = db.Column(db.String(100))
     venue_address = db.Column(db.String(100))
     venue_city = db.Column(db.String(100))
@@ -44,6 +44,8 @@ class Venue(db.Model):
     venue_size = db.Column(db.Integer)
     v_email = db.Column(db.String(100))
     venue_url = db.Column(db.String(200))
+
+
 
     def __repr__(self):
         """Provide helpful representation when printed."""
@@ -59,10 +61,13 @@ class Act(db.Model):
     __tablename__ = "acts"
 
     act_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    # user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     act_name = db.Column(db.String(100))
     act_url = db.Column(db.String(200))
     act_type = db.Column(db.String(100))
+
+
+
 
 
     def __repr__(self):  

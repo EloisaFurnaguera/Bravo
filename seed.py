@@ -40,9 +40,10 @@ def load_act(file_user):
     for row in (open(file_user)):
         row = row.strip()
 
-        act_name, act_url, act_type  = row.split(",")
+        user_id, act_name, act_url, act_type  = row.split(",")
 
-        new_act = Act(act_name=act_name, 
+        new_act = Act(user_id=user_id,
+                  act_name=act_name, 
                   act_url=act_url, 
                   act_type=act_type)
                          
@@ -59,9 +60,10 @@ def load_venue(file_user):
     for row in (open(file_user)):
         row = row.strip()
 
-        venue_name, venue_address, venue_city, venue_zipcode, venue_size, v_email, venue_url = row.split(",")
+        user_id, venue_name, venue_address, venue_city, venue_zipcode, venue_size, v_email, venue_url = row.split(",")
 
-        new_venue = Venue(venue_name=venue_name, 
+        new_venue = Venue(user_id=user_id,
+                      venue_name=venue_name, 
                       venue_address=venue_address, 
                       venue_city=venue_city,
                       venue_zipcode=venue_zipcode,
@@ -79,7 +81,7 @@ def load_venue(file_user):
 
 if __name__ == "__main__":
     connect_to_db(app)
-    db.create_all()
+    # db.create_all()
 
 
 load_users("data/user_data.txt")
