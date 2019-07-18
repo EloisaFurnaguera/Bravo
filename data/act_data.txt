@@ -1,5 +1,8 @@
-1,act1,act1.com,act_type1
-2,act2,act2.com,act_type2
-3,act3,act3.com,act_type3
-4,act4,act4.com,act_type4
-5,act5,act5.com,act_type5
+,1,yes,yes,yes,yes,yes,no,no
+,2,no,yes,no,yes,no,yes,no
+,3,yes,yes,yes,yes,yes,no,no
+,4,yes,yes,yes,yes,yes,no,no
+1,,yes,,,,,,
+2,,,yes,,,,,
+3,,,,yes,,,,
+4,,,,,yes,,,

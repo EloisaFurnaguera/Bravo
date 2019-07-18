@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Register</h>
+
+<form action="/venue_page" method="POST">
+
+   <div>
+        <label>
+            Name of the Venue
+            <input type="vname" name="vname">                   
+        </label>       
+    </div>
+
+
+   <div>
+        <label>
+            Venue address
+            <input type="v_addess" name="v_addess">                   
+        </label>       
+    </div>
+
+
+    <div>
+        <label>
+            Venue City
+            <input type="venue_city" name="venue_city">                   
+        </label>       
+    </div>
+
+
+    <div>
+        <label>
+            Venue Zipcode
+            <input type="venue_zipcode" name="venue_zipcode">                   
+        </label>       
+    </div>
+
+    <div>
+        <label>
+            Venue size
+            <input type="venue_size" name="venue_size">                   
+        </label>       
+    </div>
+
+
+    <div>
+        <label>
+            Email
+            <input type="v_email" name="v_email">       
+        </label>       
+    </div>  
+
+
+    <div>
+        <label>
+            Wedsite
+            <input type="venue_url" name="venue_url">       
+        </label>       
+    </div>
+
+
+
+    <div>     
+        <input type="submit" name="Add">                     
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <div>
+
+       Location<input type="text" name="venue_location"> <br>
+
+       Type of venue<select name="venue_type"><br>
+                    <option value="theater">Theater</option>
+                    <option value="bar">Bar</option>
+                    <option value="hall">Hall</option>
+                    <option value="other">Other</option></select><br>
+        Size/capacity<input type="text" name="capacity"> <br>
+
+        Days available: 
+                    Monday<input type="radio" name="day" value="monday">
+                    Tusday<input type="radio" name="day" value="tusday">
+                    Wednesday<input type="radio" name="day" value="wednesday">
+                    Thursday<input type="radio" name="day" value="thursday">
+                    Friday<input type="radio" name="day" value="friday"><br>
+
+                    
+        How much for the space<input type="text" name="rent"> <br> 
+        Time available<input type="text" name="time_available"> <br> 
+
+        Is there a Dressroom: 
+                    Yes<input type="radio" name="dressroom" value="yes">
+                    No<input type="radio" name="dressroom" value="no">
+                     <input type="submit" value="Submit">
+
+       </div>
+    
+</form>
+
+
+
+
+
+
+{% endblock %}
+
+
+  
+
+
+

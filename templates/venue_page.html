@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<h1>Venue Page<h1>
+
+
+<h3>Producer Name => {{ user_venue.user_fname }}  {{ user_venue.user_lname }} </h3>
+<h3>Producer Email => { user_venue.user_email }}</h3>
+<h3>Producer ID =>  {{ user_venue.user_id}}</h3><br>
+
+
+<h4><form action="/venue_page/{{ user_venue.user_id }}" method="POST">
+
+    <div>
+        Name of the venue <input type="text" name="venue_name"><br>
+        Website <input type="venue_url" name="venue_url"><br> 
+        Email <input type="email" name="venue_email"><br>
+        Address <input type="text" name="venue_address"><br>
+        City <input type="text" name="venue_city"><br><br>   
+      
+
+        Type of venue<select name="venue_type">
+                    <option value="bar">bar</option>
+                    <option value="cafe">cafe</option>
+                    <option value="hall">hall</option>
+                    <option value="night club">night club</option>
+                    <option value="restaurant">restaurant</option>
+                    <option value="special event">special event</option>
+                    <option value="theater">theater</option>
+                    <option value="other">Other</option></select><br><br>  
+
+        Is there a backspace/dressing room: 
+                  Yes<input type="radio" name="venue_backspace" value="yes">
+                  No<input type="radio" name="venue_backspace" value="no"><br><br>
+
+        Capacity    <input type="text" name="venue_capacity"><br><br>  
+
+
+
+        Type of show/act/performance preferred <br>
+                    <select name="venue_show_preferred" multiple="">
+                    <option value="stand_up">stand up</option>
+                    <option value="burlesque">burlesque</option>
+                    <option value="improv">improv</option>
+                    <option value="music">music</option>
+                    <option value="sketch">sketch</option>
+                    <option value="dj">dj</option>
+                    <option value="spoken_word">spoken word,</option>
+                    <option value="other">Other</option></select><br><br> 
+
+        Is there a backspace/dressing room: 
+                    Yes<input type="radio" name="dressroom" value="yes">
+                    No<input type="radio" name="dressroom" value="no"><br><br>
+
+        Day of the day = >
+                  Monday<input type="checkbox" name="venue_day_available" value="monday">
+                  Tuesday<input type="checkbox" name="venue_day_available" value="tuesday">
+                  Wednesday<input type="checkbox" name="venue_day_available" value="wednesday">
+                  Thursday<input type="checkbox" name="venue_day_available" value="thursday">
+                  Friday<input type="checkbox" name="venue_day_available" value="friday">
+                  Saturday<input type="checkbox" name="venue_day_available" value="saturday">
+                  Sunday<input type="checkbox" name="venue_day_available" value="sunday"><br><br>
+
+
+        Time available =>
+                  Morning<input type="checkbox" name="venue_time_available" value="morning">
+                  Late morning<input type="checkbox" name="venue_time_available" value="late_morning">
+                  Early night<input type="checkbox" name="venue_time_available" value="early_night">
+                  Late night<input type="checkbox" name="venue_time_available" value="ate_night">
+                  Anytime<input type="checkbox" name="venue_time_available" value="vanytime"><br><br>
+
+       How much is the space per hour =>  <input type="text" name="venue_rent"><br><br> 
+
+
+      Looking to fill the space for free: 
+                    Yes<input type="radio" name="venue_free" value="yes">
+                    No<input type="radio" name="venue_free" value="no"><br><br>  
+
+            
+</div>
+    
+ </form></h4>
+
+    
+
+<h1><a href="/act_list">Acts List</a><h1>
+
+
+
+<h1><a href="/venue_page/{{ user_venue.user_id }}">Update Venue info</a><h1>
+
+
+<h1><a href="/user_update">Update user info</a><h1>
+
+{% endblock %}
+
+
+
+
+
+
+

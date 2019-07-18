@@ -5,7 +5,7 @@ from jinja2 import StrictUndefined
 from flask import Flask, render_template, request, flash, redirect, session
 from flask_debugtoolbar import DebugToolbarExtension
 
-from model import connect_to_db, db, User, Venue, Act
+from model import connect_to_db, db, User, Venue, Show
 
 
 app = Flask(__name__)
@@ -58,7 +58,8 @@ def login_process():
     #route the user to the right page
     if user_type == "venue":
 
-        return render_template("venue.html")
+
+        return redirect(f"/venue_page/{user.user_id}")
 
     if user_type == "performer":
 
@@ -71,7 +72,7 @@ def login_process():
 @app.route("/register", methods=["GET"])
 def show_register_form():
     """Show register form"""
-    return render_template("register_form.html")
+    return render_template("use_register_form.html")
 
 
 
@@ -108,7 +109,6 @@ def register_process():
     return redirect("/")
 
 
-
 @app.route('/logout')
 def logout():
     """Log out and delete the cookies"""
@@ -118,7 +118,6 @@ def logout():
 
     flash("Logged Out.")
     return redirect("/")
-
 
 
 
@@ -139,28 +138,79 @@ def show_venue_match_process():
 
 
 
-@app.route("/venue_add", methods=["GET"])
-def add_venue_form():
-    """Show new venue from"""
-    return render_template("add_venue_form.html")
 
 
 
-@app.route("/venue_add", methods=["POST"])
-def add_venue_process():
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.route("/venue_page/<int:user_id>", methods=["GET"])
+def venue_page(user_id):
+    """Show venue page"""
+
+    user_venue = User.query.filter_by(user_id=user_id).first()
+    
+
+  
+
+
+    return render_template("venue_page.html", user_venue=user_venue)
+
+
+
+@app.route("/venue_page/<int:user_id>", methods=["POST"])
+def venue_page_process(user_id):
     """Process new venue"""
     
     #get new venue info
-    venue_name = request.form.get("vname")
-    venue_address = request.form.get("v_addess")
-    venue_city = request.form.get("venue_city")
-    venue_zipcode = request.form.get("venue_zipcode")
-    venue_size = request.form.get("venue_size")
-    v_email = request.form.get("v_email")
+
+
+    venue_name = request.form.get("venue_name")
     venue_url = request.form.get("venue_url")
+    venue_email = request.form.get("venue_email")
+    venue_address = request.form.get("venue_address")
+    venue_city = request.form.get("venue_city")
+    venue_type = request.form.get("venue_type") 
+    venue_backspace = request.form.get("venue_backspace")   
+    venue_capacity = request.form.get("venue_capacity")
+    venue_show_preferred = request.form.get("venue_show_preferred")
+    venue_day_available = request.form.get("venue_day_available")
+    venue_time_available = request.form.get("venue_time_available")
+    venue_free_rent = request.form.get("venue_free")
+    venue_rent = request.form.get("venue_rent")
+   
 
-    print("something")
 
+
+
+
+   # I NEED TO ADD ANOTHERE COMDITION
    #check the venue is not allready in the data by using the email
     checking_email= Venue.query.filter_by(v_email=v_email).first()
     
@@ -169,17 +219,23 @@ def add_venue_process():
 
 
 
-    #add new venue in the data
+    #I NEED TO ADD ANOTHERE COMDITION 
     if not checking_email:
 
         new_venue = Venue(user_id=user_id,
                         venue_name=venue_name, 
+                        venue_url=venue_url, 
+                        venue_email=venue_email, 
                         venue_address=venue_address, 
-                        venue_city=venue_city, 
-                        venue_zipcode=venue_zipcode, 
-                        venue_size=venue_size,
-                        v_email=v_email,
-                        venue_url=venue_url)
+                        venue_city=venue_city,
+                        venue_type=venue_type,
+                        venue_backspace=venue_backspace,
+                        venue_capacity=venue_capacity,
+                        venue_show_preferred=venue_show_preferred,
+                        venue_day_available=venue_day_available,
+                        venue_time_available=venue_time_available,
+                        venue_free_rent=venue_free_rent,
+                        venue_rent=venue_rent)
 
 
         db.session.add(new_venue)
@@ -187,12 +243,54 @@ def add_venue_process():
 
         flash(f"Venue {venue_name} added.")
 
-        return redirect("/venue")
+        return redirect("/venue_page")
     
     flash(f"Venue allreadyin the data")
-    return redirect("/venue")
+    return redirect("/venue_page")
 
  
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @app.route("/act_list")
 def get_acts_list():

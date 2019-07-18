@@ -1,7 +1,8 @@
 from sqlalchemy import func
 from model import User
 from model import Venue
-from model import Act
+from model import Show
+from model import City
 from datetime import datetime
 
 from model import connect_to_db, db
@@ -30,51 +31,118 @@ def load_users(file_user):
         db.session.add(user)
         db.session.commit()
 
- 
 
 
-def load_act(file_user):
-   
-    Act.query.delete()
-
-    for row in (open(file_user)):
-        row = row.strip()
-
-        user_id, act_name, act_url, act_type  = row.split(",")
-
-        new_act = Act(user_id=user_id,
-                  act_name=act_name, 
-                  act_url=act_url, 
-                  act_type=act_type)
-                         
-        db.session.add(new_act)
-        db.session.commit()
-
-
-
-
-def load_venue(file_user):
+def load_venues(file_user):
    
     Venue.query.delete()
 
     for row in (open(file_user)):
         row = row.strip()
 
-        user_id, venue_name, venue_address, venue_city, venue_zipcode, venue_size, v_email, venue_url = row.split(",")
+        user_id, venue_name, venue_url, venue_email, venue_address, venue_city, venue_type, venue_show_preferred, venue_backspace, venue_capacity, venue_day_available, venue_time_available, venue_free_rent, venue_rent= row.split(",")
 
         new_venue = Venue(user_id=user_id,
                       venue_name=venue_name, 
-                      venue_address=venue_address, 
+                      venue_url=venue_url,
+                      venue_email=venue_email,
+                      venue_address=venue_address,
                       venue_city=venue_city,
-                      venue_zipcode=venue_zipcode,
-                      venue_size=venue_size,
-                      v_email=v_email,
-                      venue_url=venue_url)
-
-
+                      venue_type=venue_type,
+                      venue_show_preferred=venue_show_preferred,
+                      venue_backspace=venue_backspace,
+                      venue_capacity=venue_capacity,
+                      venue_day_available=venue_day_available,
+                      venue_time_available=venue_time_available,
+                      venue_free_rent=venue_free_rent,
+                      venue_rent=venue_rent)
                
         db.session.add(new_venue)
         db.session.commit()
+
+
+ 
+
+
+def load_shows(file_user):
+   
+    Show.query.delete()
+
+    for row in (open(file_user)):
+        row = row.strip()
+
+        user_id, show_name, show_type, show_url, show_amount_people, show_dressing_room, show_length, show_venue_preferred, show_location_preferred, show_day_preferred, show_time_preferred, show_free, show_rent = row.split(",")
+
+        new_show = Show(user_id=user_id,
+                  show_name=show_name, 
+                  show_type=show_type, 
+                  show_url=show_url,
+                  show_amount_people=show_amount_people,
+                  show_dressing_room=show_dressing_room,
+                  show_length=show_length,
+                  show_venue_preferred=show_venue_preferred,
+                  show_location_preferred=show_location_preferred,
+                  show_day_preferred=show_day_preferred,
+                  show_time_preferred=show_time_preferred,
+                  show_free=show_free, 
+                  show_rent=show_rent)
+                         
+        db.session.add(new_show)
+        db.session.commit()
+
+
+
+def load_cities(file_user):
+   
+    City.query.delete()
+
+    for row in (open(file_user)):
+        row = row.strip()
+
+        city, county = row.split(",")
+
+        new_city = City(city=city,
+                      county=county)
+               
+        db.session.add(new_city)
+        db.session.commit()
+
+
+
+
+def load_days(file_user):
+   
+    Day.query.delete()
+
+    for row in (open(file_user)):
+        row = row.strip()
+
+        user_id, show_name, show_type, show_url, show_amount_people, show_dressing_room, show_length, show_venue_preferred, show_location_preferred, show_day_preferred, show_time_preferred, show_free, show_rent = row.split(",")
+
+        new_show = Show(user_id=user_id,
+                  show_name=show_name, 
+                  show_type=show_type, 
+                  show_url=show_url,
+                  show_amount_people=show_amount_people,
+                  show_dressing_room=show_dressing_room,
+                  show_length=show_length,
+                  show_venue_preferred=show_venue_preferred,
+                  show_location_preferred=show_location_preferred,
+                  show_day_preferred=show_day_preferred,
+                  show_time_preferred=show_time_preferred,
+                  show_free=show_free, 
+                  show_rent=show_rent)
+                         
+        db.session.add(new_show)
+        db.session.commit()
+
+
+
+
+
+
+
+
 
 
 
@@ -85,7 +153,12 @@ if __name__ == "__main__":
 
 
 load_users("data/user_data.txt")
+load_shows("data/show_data.txt")
+load_venues("data/venue_data.txt")
+load_cities("data/city_data.txt")
 load_act("data/act_data.txt")
-load_venue("data/venue_data.txt")
+load_day("data/day_data.txt")
+load_time("data/time_data.txt")
+
 
   

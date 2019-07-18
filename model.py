@@ -25,9 +25,6 @@ class User(db.Model):
 
     
 
-    def __repr__(self):
-        
-        return f"<User: user_id={self.user_id} email={self.email} user_type={self.user_type}>"
 
 
 class Venue(db.Model):
@@ -38,41 +35,117 @@ class Venue(db.Model):
     venue_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     venue_name = db.Column(db.String(100))
+    venue_url = db.Column(db.String(200))
+    venue_email = db.Column(db.String(100))
     venue_address = db.Column(db.String(100))
     venue_city = db.Column(db.String(100))
-    venue_zipcode = db.Column(db.String(100))
-    venue_size = db.Column(db.Integer)
-    v_email = db.Column(db.String(100))
-    venue_url = db.Column(db.String(200))
+    venue_type = db.Column(db.String(100))
+    venue_backspace = db.Column(db.String(200))
+    venue_capacity = db.Column(db.String(100))
+    act_id = db.Column(db.Integer, db.ForeignKey('acts.act_id'))
+    # venue_show_preferred = db.Column(db.String(100))
+    day_id = db.Column(db.Integer, db.ForeignKey('days.day_id'))
+    # venue_day_available = db.Column(db.String(200))
+    time_id = db.Column(db.Integer, db.ForeignKey('times.time_id'))
+    # venue_time_available = db.Column(db.String(200))
+    venue_free_rent = db.Column(db.String(200))
+    venue_rent = db.Column(db.String(200))
+   
+   
+  
+
+class Show(db.Model):
+    """Shows info table"""
+
+    __tablename__ = "shows"
+
+    show_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))  
+    show_name = db.Column(db.String(100))
+    show_type = db.Column(db.String(100))
+    show_url = db.Column(db.String(200))
+    show_amount_people = db.Column(db.String(200))
+    show_dressing_room = db.Column(db.String(200))
+    show_length = db.Column(db.String(200))
+    show_venue_preferred = db.Column(db.String(200))
+    show_location_preferred = db.Column(db.String(200))
+    day_id = db.Column(db.Integer, db.ForeignKey('days.day_id'))
+    # show_day_preferred = db.Column(db.String(200))
+    time_id = db.Column(db.Integer, db.ForeignKey('times.time_id'))
+    # show_time_preferred = db.Column(db.String(200))
+    show_free = db.Column(db.String(200))
+    show_rent = db.Column(db.String(200))
 
 
 
-    def __repr__(self):
-        """Provide helpful representation when printed."""
-        return f"<Venue: venue_name={self.venue_name} venue_zip={self.venue_zip}>"
 
+class City(db.Model):
+    """Shows Cities table"""
+
+    __tablename__ = "cities"
+
+    city_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    city = db.Column(db.String(100))
+    county = db.Column(db.String(100))
+
+
+
+class Day(db.Model):
+    """Shows available days table"""
+
+    __tablename__ = "days"
+
+    day_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    show_id = db.Column(db.Integer, db.ForeignKey('shows.show_id')) 
+    venue_id = db.Column(db.Integer, db.ForeignKey('venues.venue_id'))
+    monday = db.Column(db.String(20))
+    tuesday = db.Column(db.String(20))
+    wednesday = db.Column(db.String(20))
+    thursday = db.Column(db.String(20))
+    friday = db.Column(db.String(20))
+    saturday = db.Column(db.String(20))
+    sunday = db.Column(db.String(20))
+
+
+
+
+class Time(db.Model):
+    """Shows available times table"""
+
+    __tablename__ = "times"
+
+    time_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    show_id = db.Column(db.Integer, db.ForeignKey('users.user_id')) 
+    venue_id = db.Column(db.Integer, db.ForeignKey('venues.venue_id'))
+    morning = db.Column(db.String(20))
+    late_morning = db.Column(db.String(20))
+    early_late = db.Column(db.String(20))
+    late_night = db.Column(db.String(20))
+    anytime = db.Column(db.String(20))
 
 
 
 
 class Act(db.Model):
-    """Act table"""
+    """Shows type od show table"""
 
     __tablename__ = "acts"
 
     act_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    act_name = db.Column(db.String(100))
-    act_url = db.Column(db.String(200))
-    act_type = db.Column(db.String(100))
+    show_id = db.Column(db.Integer, db.ForeignKey('shows.show_id')) 
+    venue_id = db.Column(db.Integer, db.ForeignKey('venues.venue_id'))
+    stand_up = db.Column(db.String(20))
+    burlesque = db.Column(db.String(20))
+    improv = db.Column(db.String(20))
+    music = db.Column(db.String(20))
+    sketch = db.Column(db.String(20))
+    dj = db.Column(db.String(20))
+    spoken_word = db.Column(db.String(20))
+    
 
 
 
 
-
-    def __repr__(self):  
-        """Provide helpful representation when printed."""
-        return f"""<Act: act_name={self.act_name} act_type={self.act_type} >"""
 
 
 #####################################################################

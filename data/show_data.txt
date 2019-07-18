@@ -1,0 +1,4 @@
+7,venue_name_1,venue1.com,venue1@gmail.com,venue_address_1,San Francico,bar,no,30,11,11,11,yes,0
+8,venue_name_2,venue2.com,venue2@gmail.com,venue_address_2,San Jose,theater,yes,100,12,12,12,no,200
+9,venue_name_3,venue3.com,venue3@gmail.com,venue_address_3,Oakland,hall,no,24,13,13,13,no,50
+10,venue_name_4,venue4.com,venue4@gmail.com,venue_address_4,San Francico,theater,yes,70,14,14,14,no,350
