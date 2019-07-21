@@ -23,6 +23,27 @@ class User(db.Model):
     user_lname = db.Column(db.String(64), nullable=False)
     user_type = db.Column(db.String(64), nullable=False)
 
+
+
+
+class Time(db.Model):
+    """Shows available times table"""
+
+    __tablename__ = "times"
+
+    time_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    monday = db.Column(db.String(20))
+    tuesday = db.Column(db.String(20))
+    wednesday = db.Column(db.String(20))
+    thursday = db.Column(db.String(20))
+    friday = db.Column(db.String(20))
+    saturday = db.Column(db.String(20))
+    sunday = db.Column(db.String(20))
+    morning = db.Column(db.String(20))
+    late_morning = db.Column(db.String(20))
+    early_night = db.Column(db.String(20))
+    late_night = db.Column(db.String(20))
+   
     
 
 
@@ -42,12 +63,11 @@ class Venue(db.Model):
     venue_type = db.Column(db.String(100))
     venue_backspace = db.Column(db.String(200))
     venue_capacity = db.Column(db.String(100))
-    act_id = db.Column(db.Integer, db.ForeignKey('acts.act_id'))
+    venue_license = db.Column(db.String(100))
+    # I AM NOT I SHOULD ASK THE VENUE WHAT KIND OF ACT THEY WANT
+    # act_id = db.Column(db.Integer, db.ForeignKey('acts.act_id'))
     # venue_show_preferred = db.Column(db.String(100))
-    day_id = db.Column(db.Integer, db.ForeignKey('days.day_id'))
-    # venue_day_available = db.Column(db.String(200))
     time_id = db.Column(db.Integer, db.ForeignKey('times.time_id'))
-    # venue_time_available = db.Column(db.String(200))
     venue_free_rent = db.Column(db.String(200))
     venue_rent = db.Column(db.String(200))
    
@@ -67,13 +87,11 @@ class Show(db.Model):
     show_amount_people = db.Column(db.String(200))
     show_dressing_room = db.Column(db.String(200))
     show_length = db.Column(db.String(200))
-    show_venue_preferred = db.Column(db.String(200))
+    # I AM NOT  I SHOULD ASK THE SHOW WHAT KIND OF VENUE THEY WANT
+    # show_venue_preferred = db.Column(db.String(200))
     show_location_preferred = db.Column(db.String(200))
-    day_id = db.Column(db.Integer, db.ForeignKey('days.day_id'))
-    # show_day_preferred = db.Column(db.String(200))
     time_id = db.Column(db.Integer, db.ForeignKey('times.time_id'))
-    # show_time_preferred = db.Column(db.String(200))
-    show_free = db.Column(db.String(200))
+    show_ticket_price = db.Column(db.String(200))
     show_rent = db.Column(db.String(200))
 
 
@@ -90,57 +108,29 @@ class City(db.Model):
 
 
 
-class Day(db.Model):
-    """Shows available days table"""
-
-    __tablename__ = "days"
-
-    day_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    show_id = db.Column(db.Integer, db.ForeignKey('shows.show_id')) 
-    venue_id = db.Column(db.Integer, db.ForeignKey('venues.venue_id'))
-    monday = db.Column(db.String(20))
-    tuesday = db.Column(db.String(20))
-    wednesday = db.Column(db.String(20))
-    thursday = db.Column(db.String(20))
-    friday = db.Column(db.String(20))
-    saturday = db.Column(db.String(20))
-    sunday = db.Column(db.String(20))
 
 
 
+#///////////////////////////////////////////////////////////
 
-class Time(db.Model):
-    """Shows available times table"""
+#I AM NOT SURE I AM GOING TO USE THIS
 
-    __tablename__ = "times"
+# NOT SURE I AM GOING TO USE THIS 
+# class Act(db.Model):
+#     """Shows type od show table"""
 
-    time_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    show_id = db.Column(db.Integer, db.ForeignKey('users.user_id')) 
-    venue_id = db.Column(db.Integer, db.ForeignKey('venues.venue_id'))
-    morning = db.Column(db.String(20))
-    late_morning = db.Column(db.String(20))
-    early_late = db.Column(db.String(20))
-    late_night = db.Column(db.String(20))
-    anytime = db.Column(db.String(20))
+#     __tablename__ = "acts"
 
-
-
-
-class Act(db.Model):
-    """Shows type od show table"""
-
-    __tablename__ = "acts"
-
-    act_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    show_id = db.Column(db.Integer, db.ForeignKey('shows.show_id')) 
-    venue_id = db.Column(db.Integer, db.ForeignKey('venues.venue_id'))
-    stand_up = db.Column(db.String(20))
-    burlesque = db.Column(db.String(20))
-    improv = db.Column(db.String(20))
-    music = db.Column(db.String(20))
-    sketch = db.Column(db.String(20))
-    dj = db.Column(db.String(20))
-    spoken_word = db.Column(db.String(20))
+#     act_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#     show_id = db.Column(db.Integer, db.ForeignKey('shows.show_id')) 
+#     venue_id = db.Column(db.Integer, db.ForeignKey('venues.venue_id'))
+#     stand_up = db.Column(db.String(20))
+#     burlesque = db.Column(db.String(20))
+#     improv = db.Column(db.String(20))
+#     music = db.Column(db.String(20))
+#     sketch = db.Column(db.String(20))
+#     dj = db.Column(db.String(20))
+#     spoken_word = db.Column(db.String(20))
     
 
 

@@ -5,7 +5,7 @@ from jinja2 import StrictUndefined
 from flask import Flask, render_template, request, flash, redirect, session
 from flask_debugtoolbar import DebugToolbarExtension
 
-from model import connect_to_db, db, User, Venue, Show
+from model import connect_to_db, db, User, Venue, Show, Time
 
 
 app = Flask(__name__)
@@ -177,8 +177,6 @@ def venue_page(user_id):
     user_venue = User.query.filter_by(user_id=user_id).first()
     
 
-  
-
 
     return render_template("venue_page.html", user_venue=user_venue)
 
@@ -189,6 +187,23 @@ def venue_page_process(user_id):
     """Process new venue"""
     
     #get new venue info
+
+
+    monday = request.form.get("monday")
+    tuesday = request.form.get("tuesday")
+    wednesday = request.form.get("wednesday")
+    thursday = request.form.get("thursday")
+    friday = request.form.get("friday")
+    saturday = request.form.get("saturday")
+    sunday = request.form.get("sunday")
+    morning = request.form.get("morning")
+    late_morning = request.form.get("late_morning")
+    early_night = request.form.get("early_night")
+    late_night = request.form.get("late_night")
+
+
+
+
 
 
     venue_name = request.form.get("venue_name")
@@ -207,12 +222,9 @@ def venue_page_process(user_id):
    
 
 
-
-
-
    # I NEED TO ADD ANOTHERE COMDITION
    #check the venue is not allready in the data by using the email
-    checking_email= Venue.query.filter_by(v_email=v_email).first()
+    # checking_email= Venue.query.filter_by(v_email=v_email).first()
     
 
     user_id = session.get("user_id")
@@ -220,33 +232,49 @@ def venue_page_process(user_id):
 
 
     #I NEED TO ADD ANOTHERE COMDITION 
-    if not checking_email:
-
-        new_venue = Venue(user_id=user_id,
-                        venue_name=venue_name, 
-                        venue_url=venue_url, 
-                        venue_email=venue_email, 
-                        venue_address=venue_address, 
-                        venue_city=venue_city,
-                        venue_type=venue_type,
-                        venue_backspace=venue_backspace,
-                        venue_capacity=venue_capacity,
-                        venue_show_preferred=venue_show_preferred,
-                        venue_day_available=venue_day_available,
-                        venue_time_available=venue_time_available,
-                        venue_free_rent=venue_free_rent,
-                        venue_rent=venue_rent)
+    # if not checking_email:
 
 
-        db.session.add(new_venue)
-        db.session.commit()
 
-        flash(f"Venue {venue_name} added.")
 
-        return redirect("/venue_page")
+
+    new_time = Time(monday=monday,
+                    tuesday=tuesday,
+                    wednesday=wednesday,
+                    thursday=thursday,
+                    friday=friday,
+                    saturday=saturday,
+                    sunday=sunday,
+                    morning=morning,
+                    late_morning=late_morning,
+                    early_night=early_night,
+                    late_night=late_night)
+
+    db.session.add(new_time)
+
+    new_venue = Venue(user_id=user_id,
+                    venue_name=venue_name, 
+                    venue_url=venue_url, 
+                    venue_email=venue_email, 
+                    venue_address=venue_address, 
+                    venue_city=venue_city,
+                    venue_type=venue_type,
+                    venue_backspace=venue_backspace,
+                    venue_capacity=venue_capacity,
+                    venue_show_preferred=venue_show_preferred,
+                    venue_free_rent=venue_free_rent,
+                    venue_rent=venue_rent)
+
+
+    db.session.add(new_venue)
+    db.session.commit()
+
+    #     flash(f"Venue {venue_name} added.")
+
+    #     return redirect("/venue_page")
     
-    flash(f"Venue allreadyin the data")
-    return redirect("/venue_page")
+    # flash(f"Venue allreadyin the data")
+    # return redirect("/venue_page")
 
  
 

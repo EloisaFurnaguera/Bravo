@@ -1,4 +1,5 @@
-7,venue_name_1,venue1.com,venue1@gmail.com,venue_address_1,San Francico,bar,no,30,11,11,11,yes,0
-8,venue_name_2,venue2.com,venue2@gmail.com,venue_address_2,San Jose,theater,yes,100,12,12,12,no,200
-9,venue_name_3,venue3.com,venue3@gmail.com,venue_address_3,Oakland,hall,no,24,13,13,13,no,50
-10,venue_name_4,venue4.com,venue4@gmail.com,venue_address_4,San Francico,theater,yes,70,14,14,14,no,350
+1,show_name1,music,show1.com,2,no,1,San Francisco,1,free,50
+2,show_name2,burlesque,show2.com,5,yes,2,San Jose,2,10,300
+3,show_name3,improv,show3.com,8,yes,2,Oakland,3,20,100
+4,show_name4,music,show4.com,4,no,2,San Francisco,4,5,100
+5,show_name5,dj,show4.com,1,no,5,San Francisco,5,free,50

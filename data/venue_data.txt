@@ -1,5 +1,5 @@
-6,venue1,venue1.com,venue1@gmail.com,address1,city1,v_type1,dance,yes,capacity1,venue_day1,venue_time1,no,venue_rent1
-7,venue2,venue2.com,venue2@gmail.com,address2,city2,v_type2,music,no,capacity2,venue_day2,venue_time2,yes,venue_rent2
-8,venue3,venue3.com,venue3@gmail.com,address3,city3,v_type3,burlesque,no,capacity3,venue_day3,venue_time3,no,venue_rent3
-9,venue4,venue4.com,venue4@gmail.com,address4,city4,v_type4,dance,yes,capacity4,venue_day4,venue_time4,no,venue_rent4
-10,venue5,venue5.com,venue5@gmail.com,address5,city5,v_type5,music,yes,capacity5,venue_day5,venue_time5,yes,venue_rent5
+6,venue_name_1,venue1.com,venue1@gmail.com,venue_address_1,San Francico,bar,no,30,11,6,11,yes
+7,venue_name_2,venue2.com,venue2@gmail.com,venue_address_2,San Jose,theater,yes,100,12,7,12,no
+8,venue_name_3,venue3.com,venue3@gmail.com,venue_address_3,Oakland,hall,no,24,13,8,13,no
+9,venue_name_4,venue4.com,venue4@gmail.com,venue_address_4,San Francico,theater,yes,70,14,9,14,no
+10,venue_name_5,venue3.com,venue3@gmail.com,venue_address_5,Oakland,hall,no,116,15,10,15,no
