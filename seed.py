@@ -57,7 +57,7 @@ def load_times(file_user):
                               sunday=sunday,
                               morning=morning,
                               late_morning=late_morning,
-                              early_late=early_late,
+                              early_night=early_night,
                               late_night=late_night)
         
         db.session.add(time_preference)

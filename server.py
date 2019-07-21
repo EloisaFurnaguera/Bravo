@@ -21,7 +21,6 @@ def show_homepage():
 
 
 
-
 @app.route("/login", methods=['POST'])
 def login_process():
     """Process login info"""
@@ -72,7 +71,7 @@ def login_process():
 @app.route("/register", methods=["GET"])
 def show_register_form():
     """Show register form"""
-    return render_template("use_register_form.html")
+    return render_template("user_register_form.html")
 
 
 
@@ -140,36 +139,6 @@ def show_venue_match_process():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @app.route("/venue_page/<int:user_id>", methods=["GET"])
 def venue_page(user_id):
     """Show venue page"""
@@ -212,9 +181,9 @@ def venue_page_process(user_id):
     venue_address = request.form.get("venue_address")
     venue_city = request.form.get("venue_city")
     venue_type = request.form.get("venue_type") 
-    venue_backspace = request.form.get("venue_backspace")   
+    venue_backspace = request.form.get("venue_backspace")  
     venue_capacity = request.form.get("venue_capacity")
-    venue_show_preferred = request.form.get("venue_show_preferred")
+    venue_license = request.form.get("cabaret_license") 
     venue_day_available = request.form.get("venue_day_available")
     venue_time_available = request.form.get("venue_time_available")
     venue_free_rent = request.form.get("venue_free")
@@ -251,9 +220,15 @@ def venue_page_process(user_id):
                     late_night=late_night)
 
     db.session.add(new_time)
+    db.session.commit()
+    db.session.refresh(new_time)
+
+    
+
+
 
     new_venue = Venue(user_id=user_id,
-                    venue_name=venue_name, 
+                    venue_name=venue_name,
                     venue_url=venue_url, 
                     venue_email=venue_email, 
                     venue_address=venue_address, 
@@ -261,8 +236,10 @@ def venue_page_process(user_id):
                     venue_type=venue_type,
                     venue_backspace=venue_backspace,
                     venue_capacity=venue_capacity,
-                    venue_show_preferred=venue_show_preferred,
+                    venue_license=venue_license,
                     venue_free_rent=venue_free_rent,
+
+                    time_id=new_time.time_id,
                     venue_rent=venue_rent)
 
 
@@ -271,7 +248,7 @@ def venue_page_process(user_id):
 
     #     flash(f"Venue {venue_name} added.")
 
-    #     return redirect("/venue_page")
+    return redirect("/venue_page")
     
     # flash(f"Venue allreadyin the data")
     # return redirect("/venue_page")
