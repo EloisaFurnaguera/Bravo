@@ -5,9 +5,14 @@
 <h1>Venue Page<h1>
 
 
-<h3>Producer Name => {{ user_venue.user_fname }}  {{ user_venue.user_lname }} </h3>
-<h3>Producer Email => { user_venue.user_email }}</h3>
-<h3>Producer ID =>  {{ user_venue.user_id}}</h3><br>
+<h3>User Name => {{ user_venue.user_fname }}  {{ user_venue.user_lname }} </h3>
+<h3>User Email => {{ user_venue.user_email }}</h3>
+<h3>User ID =>  {{ user_venue.user_id}}</h3>
+
+{% if venue_id %}
+<h3>Venue ID =>  {{ user_venue.user_id}}</h3><br>
+{% endif %}
+
 
 
 <h4><form action="/venue_page/{{ user_venue.user_id }}" method="POST">
@@ -47,9 +52,9 @@
                   Tuesday<input type="checkbox" name="tuesday" value="tuesday">
                   Wednesday<input type="checkbox" name="wednesday" value="wednesday">
                   Thursday<input type="checkbox" name="thursday" value="thursday">
-                  Friday<input type="checkbox" name="venue_day_available" value="friday">
-                  Saturday<input type="checkbox" name="venue_day_available" value="saturday">
-                  Sunday<input type="checkbox" name="venue_day_available" value="sunday"><br><br>
+                  Friday<input type="checkbox" name="friday" value="friday">
+                  Saturday<input type="checkbox" name="saturday" value="saturday">
+                  Sunday<input type="checkbox" name="sunday" value="sunday"><br><br>
 
 
         Time available =>
@@ -77,14 +82,15 @@
 
     
 
-<h1><a href="/act_list">Acts List</a><h1>
+<h1><a href="/acts_list">Acts List</a><h1>
 
 
 
-<h1><a href="/venue_page/{{ user_venue.user_id }}">Update Venue info</a><h1>
+<h1><a href="/venue_update/{{ user_venue.user_id }}">Update Venue info</a><h1>
 
 
-<h1><a href="/user_update">Update user info</a><h1>
+
+<!-- <h1><a href="/user_update">Update user info</a><h1> -->
 
 {% endblock %}
 

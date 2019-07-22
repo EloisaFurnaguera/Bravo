@@ -72,6 +72,18 @@ class Venue(db.Model):
     venue_rent = db.Column(db.String(200))
    
    
+
+
+
+
+
+
+
+
+
+
+
+
   
 
 class Show(db.Model):
@@ -93,6 +105,48 @@ class Show(db.Model):
     time_id = db.Column(db.Integer, db.ForeignKey('times.time_id'))
     show_ticket_price = db.Column(db.String(200))
     show_rent = db.Column(db.String(200))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

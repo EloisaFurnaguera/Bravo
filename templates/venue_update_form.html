@@ -1,69 +1,93 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>What do you want to update</h>
-
-<form action="/venue_update" method="POST">
-
-   <div>
-        <label>
-            Name of the Venue
-            <input type="vname" name="vname">                   
-        </label>       
-    </div>
 
 
-   <div>
-        <label>
-            Venue address
-            <input type="v_addess" name="v_addess">                   
-        </label>       
-    </div>
 
+<h1>Venue Update<h1>
+
+
+<h4><form action="/venue_update/{{venue_id }}" method="POST">
 
     <div>
-        <label>
-            Venue City
-            <input type="venue_city" name="venue_city">                   
-        </label>       
-    </div>
 
 
-    <div>
-        <label>
-            Venue Zipcode
-            <input type="venue_zipcode" name="venue_zipcode">                   
-        </label>       
-    </div>
-
-    <div>
-        <label>
-            Venue size
-            <input type="venue_size" name="venue_size">                   
-        </label>       
-    </div>
+        Day of the day = >
+                  Monday<input type="checkbox" name="monday" value="monday">
+                  Tuesday<input type="checkbox" name="tuesday" value="tuesday">
+                  Wednesday<input type="checkbox" name="wednesday" value="wednesday">
+                  Thursday<input type="checkbox" name="thursday" value="thursday">
+                  Friday<input type="checkbox" name="friday" value="friday">
+                  Saturday<input type="checkbox" name="saturday" value="saturday">
+                  Sunday<input type="checkbox" name="sunday" value="sunday"><br><br>
 
 
-    <div>
-        <label>
-            Email
-            <input type="v_email" name="v_email">       
-        </label>       
-    </div>  
+        Time available =>
+                  Morning<input type="checkbox" name="morning" value="morning">
+                  Late morning<input type="checkbox" name="late_morning" value="late_morning">
+                  Early night<input type="checkbox" name="early_night" value="early_night">
+                  Late night<input type="checkbox" name="late_night" value="late_night"><br><br>
+               
+
+        How much is the space per hour =>  <input type="text" name="venue_rent"><br><br> 
 
 
-    <div>
-        <label>
-            Wedsite
-            <input type="venue_url" name="venue_url">       
-        </label>       
-    </div>
+        Looking to fill the space for free: 
+                    Yes<input type="radio" name="venue_free" value="yes">
+                    No<input type="radio" name="venue_free" value="no"><br><br>  
+
+
+        Do you have a cabaret license:
+            Yes<input type="radio" name="cabaret_license" value="yes">
+            No<input type="radio" name="cabaret_license" value="no"><br><br>
+
+
+        Is there a backspace/dressing room: 
+                  Yes<input type="radio" name="venue_backspace" value="yes">
+                  No<input type="radio" name="venue_backspace" value="no"><br><br>
+
+        <!-- Capacity    <input type="text" name="venue_capacity"><br><br>   -->
+
+
+               
+
+        How much is the space per hour =>  <input type="text" name="venue_rent"><br><br> 
+
+
+        Looking to fill the space for free: 
+                    Yes<input type="radio" name="venue_free" value="yes">
+                    No<input type="radio" name="venue_free" value="no"><br><br>  
 
 
 
-    <div>     
+
+
+    
+        Website <input type="venue_url" name="venue_url"><br> 
+        Email <input type="email" name="venue_email"><br>
+
+
+<!--         Name of the venue <input type="text" name="venue_name"><br>
+
+        Type of venue<select name="venue_type">
+                    <option value="bar">bar</option>
+                    <option value="cafe">cafe</option>
+                    <option value="hall">hall</option>
+                    <option value="night club">night club</option>
+                    <option value="restaurant">restaurant</option>
+                    <option value="special event">special event</option>
+                    <option value="theater">theater</option>
+                    <option value="other">Other</option></select><br><br>  -->
+
+           <div>     
         <input type="submit" name="Add">                     
     </div>
-</form>
+
+            
+</div>
+    
+ </form></h4>
+
+    
 
 {% endblock %}
