@@ -3,7 +3,13 @@
 
 <h1>Update</h>
 
-<form action="/user_update" method="POST">
+    
+
+<h3>User ID =>  {{ user_id}}</h3><br>
+
+<form action="/user_info_update/{{user_id}}" method="POST">
+
+
 
    <div>
         <label>
@@ -37,14 +43,7 @@
     </div>
 
 
-    <div>
-        <label>
-        What kind of user are you 
-        <input type="radio" name="check" value="venue">Venue 
-        <input type="radio" name="check" value="performer">Performer  
-               
-        </label>       
-    </div>
+
 
     <div>     
         <input type="submit" name="Update">                     

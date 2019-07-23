@@ -5,17 +5,14 @@
 <h1>Venue Page<h1>
 
 
-<h3>User Name => {{ user_venue.user_fname }}  {{ user_venue.user_lname }} </h3>
-<h3>User Email => {{ user_venue.user_email }}</h3>
-<h3>User ID =>  {{ user_venue.user_id}}</h3>
-
-{% if venue_id %}
-<h3>Venue ID =>  {{ user_venue.user_id}}</h3><br>
-{% endif %}
+<h3>User Name => {{ user_fname }}  {{ user_lname}} </h3>
+<h3>User Email => {{ user_email }}</h3>
+<h3>User ID =>  {{ user_id}}</h3>
 
 
 
-<h4><form action="/venue_page/{{ user_venue.user_id }}" method="POST">
+
+<h4><form action="/new_venue_page/{{ user_id }}" method="POST">
 
     <div>
         Name of the venue <input type="text" name="venue_name"><br>
@@ -48,20 +45,20 @@
 
 
         Day of the day = >
-                  Monday<input type="checkbox" name="monday" value="monday">
-                  Tuesday<input type="checkbox" name="tuesday" value="tuesday">
-                  Wednesday<input type="checkbox" name="wednesday" value="wednesday">
-                  Thursday<input type="checkbox" name="thursday" value="thursday">
-                  Friday<input type="checkbox" name="friday" value="friday">
-                  Saturday<input type="checkbox" name="saturday" value="saturday">
-                  Sunday<input type="checkbox" name="sunday" value="sunday"><br><br>
+                  Monday<input type="checkbox" name="monday" value="yes">
+                  Tuesday<input type="checkbox" name="tuesday" value="yes">
+                  Wednesday<input type="checkbox" name="wednesday" value="yes">
+                  Thursday<input type="checkbox" name="thursday" value="yes">
+                  Friday<input type="checkbox" name="friday" value="yes">
+                  Saturday<input type="checkbox" name="saturday" value="yes">
+                  Sunday<input type="checkbox" name="sunday" value="yes"><br><br>
 
 
         Time available =>
-                  Morning<input type="checkbox" name="morning" value="morning">
-                  Late morning<input type="checkbox" name="late_morning" value="late_morning">
-                  Early night<input type="checkbox" name="early_night" value="early_night">
-                  Late night<input type="checkbox" name="late_night" value="late_night"><br><br>
+                  Morning<input type="checkbox" name="morning" value="yes">
+                  Late morning<input type="checkbox" name="late_morning" value="yes">
+                  Early night<input type="checkbox" name="early_night" value="yes">
+                  Late night<input type="checkbox" name="late_night" value="yes"><br><br>
                
 
         How much is the space per hour =>  <input type="text" name="venue_rent"><br><br> 
@@ -82,15 +79,6 @@
 
     
 
-<h1><a href="/acts_list">Acts List</a><h1>
-
-
-
-<h1><a href="/venue_update/{{ user_venue.user_id }}">Update Venue info</a><h1>
-
-
-
-<!-- <h1><a href="/user_update">Update user info</a><h1> -->
 
 {% endblock %}
 

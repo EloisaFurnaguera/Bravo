@@ -24,14 +24,20 @@ def show_homepage():
 @app.route("/login", methods=['POST'])
 def login_process():
     """Process login info"""
-
+  
     user_email = request.form.get("email")
     password_user = request.form.get("password")
     user_type = request.form.get("check")
+
+    
+
   
     #search if user is already in the data and that enter the
     #right user name, pass and type of user
     user = User.query.filter_by(user_email=user_email).first()
+
+    print(user_type )
+    print(user.user_type)
 
     if not user:
 
@@ -50,24 +56,89 @@ def login_process():
 
     #ADD ONE MORE COOKI FOR THE VENUE AND ONE FOR THE PRODUCER
 
-
-
     #keep the id and type in a cookie
-    session["user_id"] = user.user_id
-    # session["check"] = user.user_type
+    # session["user_id"] = user.user_id
+    
 
 
-
-
-    #route the user to the right page
     if user_type == "venue":
 
 
-        return redirect(f"/venue_page/{user.user_id}")
+        if "venue_id" in session:
 
-    if user_type == "performer":
+            venue_id = session.get("venue_id")
 
-        return render_template("performer.html/{user.user_id}")
+            return redirect(f"/venue_single/{venue_id}")
+
+        else:
+
+            check_venue = Venue.query.filter_by(user_id=user.user_id).first()
+
+            if check_venue == None:
+
+                return redirect(f"/new_venue_page/{user.user_id}")
+
+            else:
+
+
+                session["user_id"] = user.user_id
+                session["venue_id"] = check_venue.venue_id
+
+                return redirect(f"/venue_single/{check_venue.venue_id}")
+
+
+    if user_type == "producer":
+
+        check_producer= Show.query.filter_by(user_id=user.user_id).all()
+
+        return redirect(f"/new_act_page/{user.user_id}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #     check_venue = Venue.query.filter_by(user_id=user.user_id).first()
+       
+
+    #     if check_venue == None:
+
+    #         return redirect(f"/new_venue_page/{user.user_id}")
+
+
+    #     else:
+
+    #         session["user_id"] = user.user_id
+    #         session["venue_id"] = check_venue.venue_id
+
+    #         return redirect(f"/venue_single/{check_venue.venue_id}")
+
+   
+
+    # if user_type == "performer":
+
+    #     return render_template(f"performer.html/{user.user_id}")
+
+
+@app.route('/logout')
+def logout():
+    """Log out and delete the cookies"""
+
+    del session["user_id"]
+
+    if "venue_id" in session:
+
+        del session["venue_id"]
+
+    flash("Logged Out.")
+    return redirect("/")
 
 
 
@@ -113,49 +184,74 @@ def register_process():
     return redirect("/")
 
 
-@app.route('/logout')
-def logout():
-    """Log out and delete the cookies"""
 
-    del session["user_id"]
-    # del session["check"]
-
-    flash("Logged Out.")
-    return redirect("/")
+@app.route("/user_info_update/<int:user_id>", methods=["GET"])
+def user_info_update(user_id):
+    print('From get')
+    print(user_id)
+    
 
 
 
-
-# @app.route("/venue", methods=["GET"])
-# def show_venue_page():
-#     """Show the venue page"""
-#     return render_template("venue.html")
+    return render_template("user_update_form.html", user_id=user_id )
 
 
 
-# @app.route("/venue", methods=["POST"])
-# def show_venue_match_process():
 
-#     #WILL USE THIS LATER FOR MATCHING
-#     return render_template("tryingshit.html")
+@app.route("/user_info_update/<int:user_id>", methods=["POST"])
+def user_info_update_process(user_id):
+
+    print(user_id)
+
+
+    fname = request.form.get("fname")
+    lname = request.form.get("lname")
+    user_email = request.form.get("email")
+    password = request.form.get("password")
+
+
+    find_user = User.query.filter_by(user_id=user_id).first()
+
+
+    find_user.fname = fname 
+    find_user.lname = lname
+    find_user.user_email = user_email
+    find_user.password = password 
+  
+
+    db.session.commit()
 
 
 
-@app.route("/venue_page/<int:user_id>", methods=["GET"])
+
+    venue_id = session.get("venue_id")
+
+    if "venue_id" in session:
+
+        return redirect(f"/venue_single/{venue_id}")
+
+
+
+
+
+@app.route("/new_venue_page/<int:user_id>", methods=["GET"])
 def venue_page(user_id):
     """Show venue page"""
 
+
+
     user_venue = User.query.filter_by(user_id=user_id).first()
-    
-    venue_id = Venue.query.filter_by(user_id=user_id).first()
-
-    
-
-    return render_template("venue_page.html", user_venue=user_venue, venue_id=venue_id)
 
 
+    return render_template("venue_new_page.html", user_id=user_venue.user_id,
+                                                  user_email=user_venue.user_email,
+                                                  user_fname=user_venue.user_fname,
+                                                  user_lname=user_venue.user_lname)
+                                                                 
 
-@app.route("/venue_page/<int:user_id>", methods=["POST"])
+
+
+@app.route("/new_venue_page/<int:user_id>", methods=["POST"])
 def venue_page_process(user_id):
     """Process new venue"""
     
@@ -195,7 +291,7 @@ def venue_page_process(user_id):
     # checking_email= Venue.query.filter_by(v_email=v_email).first()
     
 
-    user_id = session.get("user_id")
+    # user_id = session.get("user_id")
 
 
     #I NEED TO ADD ANOTHERE COMDITION 
@@ -231,7 +327,6 @@ def venue_page_process(user_id):
                     venue_capacity=venue_capacity,
                     venue_license=venue_license,
                     venue_free_rent=venue_free_rent,
-
                     time_id=new_time.time_id,
                     venue_rent=venue_rent)
 
@@ -240,11 +335,16 @@ def venue_page_process(user_id):
     db.session.commit()
     db.session.refresh(new_venue)
 
+
+
+    session["user_id"] = user_id
+    session["venue_id"] = new_venue.venue_id
+    
+
+
     #     flash(f"Venue {venue_name} added.")
 
-    return render_template("venue_single_page.html", user_id=user_id, 
-                                                     venue_name=new_venue.venue_name,
-                                                     venue_id=new_venue.venue_id)
+    return redirect(f"/venue_single/{new_venue.venue_id}")
 
 
 
@@ -252,15 +352,40 @@ def venue_page_process(user_id):
     # flash(f"Venue allreadyin the data")
     # return redirect("/venue_page")
 
- 
+
+
+
+
+@app.route("/venue_single/<int:venue_id>", methods=["GET"])
+def single_venue_info(venue_id):
+
+
+    venue = Venue.query.filter_by(venue_id=venue_id).first()
+    time = Time.query.filter_by(time_id=venue.time_id).first()
+
+
+
+    return render_template("venue_single_page.html", user_id=venue.user_id, 
+                                                     venue_name=venue.venue_name,
+                                                     venue_id=venue.venue_id,
+                                                     monday=time.monday,
+                                                     tuesday=time.tuesday,
+                                                     wednesday=time.wednesday,
+                                                     thursday=time.thursday,
+                                                     friday=time.friday,
+                                                     saturday=time.saturday,
+                                                     sunday=time.sunday,
+                                                     morning=time.morning,
+                                                     late_morning=time.late_morning,
+                                                     early_night=time.early_night,
+                                                     late_night=time.late_night)
+
+
+
 
 
 @app.route("/venue_update/<int:venue_id>", methods=["GET"])
-
-
 def updated_venue_info(venue_id):
-
-
     """Update info"""
 
     # venue_id = Venue.query.filter_by(user_id=user_id).first()
@@ -275,7 +400,7 @@ def process_updated_venue_info(venue_id):
     """Process update info"""
 
     update_venue_info = Venue.query.filter_by(venue_id=venue_id).first()
-    update_venue_time = Time.query.filter_by(time_id=time_id).first()
+    update_venue_time = Time.query.filter_by(time_id=update_venue_info.time_id).first()
 
 
     monday = request.form.get("monday")
@@ -328,32 +453,25 @@ def process_updated_venue_info(venue_id):
     update_venue_info.venue_rent = venue_rent
 
 
-
     db.session.commit()
 
 
-    return render_template("venue_single_page.html")
+    user_id = session.get("user_id")
 
 
-
-
-
-# needs to be redo 
-
-@app.route("/act_list")
-def get_acts_list():
-    """Show acts list"""
-
-    acts = Act.query.order_by('act_name').all()
-
-    return render_template("act_list.html", acts=acts)
-
-
-
-
-
-
-
+    return render_template("venue_single_page.html", user_id=user_id, 
+                                                     venue_id=venue_id,
+                                                     monday=update_venue_time.monday,
+                                                     tuesday=update_venue_time.tuesday,
+                                                     wednesday=update_venue_time.wednesday,
+                                                     thursday=update_venue_time.thursday,
+                                                     friday=update_venue_time.friday,
+                                                     saturday=update_venue_time.saturday,
+                                                     sunday=update_venue_time.sunday,
+                                                     morning=update_venue_time.morning,
+                                                     late_morning=update_venue_time.late_morning,
+                                                     early_night=update_venue_time.early_night,
+                                                     late_night=update_venue_time.late_night)
 
 
 
@@ -372,32 +490,84 @@ def get_acts_list():
 
 
 
-@app.route("/performer", methods=["GET"])
-def show_perfomer_page():
+
+
+
+
+
+
+
+
+
+@app.route("/new_act_page/<int:user_id>", methods=["GET"])
+def show_perfomer_page(user_id):
+
+
+    user_show = User.query.filter_by(user_id=user_id).first()
     
-    return render_template("performer.html")
+    return render_template("producer_new_act_page.html", user_id=user_id,
+                                                         user_email=user_show.user_email,
+                                                         user_fname=user_show.user_fname,
+                                                         user_lname=user_show.user_lname)
 
 
 
 
-@app.route("/performer", methods=["POST"])
-def show_act_match_process():
+@app.route("/new_act_page/<int:venue_id>", methods=["POST"])
+def show_act_match_process(user_id):
 
-    #Will use this later for matching
+    monday = request.form.get("monday")
+    tuesday = request.form.get("tuesday")
+    wednesday = request.form.get("wednesday")
+    thursday = request.form.get("thursday")
+    friday = request.form.get("friday")
+    saturday = request.form.get("saturday")
+    sunday = request.form.get("sunday")
+    morning = request.form.get("morning")
+    late_morning = request.form.get("late_morning")
+    early_night = request.form.get("early_night")
+    late_night = request.form.get("late_night")
+
+
+    
+
   
 
-    return render_template("tryingshit.html")
 
 
 
 
 
 
-@app.route("/act_add", methods=["GET"])
-def add_act_form():
- 
 
-    return render_template("add_act_form.html")    
+
+
+    new_time = Time(monday=monday,
+                    tuesday=tuesday,
+                    wednesday=wednesday,
+                    thursday=thursday,
+                    friday=friday,
+                    saturday=saturday,
+                    sunday=sunday,
+                    morning=morning,
+                    late_morning=late_morning,
+                    early_night=early_night,
+                    late_night=late_night)
+
+    db.session.add(new_time)
+    db.session.commit()
+    db.session.refresh(new_time)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -439,12 +609,6 @@ def add_act_process():
 
     return redirect("/act")
 
-@app.route("/venue_list")
-def get_venue_list():
-
-    venues = Venue.query.order_by('venue_name').all()
-
-    return render_template("venue_list.html", venues=venues)
 
 
 
@@ -453,10 +617,8 @@ def get_venue_list():
 
 
 
-@app.route("/act_update", methods=["GET"])
-def updated_act_info():
-    """Update info"""
-    return render_template("act_update_form.html")
+
+
 
 
 
@@ -494,44 +656,27 @@ def process_act_venue_info():
 
 
 
-@app.route("/user_update", methods=["GET"])
-def updated_user_info():
-    """Update info"""
-    return render_template("user_update_form.html")
 
 
 
 
-@app.route("/user_update", methods=["POST"])
-def process_user_venue_info():
-    """Process update info"""
+@app.route("/act_list")
+def get_acts_list():
+    """Show acts list"""
 
-    user_id = session.get("user_id")
+    acts = Act.query.order_by('act_name').all()
 
-    find_user = User.query.filter_by(user_id=user_id).first()
-
-
-
-    fname = request.form.get("fname")
-    lname = request.form.get("lname")
-    user_email = request.form.get("email")
-    password = request.form.get("password")
-    user_type = request.form.get("check")
-
-    find_user.fname = fname 
-    find_user.lname = lname
-    find_user.user_email = user_email
-    find_user.password = password 
-    find_user.user_type = user_type
+    return render_template("act_list.html", acts=acts)
 
 
-    
 
+@app.route("/venue_list")
+def get_venue_list():
 
-    db.session.commit()
+    venues = Venue.query.order_by('venue_name').all()
 
+    return render_template("venue_list.html", venues=venues)
 
-    return redirect ("/performer")
 
 
 
@@ -543,6 +688,7 @@ def process_user_venue_info():
 
 
 if __name__ == "__main__":
+
 
     app.debug = True
 
