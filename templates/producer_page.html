@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+
+<h3>Producer Name => {{user_fname}} {{user_lname}}</h3>
+<h3>User ID =>  {{ user_id}}</h3><br>
+
+{{show}}
+
+<div>
+    het
+  <ul>
+  {% for show in shows %}
+    <li>
+      {{show}}
+    </li>
+  {% endfor %}
+  </ul>
+</div>
+
+
+
+<h1><a href="/user_info_update/{{ user_id }}">Update User info</a><h1>
+
+<h1><a href="/venue_update/{{ venue_id }}">Updateshow info</a><h1>
+
+<h1><a href="/venue_list">view all venues </a><h1>
+
+
+
+
+{% endblock %}
+
+
+  <a href="/producer_page/{{ show.show_id,}}">{{user.user_id}}</a>

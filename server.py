@@ -5,7 +5,7 @@ from jinja2 import StrictUndefined
 from flask import Flask, render_template, request, flash, redirect, session
 from flask_debugtoolbar import DebugToolbarExtension
 
-from model import connect_to_db, db, User, Venue, Show, Time
+from model import connect_to_db, db, User, Venue, Show, Time, Location
 
 
 app = Flask(__name__)
@@ -91,7 +91,9 @@ def login_process():
 
         check_producer= Show.query.filter_by(user_id=user.user_id).all()
 
-        return redirect(f"/new_act_page/{user.user_id}")
+
+
+        return redirect(f"/new_show_page/{user.user_id}")
 
 
 
@@ -256,7 +258,7 @@ def venue_page_process(user_id):
     """Process new venue"""
     
     #get new venue info
-
+    
 
     monday = request.form.get("monday")
     tuesday = request.form.get("tuesday")
@@ -499,13 +501,17 @@ def process_updated_venue_info(venue_id):
 
 
 
-@app.route("/new_act_page/<int:user_id>", methods=["GET"])
-def show_perfomer_page(user_id):
+
+
+
+
+@app.route("/new_show_page/<int:user_id>", methods=["GET"])
+def new_show_page(user_id):
 
 
     user_show = User.query.filter_by(user_id=user_id).first()
     
-    return render_template("producer_new_act_page.html", user_id=user_id,
+    return render_template("producer_new_show_page.html", user_id=user_id,
                                                          user_email=user_show.user_email,
                                                          user_fname=user_show.user_fname,
                                                          user_lname=user_show.user_lname)
@@ -513,8 +519,8 @@ def show_perfomer_page(user_id):
 
 
 
-@app.route("/new_act_page/<int:venue_id>", methods=["POST"])
-def show_act_match_process(user_id):
+@app.route("/new_show_page/<int:user_id>", methods=["POST"])
+def new_show_page_process(user_id):
 
     monday = request.form.get("monday")
     tuesday = request.form.get("tuesday")
@@ -529,18 +535,19 @@ def show_act_match_process(user_id):
     late_night = request.form.get("late_night")
 
 
+    show_name = request.form.get("show_name")
+    show_type = request.form.get("show_type")
+    show_url = request.form.get("show_url")
+    show_amount_people = request.form.get("show_amount_people")
+    show_dressing_room = request.form.get("show_dressing_room")
+    show_length = request.form.get("show_length")
+    show_location_preferred = request.form.get("show_location_preferred")
+    show_ticket_price = request.form.get("show_ticket_price")
+    show_rent = request.form.get("show_rent")
+
+
+
     
-
-  
-
-
-
-
-
-
-
-
-
 
     new_time = Time(monday=monday,
                     tuesday=tuesday,
@@ -560,56 +567,68 @@ def show_act_match_process(user_id):
 
 
 
+    new_show = Show(user_id=user_id,
+                show_name=show_name,
+                show_type=show_type, 
+                show_url=show_url, 
+                show_amount_people=show_amount_people, 
+                show_dressing_room=show_dressing_room,
+                show_length=show_length,
+                show_location_preferred=show_location_preferred,
+                show_ticket_price=show_ticket_price,
+                time_id=new_time.time_id,
+                show_rent=show_rent)
+
+
+    db.session.add(new_show)
+    db.session.commit()
+    db.session.refresh(new_show)
+
+
+
+    session["user_id"] = user_id
+    session["show_id"] = new_show.show_id
+
+
+    #     flash(f"Venue {venue_name} added.")
+
+
+    return redirect(f"/producer_page/{user_id}")
 
 
 
 
 
 
+@app.route("/producer_page/<int:user_id>", methods=["GET"])
+def producer_page(user_id):
 
+    
+    print("user")
 
+    user = User.query.filter_by(user_id=user_id).first()
+    show = Show.query.filter_by(user_id=user_id).all()
+    # time = Time.query.filter_by(time_id=show.time_id).first()
+    
+    print(show)
+    
 
-
-
-@app.route("/act_add", methods=["POST"])
-def add_act_process():
+    return render_template("producer_page.html", user_id=user.user_id, 
+                                                 user_fname =user.user_fname,
+                                                 user_lname =user.user_lname,
+                                                 show=show)                            
+                                                 
+                                                 
+                                                   
 
   
 
-    act_name = request.form.get("act_name")
-    act_url = request.form.get("wedsite")
-    act_type  = request.form.get("act_type")
+ 
+# @app.route("/show_single/<int:show_id>", methods=["GET"])
+# def producer_page(show_id):
 
-    #do something to check if already in the data
-
-
-
-
-    check_act_name = Act.query.filter_by(act_name=act_name).first()
-
-    user_id = session.get("user_id")
-
-
-    if not check_act_name:
-
-
-        new_act= Act(user_id=user_id,
-                    act_name=act_name, 
-                    act_url=act_url, 
-                    act_type=act_type)
-                     
-
-
-        db.session.add(new_act)
-        db.session.commit()
-
-        flash(f"Act {act_name} added.")
-
-        return redirect("/act")
-
-    return redirect("/act")
-
-
+#     pass
+# show_name=show.show_name,
 
 
 

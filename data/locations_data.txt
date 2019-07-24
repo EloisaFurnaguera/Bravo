@@ -1,0 +1,6 @@
+anywhere,location_1,location_2,location_3,location_4,location_5,location_6,location_7,location_8,location_9,location_10
+anywhere,,,,,,,,,,
+anywhere,,,,,,,,,,
+,Berkeley,Emeryville,Dublin,Pleasanton,Walnut Creek,,,,,
+,San Francisco,Burlingame,Daly City,Foster City,Half Moon Bay,Redwood City,San Bruno,San Mateo,South San Francisco,San Carlos
+,Woodside,Campbell,Cupertino,Gilroy,Mountain View,Palo Alto,San Jose,Santa Clara,Sunnyvale,Milpitas

@@ -43,6 +43,27 @@ class Time(db.Model):
     late_morning = db.Column(db.String(20))
     early_night = db.Column(db.String(20))
     late_night = db.Column(db.String(20))
+
+
+
+
+class Location(db.Model):
+
+
+    __tablename__ = "locations"
+
+    location_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    anywhere = db.Column(db.String(20))
+    location_1 = db.Column(db.String(20))
+    location_2 = db.Column(db.String(20))
+    location_3 = db.Column(db.String(20))
+    location_4 = db.Column(db.String(20))
+    location_5 = db.Column(db.String(20))
+    location_6 = db.Column(db.String(20))
+    location_7 = db.Column(db.String(20))
+    location_8 = db.Column(db.String(20))
+    location_9 = db.Column(db.String(20))
+    location_10 = db.Column(db.String(20))
    
     
 
@@ -90,10 +111,12 @@ class Show(db.Model):
     show_length = db.Column(db.String(200))
     # I AM NOT  I SHOULD ASK THE SHOW WHAT KIND OF VENUE THEY WANT
     # show_venue_preferred = db.Column(db.String(200))
-    show_location_preferred = db.Column(db.String(200))
+    location_id = db.Column(db.Integer, db.ForeignKey('locations.location_id'))
     time_id = db.Column(db.Integer, db.ForeignKey('times.time_id'))
     show_ticket_price = db.Column(db.String(200))
     show_rent = db.Column(db.String(200))
+
+
 
 
 
