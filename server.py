@@ -93,18 +93,7 @@ def login_process():
 
 
 
-        return redirect(f"/new_show_page/{user.user_id}")
-
-
-
-
-
-
-
-
-
-
-
+        return redirect(f"/producer_page/{user.user_id}")
 
 
     #     check_venue = Venue.query.filter_by(user_id=user.user_id).first()
@@ -141,8 +130,6 @@ def logout():
 
     flash("Logged Out.")
     return redirect("/")
-
-
 
 
 
@@ -189,21 +176,15 @@ def register_process():
 
 @app.route("/user_info_update/<int:user_id>", methods=["GET"])
 def user_info_update(user_id):
-    print('From get')
-    print(user_id)
-    
-
-
+   
 
     return render_template("user_update_form.html", user_id=user_id )
-
 
 
 
 @app.route("/user_info_update/<int:user_id>", methods=["POST"])
 def user_info_update_process(user_id):
 
-    print(user_id)
 
 
     fname = request.form.get("fname")
@@ -224,8 +205,6 @@ def user_info_update_process(user_id):
     db.session.commit()
 
 
-
-
     venue_id = session.get("venue_id")
 
     if "venue_id" in session:
@@ -235,11 +214,9 @@ def user_info_update_process(user_id):
 
 
 
-
 @app.route("/new_venue_page/<int:user_id>", methods=["GET"])
 def venue_page(user_id):
     """Show venue page"""
-
 
 
     user_venue = User.query.filter_by(user_id=user_id).first()
@@ -250,7 +227,6 @@ def venue_page(user_id):
                                                   user_fname=user_venue.user_fname,
                                                   user_lname=user_venue.user_lname)
                                                                  
-
 
 
 @app.route("/new_venue_page/<int:user_id>", methods=["POST"])
@@ -535,6 +511,50 @@ def new_show_page_process(user_id):
     late_night = request.form.get("late_night")
 
 
+
+    # I NEED TO FIND HOW TO DO THIS
+
+    location_list = request.form.getlist("show_location_preferred")
+
+
+
+    for idx in range(10):
+        if len(location_list) <= idx:
+            location_list.append(None)
+    
+
+
+    #MAKE THIS INTO JSON
+
+
+    new_location = Location(anywhere=None,
+                            location_1=location_list[0],
+                            location_2=location_list[1],
+                            location_3=location_list[2],
+                            location_4=location_list[3],
+                            location_5=location_list[4],
+                            location_6=location_list[5],
+                            location_7=location_list[6],
+                            location_8=location_list[7],
+                            location_9=location_list[8],
+                            location_10=location_list[9])
+
+    db.session.add(new_location)
+    db.session.commit()
+    db.session.refresh(new_location)
+
+
+
+
+
+
+
+
+
+
+
+
+
     show_name = request.form.get("show_name")
     show_type = request.form.get("show_type")
     show_url = request.form.get("show_url")
@@ -544,6 +564,8 @@ def new_show_page_process(user_id):
     show_location_preferred = request.form.get("show_location_preferred")
     show_ticket_price = request.form.get("show_ticket_price")
     show_rent = request.form.get("show_rent")
+    show_free_rent = request.form.get("show_free_rent")
+
 
 
 
@@ -567,6 +589,10 @@ def new_show_page_process(user_id):
 
 
 
+
+
+
+
     new_show = Show(user_id=user_id,
                 show_name=show_name,
                 show_type=show_type, 
@@ -574,20 +600,21 @@ def new_show_page_process(user_id):
                 show_amount_people=show_amount_people, 
                 show_dressing_room=show_dressing_room,
                 show_length=show_length,
-                show_location_preferred=show_location_preferred,
+                # location_id=new_location.location_id,
                 show_ticket_price=show_ticket_price,
                 time_id=new_time.time_id,
-                show_rent=show_rent)
+                show_rent=show_rent,
+                show_free_rent=show_free_rent)
 
 
     db.session.add(new_show)
     db.session.commit()
-    db.session.refresh(new_show)
+    # db.session.refresh(new_show) #I ONLY NEED THIS IF I WANT TO KEEP THE SHOW ID IN A SESSION
 
 
 
     session["user_id"] = user_id
-    session["show_id"] = new_show.show_id
+    # session["show_id"] = new_show.show_id
 
 
     #     flash(f"Venue {venue_name} added.")
@@ -604,19 +631,17 @@ def new_show_page_process(user_id):
 def producer_page(user_id):
 
     
-    print("user")
+    print(user_id)
 
     user = User.query.filter_by(user_id=user_id).first()
-    show = Show.query.filter_by(user_id=user_id).all()
-    # time = Time.query.filter_by(time_id=show.time_id).first()
-    
-    print(show)
-    
+    show_list = Show.query.filter_by(user_id=user_id).all()
+
 
     return render_template("producer_page.html", user_id=user.user_id, 
                                                  user_fname =user.user_fname,
                                                  user_lname =user.user_lname,
-                                                 show=show)                            
+                                                 show_list=show_list)
+                                                                          
                                                  
                                                  
                                                    

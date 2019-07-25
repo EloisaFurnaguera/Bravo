@@ -97,7 +97,7 @@ def load_shows(file_user):
     for row in (open(file_user)):
         row = row.strip()
 
-        user_id, show_name, show_type,show_url, show_amount_people, show_dressing_room, show_length, location_id, time_id, show_ticket_price, show_rent = row.split(",")
+        user_id, show_name, show_type, show_url, show_amount_people, show_dressing_room, show_length, location_id, time_id, show_ticket_price, show_rent, show_free_rent  = row.split(",")
 
      
          # IF YOU ADD THE ACT PREFERRED: ADD THE show_venue_preferred TO THE UMPAKING
@@ -113,7 +113,8 @@ def load_shows(file_user):
                         location_id=location_id,
                         time_id=time_id,
                         show_ticket_price=show_ticket_price, 
-                        show_rent=show_rent)
+                        show_rent=show_rent,
+                        show_free_rent=show_free_rent)
                            
         db.session.add(new_show)
         db.session.commit()
