@@ -14,6 +14,8 @@
   {% for show in show_list %}
     <li>
       {{show.show_name}}
+
+    <h1><a> {{show.show_name}}</a><h1>
     </li>
   {% endfor %}
   </ul>
@@ -21,9 +23,13 @@
 
 
 
+
+<h1><a href="/new_show_page/{{ user_id }}">Add a show</a><h1>
+
+
 <h1><a href="/user_info_update/{{ user_id }}">Update User info</a><h1>
 
-<h1><a href="/venue_update/{{ venue_id }}">Updateshow info</a><h1>
+<h1><a href="/venue_update/{{ venue_id }}">Update show info</a><h1>
 
 <h1><a href="/venue_list">view all venues </a><h1>
 
