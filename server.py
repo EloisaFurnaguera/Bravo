@@ -36,8 +36,6 @@ def login_process():
     #right user name, pass and type of user
     user = User.query.filter_by(user_email=user_email).first()
 
-    print(user_type )
-    print(user.user_type)
 
     if not user:
 
@@ -83,6 +81,7 @@ def login_process():
 
                 session["user_id"] = user.user_id
                 session["venue_id"] = check_venue.venue_id
+                session["user_type"] = user.user_type
 
                 return redirect(f"/venue_single/{check_venue.venue_id}")
 
@@ -91,6 +90,11 @@ def login_process():
 
         check_producer= Show.query.filter_by(user_id=user.user_id).all()
 
+        session["user_id"] = user.user_id
+        session["user_fname"] = user.user_fname
+        session["user_lname"] = user.user_lname
+        session["user_type"] = user.user_type
+        
 
 
         return redirect(f"/producer_page/{user.user_id}")
@@ -189,27 +193,34 @@ def user_info_update_process(user_id):
 
     fname = request.form.get("fname")
     lname = request.form.get("lname")
-    user_email = request.form.get("email")
+    email = request.form.get("email")
     password = request.form.get("password")
 
 
     find_user = User.query.filter_by(user_id=user_id).first()
 
 
-    find_user.fname = fname 
-    find_user.lname = lname
-    find_user.user_email = user_email
-    find_user.password = password 
+    find_user.user_fname = fname 
+    find_user.user_lname = lname
+    find_user.user_email = email
+    find_user.user_password = password 
   
 
     db.session.commit()
 
 
-    venue_id = session.get("venue_id")
+
 
     if "venue_id" in session:
 
+        venue_id = session.get("venue_id")
+
+
         return redirect(f"/venue_single/{venue_id}")
+
+    if find_user.user_type == "producer":
+
+        return redirect(f"/producer_page/{user_id}")
 
 
 
@@ -315,8 +326,9 @@ def venue_page_process(user_id):
 
 
 
-    session["user_id"] = user_id
-    session["venue_id"] = new_venue.venue_id
+    session["user_id"] = user.user_id
+    session["venue_id"] = check_venue.venue_id
+    session["user_type"] = user.user_type
     
 
 
@@ -340,10 +352,14 @@ def single_venue_info(venue_id):
 
     venue = Venue.query.filter_by(venue_id=venue_id).first()
     time = Time.query.filter_by(time_id=venue.time_id).first()
+    
+
+    user_type = session.get("user_type")
 
 
 
-    return render_template("venue_single_page.html", user_id=venue.user_id, 
+    return render_template("venue_single_page.html", user_type=user_type,
+                                                     user_id=venue.user_id, 
                                                      venue_name=venue.venue_name,
                                                      venue_id=venue.venue_id,
                                                      monday=time.monday,
@@ -374,7 +390,7 @@ def updated_venue_info(venue_id):
 
 
 @app.route("/venue_update/<int:venue_id>", methods=["POST"])
-def process_updated_venue_info(venue_id):
+def process_update_venue_info(venue_id):
     """Process update info"""
 
     update_venue_info = Venue.query.filter_by(venue_id=venue_id).first()
@@ -437,6 +453,8 @@ def process_updated_venue_info(venue_id):
     user_id = session.get("user_id")
 
 
+
+
     return render_template("venue_single_page.html", user_id=user_id, 
                                                      venue_id=venue_id,
                                                      monday=update_venue_time.monday,
@@ -450,32 +468,6 @@ def process_updated_venue_info(venue_id):
                                                      late_morning=update_venue_time.late_morning,
                                                      early_night=update_venue_time.early_night,
                                                      late_night=update_venue_time.late_night)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -548,13 +540,6 @@ def new_show_page_process(user_id):
 
 
 
-
-
-
-
-
-
-
     show_name = request.form.get("show_name")
     show_type = request.form.get("show_type")
     show_url = request.form.get("show_url")
@@ -567,9 +552,6 @@ def new_show_page_process(user_id):
     show_free_rent = request.form.get("show_free_rent")
 
 
-
-
-    
 
     new_time = Time(monday=monday,
                     tuesday=tuesday,
@@ -586,10 +568,6 @@ def new_show_page_process(user_id):
     db.session.add(new_time)
     db.session.commit()
     db.session.refresh(new_time)
-
-
-
-
 
 
 
@@ -630,8 +608,7 @@ def new_show_page_process(user_id):
 @app.route("/producer_page/<int:user_id>", methods=["GET"])
 def producer_page(user_id):
 
-    
-    print(user_id)
+
 
     user = User.query.filter_by(user_id=user_id).first()
     show_list = Show.query.filter_by(user_id=user_id).all()
@@ -646,55 +623,155 @@ def producer_page(user_id):
                                                  
                                                    
 
-  
+
+
+@app.route("/show_single_page/<int:show_id>", methods=["GET"])
+def single_show_info(show_id):
+
+   
+    user_id = session.get("user_id")
+   
+
+
+    user_info = User.query.filter_by(user_id=user_id).first()
+
+    show_info = Show.query.filter_by(show_id=show_id).first()
+
+
+    
+    return render_template("show_single_page.html", user_id= user_id,
+                                                    user_fname=user_info.user_fname,
+                                                    user_lname=user_info.user_lname,
+                                                    user_type=user_info.user_type,
+                                                    show_id=show_info.show_id,
+                                                    show_name=show_info.show_name,
+                                                    show_type=show_info.show_type,
+                                                    show_url=show_info.show_url,
+                                                    show_amount_people=show_info.show_amount_people,
+                                                    show_dressing_room=show_info.show_dressing_room,
+                                                    show_length=show_info.show_length,
+                                                    location_id=show_info.location_id,
+                                                    time_id=show_info.time_id,
+                                                    show_ticket_price=show_info.show_ticket_price,
+                                                    show_rent=show_info.show_rent,
+                                                    show_free_rent=show_info.show_free_rent)
+
 
  
-# @app.route("/show_single/<int:show_id>", methods=["GET"])
-# def producer_page(show_id):
-
-#     pass
-# show_name=show.show_name,
 
 
 
 
+@app.route("/show_update/<int:show_id>", methods=["GET"])
+def updated_show_info(show_id):
+    """Update info"""
+
+    return render_template("show_update_form.html", show_id=show_id)
 
 
 
 
-
-
-
-
-
-
-@app.route("/act_update", methods=["POST"])
-def process_act_venue_info():
-    """Process update info"""
-
-    user_id = session.get("user_id")
-
-    find_act = Act.query.filter_by(user_id=user_id).first()
+@app.route("/show_update/<int:show_id>", methods=["POST"])
+def process_update_show_info(show_id):
 
     
 
-    act_name = request.form.get("act_name")
-    act_url = request.form.get("wedsite")
-    act_type  = request.form.get("act_type")
+    update_show_info = Show.query.filter_by(show_id=show_id).first()
+    update_show_time = Time.query.filter_by(time_id=update_show_info.time_id).first()
+
+
+    monday = request.form.get("monday")
+    tuesday = request.form.get("tuesday")
+    wednesday = request.form.get("wednesday")
+    thursday = request.form.get("thursday")
+    friday = request.form.get("friday")
+    saturday = request.form.get("saturday")
+    sunday = request.form.get("sunday")
+    morning = request.form.get("morning")
+    late_morning = request.form.get("late_morning")
+    early_night = request.form.get("early_night")
+    late_night = request.form.get("late_night")
+
+
+    show_name = request.form.get("show_name")
+    show_type = request.form.get("show_type")
+    show_url = request.form.get("show_url")
+    show_amount_people = request.form.get("show_amount_people")
+    show_dressing_room = request.form.get("show_dressing_room")
+    show_length = request.form.get("show_length")
+    show_location_preferred = request.form.get("show_location_preferred")
+    show_ticket_price = request.form.get("show_ticket_price")
+    show_rent = request.form.get("show_rent")
+    show_free_rent = request.form.get("show_free_rent")
 
 
 
+    update_show_info.show_name=show_name
+    update_show_info.show_type=show_type
+    update_show_info.show_url=show_url
+    update_show_info.show_amount_people=show_amount_people
+    update_show_info.show_dressing_room=show_dressing_room
+    update_show_info.show_length=show_length
+    update_show_info.show_location_preferred=show_location_preferred
+    update_show_info.show_ticket_price=show_ticket_price
+    update_show_info.show_rent=show_rent
+    update_show_info.show_free_rent=show_free_rent
 
-    find_act.act_name = act_name
-    find_act.act_url = act_url
-    find_act.act_type = act_type
- 
+    
+
 
 
     db.session.commit()
 
 
-    return redirect ("/performer")
+    user_id = session.get("user_id")
+
+
+    return render_template("show_single_page.html", user_id=user_id, 
+                                                    show_id=show_id,
+                                                    show_name=update_show_info.show_name,
+                                                    show_type=update_show_info.show_type,
+                                                    show_url=update_show_info.show_url,
+                                                    show_amount_people=update_show_info.show_amount_people,
+                                                    show_dressing_room=update_show_info.show_dressing_room,
+                                                    show_length=update_show_info.show_length,
+                                                    show_location_preferred=update_show_info.show_location_preferred,
+                                                    show_ticket_price=update_show_info.show_ticket_price,
+                                                    show_rent=update_show_info.show_rent,
+                                                    show_free_rent=update_show_info.show_free_rent)
+
+
+
+
+
+
+
+@app.route("/venue_list/<int:user_id>", methods=["GET"])
+def venue_list(user_id):
+    """Update info"""
+
+
+
+    venue_list = Venue.query.order_by(Venue.venue_name).all()
+
+ 
+
+    return render_template("venue_list.html", user_id=user_id, venue_list=venue_list)
+
+
+
+
+@app.route("/show_list/<int:user_id>", methods=["GET"])
+def show_list(user_id):
+    """Update info"""
+
+
+
+    show_list = Show.query.order_by(Show.show_name).all()
+
+ 
+
+    return render_template("show_list.html", user_id=user_id, show_list=show_list)
 
 
 
@@ -704,22 +781,11 @@ def process_act_venue_info():
 
 
 
-@app.route("/act_list")
-def get_acts_list():
-    """Show acts list"""
-
-    acts = Act.query.order_by('act_name').all()
-
-    return render_template("act_list.html", acts=acts)
 
 
 
-@app.route("/venue_list")
-def get_venue_list():
 
-    venues = Venue.query.order_by('venue_name').all()
-
-    return render_template("venue_list.html", venues=venues)
+   
 
 
 
@@ -738,7 +804,7 @@ if __name__ == "__main__":
 
     connect_to_db(app)
  
-    DebugToolbarExtension(app)
+    # DebugToolbarExtension(app)
 
     app.run(host="0.0.0.0")
 

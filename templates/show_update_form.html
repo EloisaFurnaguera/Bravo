@@ -3,17 +3,11 @@
 
 
 
+ <div><h1>Update Show info<h1></div>
 
 
 
-<h3>User Name => {{ user_fname }}  {{ user_lname}} </h3>
-<h3>User Email => {{ user_email }}</h3>
-<h3>User ID =>  {{ user_id}}</h3>
-
- <div><h1>Add a Show<h1></div>
-
-
-  <form action="/new_show_page/{{user_id}}" method="POST">
+  <form action="/show_update/{{show_id}}" method="POST">
 
       <div>
 
@@ -85,15 +79,13 @@
                   Yes<input type="radio" name="show_ticket_price" value="free">
                   No<input type="radio" name="dressroom" ><br>
 
-        If no how mucho for the the tickets?:
+        If no how mucho for the the tickets?
 
                     <input type="text" name="show_ticket_price"> <br> 
 
           
         How much do you are you looking to pay for rent <input type="text" name="show_rent"> <br> 
       
-
-  
 
 
                      <input type="submit" value="Submit">             
@@ -108,12 +100,7 @@
 
 
 
-
 {% endblock %}
-
-
-
-
 
 
 

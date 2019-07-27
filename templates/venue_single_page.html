@@ -5,7 +5,7 @@
 <h1>{{venue_name}}<h1>
 
 <h3>Venue ID =>  {{ venue_id}}</h3>
-<h3>User ID =>  {{ user_id}}</h3><br>
+
 
 
 <h2>Availability:</h2>
@@ -31,14 +31,20 @@ Late night: {{ late_night}}<br>
 
 
 
+{% if 'venue' in user_type  %}
+
+<h4><a href="/user_info_update/{{ user_id }}">Update User info</a><h4>
+
+<h4><a href="/venue_update/{{ venue_id }}">Update Venue info</a><h4>
+
+<h4><a href="/show_list/{{ user_id }}">view all shows </a><h4>
 
 
 
-<h1><a href="/user_info_update/{{ user_id }}">Update User info</a><h1>
+{% endif %}
 
-<h1><a href="/venue_update/{{ venue_id }}">Update Venue info</a><h1>
 
-<h1><a href="/acts_list">view all acts </a><h1>
+
 
 
 

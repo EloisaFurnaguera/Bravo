@@ -7,9 +7,9 @@
 <div>
    
   <ul>
-  {% for venue in venue_list %}
+  {% for show in show_list %}
     <li>
-        <h3><a href="/venue_single/{{ venue.venue_id }}">{{venue.venue_name}}</a></h3>
+        <h3><a href="/show_single_page/{{ show.show_id }}">{{show.show_name}}</a></h3>
     </li>
   {% endfor %}
   </ul>
@@ -19,4 +19,3 @@
 
 
 {% endblock %}
-
