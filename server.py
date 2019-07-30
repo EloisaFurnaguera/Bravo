@@ -96,7 +96,6 @@ def login_process():
         session["user_type"] = user.user_type
         
 
-
         return redirect(f"/producer_page/{user.user_id}")
 
 
@@ -244,6 +243,7 @@ def venue_page(user_id):
 def venue_page_process(user_id):
     """Process new venue"""
     
+    user = User.query.filter_by(user_id=user_id).first()
     #get new venue info
     
 
@@ -323,6 +323,11 @@ def venue_page_process(user_id):
     db.session.add(new_venue)
     db.session.commit()
     db.session.refresh(new_venue)
+
+
+    check_venue = Venue.query.filter_by(user_id=user_id).first()
+
+
 
 
 
