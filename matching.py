@@ -17,11 +17,14 @@ shows ={ "show_rent": {(20, 100):1, (101, 300):2, (301, 400):3, (500, 100000000)
 
          "show_free_rent" : {True: 1, False: 0},
 
-         "tickets": {(5, 10):1, (11, 20):2, (21, 40):3, (41):4},
+         "tickets": {(5, 10):1, (11, 20):2, (21, 40):3, (41, 10000000):4},
 
-         "show_length": {"(30-1)":1, "(1-2)":1, "(2-3)":2, "(3-up)":3},
-         "show_dressing_room": {True:1, False:0}, 
-         "show_amount_people": {(1, 2):1, "(3-6)":2, "(7-up)":3},
+         "show_length": {(1, 2):2, (2, 3):3, (4, 1000000000):4},
+
+         "show_dressing_room": {True:1, False:0},
+          
+         "show_amount_people": {(1, 2):1, (3, 6):2, (7, 1000000):3},
+
          "type": {"(stand_up)":1, "spoken_word":1,"improv":3, "music":2, "Ted_talk":2,  
                  "skecks":3, "burlesque":4, "play":4} }   
 
@@ -56,6 +59,10 @@ venues ={ "venue_rent": {(1, 100):1, (101, 300):2, (301, 500):3, (500):4},
 # print(range_score(210, shows["show_rent"]))
 
 
+
+
+
+
 def rent (num):
    
 
@@ -72,9 +79,10 @@ def rent (num):
 
 #THIS NEEDS WORK
 def free_show(input):
+
     return shows["show_free_rent"][input]
        
-print(free_show(True))
+#print(free_show(True))
 
 
 def tickets (num):
@@ -91,14 +99,50 @@ def tickets (num):
           
 # print(tickets (30))
 
+def show_length (num):
+   
+
+    for k1, k2 in shows["show_length"]:
+
+        if num >= int(k1) and num <= int(k2):
+               
+                length = (shows["show_length"][k1, k2])
+
+                return length
+                
+#print(show_length (4))
 
 
+def show_dressing_room(input):
+
+    return shows["show_free_rent"][input]
+       
+#print(show_dressing_room(False))
 
 
+def show_amount_people (num):
+   
+
+    for k1, k2 in shows["show_amount_people"]:
+
+        if num >= int(k1) and num <= int(k2):
+               
+                people = (shows["show_amount_people"][k1, k2])
+
+                return people
 
 
+# show_amount_people (7)
 
 
+def show_types(type_show):
+
+    # for show_type in shows["type"]:
+
+        return shows["type"][type_show]
+   
+
+print (show_types("burlesque"))
 
 
 

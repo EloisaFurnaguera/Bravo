@@ -384,12 +384,20 @@ def single_venue_info(venue_id):
 
 
 @app.route("/venue_update/<int:venue_id>", methods=["GET"])
-def updated_venue_info(venue_id):
+def updated_venue_info(venue_id):   
+
+
+    venue = Venue.query.filter_by(venue_id=venue_id).first()
+    time = Time.query.filter_by(time_id=venue.time_id).first()
+
+
+
     """Update info"""
 
     # venue_id = Venue.query.filter_by(user_id=user_id).first()
 
-    return render_template("venue_update_form.html", venue_id=venue_id)
+    return render_template("venue_update_form.html", venue_id=venue_id,
+                                                     venue_rent=venue.venue_rent)
 
 
 
