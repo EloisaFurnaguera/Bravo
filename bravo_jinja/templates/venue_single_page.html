@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<h1>{{venue_name}}<h1>
+
+<h3>Venue ID =>  {{ venue_id}}</h3>
+
+
+
+<h2>Availability:</h2>
+
+<h3>Days:</h3>
+Moday: {{ monday}}<br>
+Tuesday: {{ tuesday}}<br>
+Wednesday: {{ wednesday}}<br>
+Thursday: {{ thursday}}<br>
+Friday: {{ friday}}<br>
+Saturday: {{ saturday}}<br>
+Sunday: {{ sunday}}<br>
+
+
+<h3>Hours:</h3>
+morning: {{ morning}}<br>
+Late morning: {{ late_morning}}<br>
+Late morning: {{ late_morning}}<br>
+Late night: {{ late_night}}<br>
+
+
+
+
+
+
+{% if 'venue' in user_type  %}
+
+<h4><a href="/user_info_update/{{ user_id }}">Update User info</a><h4>
+
+<h4><a href="/venue_update/{{ venue_id }}">Update Venue info</a><h4>
+
+<h4><a href="/show_list/{{ user_id }}">view all shows </a><h4>
+
+
+
+{% endif %}
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+

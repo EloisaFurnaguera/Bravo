@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Update</h>
+
+    
+
+<h3>User ID =>  {{ user_id}}</h3><br>
+
+<form action="/user_info_update/{{user_id}}" method="POST">
+
+
+
+   <div>
+        <label>
+            First name
+            <input type="fname" name="fname">                   
+        </label>       
+    </div>
+
+
+   <div>
+        <label>
+            Last name
+            <input type="lname" name="lname">                   
+        </label>       
+    </div>
+
+
+    <div>
+        <label>
+            Email
+            <input type="email" name="email">       
+        </label>       
+    </div>  
+
+
+    <div>
+        <label>
+            Password
+            <input type="password" name="password">       
+        </label>       
+    </div>
+
+
+
+
+    <div>     
+        <input type="submit" name="Update">                     
+    </div>
+</form>
+
+{% endblock %}
