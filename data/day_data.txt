@@ -1,8 +1,0 @@
-,1,yes,yes,no,yes,yes,yes,yes
-,2,no,no,no,yes,yes,yes,no
-,3,yes,yes,no,yes,yes,yes,yes
-,4,yes,yes,no,yes,yes,yes,yes
-1,,yes,yes,no,yes,yes,yes,yes
-2,,no,no,no,yes,yes,yes,no
-3,,yes,yes,no,yes,yes,yes,yes
-4,,yes,yes,no,yes,yes,yes,yes

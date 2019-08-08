@@ -1,5 +1,0 @@
-anywhere,,,,,,,,,,
-anywhere,,,,,,,,,,
-,Berkeley,Emeryville,Dublin,Pleasanton,Walnut Creek,,,,,
-,San Francisco,Burlingame,Daly City,Foster City,Half Moon Bay,Redwood City,San Bruno,San Mateo,South San Francisco,San Carlos
-,Woodside,Campbell,Cupertino,Gilroy,Mountain View,Palo Alto,San Jose,Santa Clara,Sunnyvale,Milpitas
