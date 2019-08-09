@@ -46,6 +46,11 @@ venues ={ "venue_rent": {(1, 100):1, (101, 300):2, (301, 500):3, (500, 10000000)
 
 
 
+     
+
+
+
+
 # def range_score(num, tuple_range):
 
 #     for k1, k2 in tuple_range:
@@ -102,7 +107,9 @@ def get_ranking(list_val, dict):
 
             
 
-get_ranking([20, True, 5, 1, True, 1, "stand_up"], shows)
+get_ranking(30, shows)
+
+
 
 
 
@@ -256,7 +263,10 @@ def range_score(num, range_dict):
 
 # print(direct_score(True, shows["show_free_rent"]))
 
-# def range_score(num, range_dict):
+#
+
+
+ # def range_score(num, range_dict):
 #     for k1, k2 in range_dict:
 
 #         if num >= int(k1) and num <= int(k2):
