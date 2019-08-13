@@ -180,7 +180,7 @@ def register_process():
 @app.route("/user_info_update/<int:user_id>", methods=["GET"])
 def user_info_update(user_id):
    
-
+    
     return render_template("user_update_form.html", user_id=user_id )
 
 
