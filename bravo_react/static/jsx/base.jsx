@@ -1,13 +1,18 @@
 
-class Homepage extends React.Component {
+
+
+class Base extends React.Component {
     render(){
         return(
-        <div>
-            <p>Welcome to the homepage.</p> 
-       
-            
-         </div>)
+
+
+       <BravoApp />
+
+       )
     }
 }
 
-ReactDOM.render(<Homepage />, document.getElementById('root'));
+
+
+
+ReactDOM.render(<Base />, document.getElementById('root'));

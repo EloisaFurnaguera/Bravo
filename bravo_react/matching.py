@@ -13,19 +13,44 @@ app = Flask(__name__)
 
 
 
-shows ={ "show_rent": {(20, 100):1, (101, 300):2, (301, 400):3, (500, 100000000):4}, show_rent:100
+user_show_chooses = {"show_rent": 100, 
+                     "show_free_rent": True, 
+                     "tickets": 5, "show_length":1, 
+                     "show_dressing_room": False, 
+                     "show_amount_people": 2 , 
+                     "type": "inprov"}
 
-         "show_free_rent" : {True: 1, False: 0},                                     show_free_rent: True
 
-         "tickets": {(5, 10):1, (11, 20):2, (21, 40):3, (41, 10000000):4},           tickets: 5
 
-         "show_length": {(1, 2):2, (2, 3):3, (4, 1000000000):4},                     show_length:1
+user_vanue_chooses = { "venue_rent": 100, 
+                       "venue_free_rent": False,        
+                       "venue_backspace": False,       
+                       "venue_license": False,       
+                       "venue_capacity": 20,
+                        "venue_type": "bar"}
+gi
 
-         "show_dressing_room": {True:1, False:0},                                    show_dressing_room False
+    
+
+
+
+
+
+
+
+shows ={ "show_rent": {(20, 100):1, (101, 300):2, (301, 400):3, (500, 100000000):4}, 
+
+         "show_free_rent" : {True: 1, False: 0},                                    
+
+         "tickets": {(5, 10):1, (11, 20):2, (21, 40):3, (41, 10000000):4},  
+
+         "show_length": {(1, 2):2, (2, 3):3, (4, 1000000000):4},   
+
+         "show_dressing_room": {True:1, False:0},                                    
           
-         "show_amount_people": {(1, 2):1, (3, 6):2, (7, 1000000):3},                 show_amount_people: 2            
+         "show_amount_people": {(1, 2):1, (3, 6):2, (7, 1000000):3},                           
 
-         "type": {"stand_up":1, "spoken_word":1,"improv":3, "music":2, "Ted_talk":2,  type: inprov
+         "type": {"stand_up":1, "spoken_word":1,"improv":3, "music":2, "Ted_talk":2,  
                  "skecks":3, "burlesque":4, "play":4} }   
 
 
@@ -50,19 +75,51 @@ venues ={ "venue_rent": {(1, 100):1, (101, 300):2, (301, 500):3, (500, 10000000)
      
 
 
+# def get_ranking(user_dict, shows):
+
+#     # overall_score = 0
+
+#     for (x, y) in shows.items(): 
+
+#         # print (x)
+
+#         user_value = user_dict[x]
+
+#         print (y)
+
+#         # score_for_criteria = get_ranking_for_criteria(user_value, y)   
+
+#     #     overall_score += score_for_criteria
+
+#     # return overall_score
 
 
-# def range_score(num, tuple_range):
 
-#     for k1, k2 in tuple_range:
 
-#         if num >= int(k1) and num <= int(k2):
-               
-#                 score = (tuple_range[k1, k2])
 
-#                 print(score)
 
-#                 return score 
+
+
+
+
+
+
+
+
+
+
+# # get_ranking_for_criteria(user_value, scores_dict):
+#     # Is a tuple, dictionary, whatever for scores_dict
+#     # ...
+#     # ...
+#     # return score_for_criteria
+
+
+# get_ranking(user_show_chooses, shows)
+
+
+
+
 
 
 
@@ -108,34 +165,7 @@ def get_(dict_val, dict_key):
 
             
 
-get_ranking(user_dict, shows)
-
-
-
-
-
-
-
-
-# def get_ranking(list_val, dict):
-
-#     for key_dict in dict:    
-#         for ind_key in dict[key_dict]:  
-
-#             if type(ind_key) is tuple:
-                
-#                 trying1(list_val)
-#                 break
-
-#             elif type(ind_key) is bool:
-              
-#                 trying2(list_val)
-#                 break
-             
-#             else: 
-           
-#                 trying3(list_val)
-#                 break
+# get_ranking(user_dict, shows)
 
 
 
@@ -147,14 +177,15 @@ get_ranking(user_dict, shows)
 
 
 
-def range_score(num, range_dict):
-    for k1, k2 in range_dict:
 
-        if num >= int(k1) and num <= int(k2):
+# def range_score(num, range_dict):
+#     for k1, k2 in range_dict:
+
+#         if num >= int(k1) and num <= int(k2):
                
-                rent = (range_dict[k1, k2])
+#                 rent = (range_dict[k1, k2])
 
-                return rent 
+#                 return rent 
 
 
 
@@ -220,38 +251,6 @@ def range_score(num, range_dict):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # def get_ranking(val, dict):
 
 
@@ -284,86 +283,86 @@ def range_score(num, range_dict):
 
 
 
-def show_rent (num):
+# def show_rent (num):
    
 
-    for k1, k2 in shows["show_rent"]:
+#     for k1, k2 in shows["show_rent"]:
 
-        if num >= int(k1) and num <= int(k2):
+#         if num >= int(k1) and num <= int(k2):
                
-                rent = (shows["show_rent"][k1, k2])
+#                 rent = (shows["show_rent"][k1, k2])
 
-                return rent 
+#                 return rent 
 
           
-# print(show_rent (30))
+# # print(show_rent (30))
 
-#THIS NEEDS WORK
-def free_show(input):
+# #THIS NEEDS WORK
+# def free_show(input):
 
-    return shows["show_free_rent"][input]
+#     return shows["show_free_rent"][input]
        
-#print(free_show(True))
+# #print(free_show(True))
 
 
-def tickets (num):
+# def tickets (num):
    
 
-    for k1, k2 in shows["tickets"]:
+#     for k1, k2 in shows["tickets"]:
 
-        if num >= int(k1) and num <= int(k2):
+#         if num >= int(k1) and num <= int(k2):
                
-                tickets = (shows["tickets"][k1, k2])
+#                 tickets = (shows["tickets"][k1, k2])
 
-                return tickets
+#                 return tickets
 
           
-# print(tickets (30))
+# # print(tickets (30))
 
-def show_length (num):
+# def show_length (num):
    
 
-    for k1, k2 in shows["show_length"]:
+#     for k1, k2 in shows["show_length"]:
 
-        if num >= int(k1) and num <= int(k2):
+#         if num >= int(k1) and num <= int(k2):
                
-                length = (shows["show_length"][k1, k2])
+#                 length = (shows["show_length"][k1, k2])
 
-                return length
+#                 return length
                 
-#print(show_length (4))
+# #print(show_length (4))
 
 
-def show_dressing_room(input):
+# def show_dressing_room(input):
 
-    return shows["show_free_rent"][input]
+#     return shows["show_free_rent"][input]
        
-#print(show_dressing_room(False))
+# #print(show_dressing_room(False))
 
 
-def show_amount_people (num):
+# def show_amount_people (num):
    
 
-    for k1, k2 in shows["show_amount_people"]:
+#     for k1, k2 in shows["show_amount_people"]:
 
-        if num >= int(k1) and num <= int(k2):
+#         if num >= int(k1) and num <= int(k2):
                
-                people = (shows["show_amount_people"][k1, k2])
+#                 people = (shows["show_amount_people"][k1, k2])
 
-                return people
-
-
-# show_amount_people (7)
+#                 return people
 
 
-def show_types(type_show):
+# # show_amount_people (7)
 
-    # for show_type in shows["type"]:
 
-        return shows["type"][type_show]
+# def show_types(type_show):
+
+#     # for show_type in shows["type"]:
+
+#         return shows["type"][type_show]
    
 
-# print (show_types("burlesque"))
+# # print (show_types("burlesque"))
 
 
 
@@ -375,77 +374,77 @@ def show_types(type_show):
 
 
 
-def venue_rent (num):
+# def venue_rent (num):
    
 
-    for k1, k2 in venues["venue_rent"]:
+#     for k1, k2 in venues["venue_rent"]:
 
-        if num >= int(k1) and num <= int(k2):
+#         if num >= int(k1) and num <= int(k2):
                
-                rent = (venues["venue_rent"][k1, k2])
+#                 rent = (venues["venue_rent"][k1, k2])
 
-                return rent 
-
-
-# print(venue_rent (540))
+#                 return rent 
 
 
-def free_venue(input):
+# # print(venue_rent (540))
 
-    return venues["venue_free_rent"][input]
+
+# def free_venue(input):
+
+#     return venues["venue_free_rent"][input]
        
-# print(free_venue(False))
+# # print(free_venue(False))
 
 
 
 
-def venue_backspace(input):
+# def venue_backspace(input):
 
-    return venues["venue_backspace"][input]
+#     return venues["venue_backspace"][input]
        
-# print(venue_backspace(True))
+# # print(venue_backspace(True))
 
 
 
 
 
-def venue_license(input):
+# def venue_license(input):
 
-    return venues["venue_license"][input]
+#     return venues["venue_license"][input]
 
        
-# print(venue_license(True))
+# # print(venue_license(True))
 
 
 
 
 
 
-def venue_capacity(num):
+# def venue_capacity(num):
    
 
-    for k1, k2 in venues["venue_capacity"]:
+#     for k1, k2 in venues["venue_capacity"]:
 
-        if num >= int(k1) and num <= int(k2):
+#         if num >= int(k1) and num <= int(k2):
                
-                capacity = (venues["venue_capacity"][k1, k2])
+#                 capacity = (venues["venue_capacity"][k1, k2])
 
-                return capacity 
-
-
-# print(venue_capacity(40))
+#                 return capacity 
 
 
+# # print(venue_capacity(40))
 
 
-def venue_types(type_venue):
 
-    # for show_type in shows["type"]:
 
-        return venues["venue_type"][type_venue]
+# def venue_types(type_venue):
+
+#     # for show_type in shows["type"]:
+
+#         return venues["venue_type"][type_venue]
    
 
-# print (venue_types("theater"))
+# # print (venue_types("theater"))
 
 
 
