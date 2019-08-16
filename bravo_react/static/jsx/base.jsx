@@ -1,13 +1,17 @@
 
 
-
 class Base extends React.Component {
     render(){
-        return(
+        return( 
 
-
-       <LogIn />
-       //<BravoApp />
+       <div>     
+       
+       <BravoApp />
+       <RegisterForm />
+       {/*<LogIn />*/}
+       
+       </div>
+   
 
        )
     }
