@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+
+<div>
+   
+  <ul>
+  {% for show in show_list %}
+    <li>
+        <h3><a href="/show_single_page/{{ show.show_id }}">{{show.show_name}}</a></h3>
+    </li>
+  {% endfor %}
+  </ul>
+</div>
+
+
+
+
+{% endblock %}

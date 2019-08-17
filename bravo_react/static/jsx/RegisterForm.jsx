@@ -20,27 +20,40 @@ class RegisterForm extends React.Component {
 
 
     handleRegubmit(e){
+        
         console.log(this.state)
         e.preventDefault();
     }
 
 
     handleFnameChange(e){
+       
+
         this.setState({ fname: e.target.value});
 
     }
 
 
-    handleLnameChange  
-    handleEmailChange =  
-    handlePassWordChange =  
-    handleTypeUserChange = 
+    handleLnameChange(e) {
+        this.setState({ lname: e.target.value});
+
+    }
+
+    handleEmailChange(e) {
+        this.setState({ email: e.target.value});
+
+    }
+
+    handlePassWordChange(e) {
+        this.setState({ password: e.target.value});
+
+    }
 
 
+    handleTypeUserChange(e) {
+        this.setState({ user_type: e.target.value})
 
-
-
-
+    }
 
 
 
@@ -88,18 +101,20 @@ class RegisterForm extends React.Component {
                 </div>
 
 
-                <div>
-                     <label>
+               
+                  {/*   <label>
                      What kind of user are you 
-                      <label/>
-                     <div onChange={this.handleTypeUserChange} 
-                    <input type="radio" name="user_type" value="venue">Venue 
-                    <input type="radio" name="user_type" value="producer">Producer   
-                     </div>                                 
+                     </label> 
+                    */}
+                <div onChange={this.handleTypeUserChange}>
+                    <input type="radio" name="user_type" value="venue" /> venue
+                    <input type="radio" name="user_type" value="producer"/> producer
+                </div> 
+                                           
+   
+                    <input type="submit" value="Register" />                     
+          
 
-                <div>     
-                    <input type="submit" name="Register">                     
-                </div>
             </form>
 
         );
