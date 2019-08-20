@@ -22,13 +22,43 @@
 </head>
 
 
+<ul class="nav content-center"> 
+  
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Bravo</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link active" href="/register-page">Log In</a>
+  </li>
 
+
+
+
+
+
+  {% if "user_id" in session %}
+  <li class="nav-item">
+    <a class="nav-link active" href="/logout">(Fix the login/Logout)</a>
+  </li>
+  {% else %}
+
+  <li class="nav-item">
+    <a class="nav-link" href="/login">Login</a>
+  </li>
+  {% endif %}
 
 
 
  <div id="root"></div>
 
 
+<!-- {% for flash in get_flashed_messages() %}
+{{ flash }}
+{% endfor %}  --> 
+
+
+{% block content %}
+{% endblock %}
 
 
 
@@ -53,7 +83,11 @@
 
 
 
+  <script src="/static/jsx/UserInfo.jsx" type="text/babel"></script>
 
+
+  <script src="/static/jsx/ProducerUserPage.jsx" type="text/babel"></script>
+  <script src="/static/jsx/VenueUserPage.jsx" type="text/babel"></script>
   <script src="/static/jsx/RegisterForm.jsx" type="text/babel"></script>
   <script src="/static/jsx/LogIn.jsx" type="text/babel"></script>
   <script src="/static/jsx/BravoApp.jsx" type="text/babel"></script>

@@ -12,8 +12,7 @@ app = Flask(__name__)
 
 
 
-
-shows ={ "show_rent": {(20, 100):1, (101, 300):2, (301, 400):3, (500, 100000000):4}, show_rent:100
+show_rent:100
 
          "show_free_rent" : {True: 1, False: 0},                                     show_free_rent: True
 

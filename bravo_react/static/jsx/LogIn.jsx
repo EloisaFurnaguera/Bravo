@@ -5,90 +5,119 @@ class LogIn extends React.Component {
     super(props);
 
     this.state = { email: " ",
-                   password: " "};
-                   // producer: false,
-                   // venue: false};
-
+                  password: " ",
+                  user_type: " "}
+                 
+                   
+    this.handleLogInSubmit = this.handleLogInSubmit.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePassWordChange = this.handlePassWordChange.bind(this);
-    this.handleLogInSubmit = this.handleLogInSubmit.bind(this);
-
-
-
+    this.handleTypeUserChange = this.handleTypeUserChange.bind(this);
+  
     }
 
 
 
 
-
-    handleEmailChange(e) {
-      
-        this.setState({ email: e.target.value});
-  
-      
-         };
+    handleEmailChange(e) {     
+        this.setState({ email: e.target.value});          
+    };
 
 
      handlePassWordChange(e) {
-
-        this.setState({ password: e.target.value});
-
-      
-         };
+        this.setState({ password: e.target.value});       
+    };
 
 
+    handleTypeUserChange(e) {
+        this.setState({ user_type: e.target.value})
+    };
 
 
-  
+
 
 
     handleLogInSubmit(e) {
-         
-
-
-          console.log ('IS THIS WORKING');
-
       e.preventDefault();
 
+        fetch('/login', 
+        {method: 'POST',
+        body: JSON.stringify(this.state),
+        headers:{'Content-Type': 'application/json'}
+        }) 
 
-       
-      
-  };
+        .then(res1 => res1.json())
+        .then(res2 =>{
+        const logInResponse = JSON.stringify(res2)
+        console.log('Success:', logInResponse);
+
+        if (logInResponse === '"Incorrect_user_type"'){
+           alert("Incorrect User Type")
+        }
+
+        else if (logInResponse === '"Incorrect_Password"'){
+           alert("Password Incorrect")
+        }
+
+        else if (logInResponse === '"No_such_user"'){
+           alert("Please Register")
+           this.props.changePage("RegisterForm")
+        }
+
+        else{        
+            if (this.state.user_type === 'venue'){
+                this.props.changePage("VenueUserPage")
+                }
+
+            else{
+                this.props.changePage("ProducerUserPage")
+                }
+             }
+
+     });         
+
+}
+
+
+
+
 
 
  
     render(){
         return(
 
+        <div className="container">
 
-
-         <form onSubmit= {this.handleLogInSubmit}>
-            <label>
-            Email:
-                <input type="email" name="email"  
-                       onChange={this.handleEmailChange} required />
-          </label>
+          <form onSubmit= {this.handleLogInSubmit}>
+            
+          
+              <input type="email" name="email"  
+                       onChange={this.handleEmailChange} placeholder="Email" required /><br />    
     
-          <label>
-            Password:
-            <input type="password" name="password"  
-                    onChange={this.handlePassWordChange} required />
-          </label>
-   
+              <input type="password" name="password"  
+                    onChange={this.handlePassWordChange} placeholder="Password" required />
+          
+              <div>
 
-{/*        <input type="radio" name="check" value="venue" required />Venue 
-        <input type="radio" name="check" value="producer" required />Producer */}
+                <div onChange={this.handleTypeUserChange}>
+                    <input type="radio" name="user_type" value="venue" /> venue
 
-        <input type="submit" value="Log In" />
+                    <input type="radio" name="user_type" value="producer"/> producer
+                </div> 
+
+              </div>
+
+
+              <input type="submit" value="Log In" />
+      
     
         </form>
 
+
+</div>
   
            
-
-
-
-
          
         )
     }
@@ -100,97 +129,35 @@ class LogIn extends React.Component {
 
 
 
+// ---------------------
 
 
 
 
+      // const data = {
+      //   name: this.state.name,
+      //   venue: this.state.venue
+      // }
 
 
+      // // const loginData = new FormData(e.target);
+
+      // fetch("/login", {method: 'POST', body: JSON.stringify(data)})
+
+      // // // console.log(response);
+
+      // // // status: 200 {}
+      // // // status: 401 {}
+
+      // // // if (respondse.status === 200) {
+      // // //   this.props.changePage(0)
+      // // // } else {
+      // // //   this.setState()
+      // // // }
+      // this.props.changeStuff({name: 'whatever i got back'})
+      // this.props.changePage("BravoApp")
 
 
-
-
-
-
-
-
-
-// class LogIn extends React.Component {
-//     constructor(props) {
-//         super(props);
-//             this.state = {email: ' ',
-//                           password: ' '};
- 
-//         this.handleChange = this.handleChange.bind(this);
-//         this.handleSubmit = this.handleSubmit.bind(this);
-//   }
-
-
-
-
-//     handleChange(event) {
-
-//       this.setState({ [evt.target.name]: evt.target.value });
-
-      
-
-
-//        // const email = event.target.email;
-//        // const password = event.target.password;
-
-//        // this.setState({email:event.target.email,
-//        //                password: event.target.password });
-      
-//        // console.log(event.target.value)
-//   }
-
-//     handleSubmit() {
-       
-//         alert(this.state.email)
-//         alert(this.state.password)    
-//   }
-
-
-
-
-
-
-
-
-
-//     render(){
-//         return(
-
-
-
-
-//          <form onSubmit={this.handleSubmit}>
-//             <label>
-//             Email:
-//                 <input type="email" name="email" value= {this.state.email} 
-//                        onChange={this.handleChange} required />
-//           </label>
-    
-//           <label>
-//             Password:
-//             <input type="password" name="password" value= {this.state.password} 
-//                     onChange={this.handleChange} required />
-//           </label>
-   
-
-// {/*        <input type="radio" name="check" value="venue" required />Venue 
-//         <input type="radio" name="check" value="producer" required />Producer */}
-
-//         <input type="submit" value="Log In" />
-    
-//         </form>
-
-
-
-
-//        );
-//     }
-// }
 
 
 

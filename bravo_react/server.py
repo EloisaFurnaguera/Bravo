@@ -2,7 +2,7 @@
 
 from jinja2 import StrictUndefined
 
-from flask import Flask, render_template, request, flash, redirect, session
+from flask import Flask, render_template, request, flash, redirect, session, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 
 from model import connect_to_db, db, User, Venue, Show, Time, Location
@@ -22,15 +22,21 @@ def show_homepage():
 
 
 
+# @app.route("/login", methods=['POST'])
+# def login_process():
+#     """Process login info"""
+
+
+
+
+
 @app.route("/login", methods=['POST'])
 def login_process():
     """Process login info"""
   
-    user_email = request.form.get("email")
-    password_user = request.form.get("password")
-    user_type = request.form.get("check")
-
-    
+    user_email = request.json.get("email")
+    password_user = request.json.get("password")
+    user_type = request.json.get("user_type")
 
   
     #search if user is already in the data and that enter the
@@ -40,34 +46,36 @@ def login_process():
 
     if not user:
 
-        flash("No such user")
-        return redirect("/register")
+        # flash("No such user")
+        return jsonify("No_such_user")
 
     if user.password != password_user:
 
-        flash("Incorrect password")
-        return redirect("/")
+        # flash("Incorrect password")
+        return jsonify("Incorrect_Password")
 
     if user.user_type != user_type:
 
-        flash("Incorrect user type")
-        return redirect("/")
+        # flash("Incorrect user type")
+        return jsonify("Incorrect_user_type")
 
-    #ADD ONE MORE COOKI FOR THE VENUE AND ONE FOR THE PRODUCER
 
-    #keep the id and type in a cookie
-    # session["user_id"] = user.user_id
-    
+
 
 
     if user_type == "venue":
+
+        check_venue = Venue.query.filter_by(user_id=user.user_id).first()
+
+
 
 
         if "venue_id" in session:
 
             venue_id = session.get("venue_id")
 
-            return redirect(f"/venue_single/{venue_id}")
+            # return redirect(f"/venue_single/{venue_id}")
+            return jsonify(venue_id)
 
         else:
 
@@ -75,16 +83,22 @@ def login_process():
 
             if check_venue == None:
 
-                return redirect(f"/new_venue_page/{user.user_id}")
+                # return redirect(f"/new_venue_page/{user.user_id}")
+                return jsonify({"venue_id":check_venue.venue_id,
+                                 "user_id":check_venue.user_id,
+                                 "venue_address":check_venue.venue_address,
+                                 "venue_email":check_venue.venue_email
+                                })
+
 
             else:
-
-
                 session["user_id"] = user.user_id
                 session["venue_id"] = check_venue.venue_id
                 session["user_type"] = user.user_type
 
-                return redirect(f"/venue_single/{check_venue.venue_id}")
+
+
+                return jsonify(check_venue.venue_id)
 
 
     if user_type == "producer":
@@ -97,7 +111,10 @@ def login_process():
         session["user_type"] = user.user_type
         
 
-        return redirect(f"/producer_page/{user.user_id}")
+        # return redirect(f"/producer_page/{user.user_id}")
+        return jsonify(user.user_id)
+
+        
 
 
     #     check_venue = Venue.query.filter_by(user_id=user.user_id).first()
@@ -137,10 +154,10 @@ def logout():
 
 
 
-@app.route("/register", methods=["GET"])
-def show_register_form():
-    """Show register form"""
-    return render_template("user_register_form.html")
+# @app.route("/register-page", methods=["GET"])
+# def show_register_form():
+#     """Show register form"""
+#     return render_template("user_register_form.html")
 
 
 
@@ -148,13 +165,17 @@ def show_register_form():
 def register_process():
     """Register process"""
 
-    #get user info
-    fname = request.form.get("fname")
-    lname = request.form.get("lname")
-    user_email = request.form.get("email")
-    password = request.form.get("password")
-    user_type = request.form.get("check")
 
+
+    #get user info
+    fname = request.json.get("fname")
+    lname = request.json.get("lname")
+    user_email = request.json.get("email")
+    password = request.json.get("password")
+    user_type = request.json.get("user_type")
+
+ 
+   
 
     #check if email already in the database
     check_email = User.query.filter_by(user_email=user_email).first()
@@ -169,12 +190,36 @@ def register_process():
 
         db.session.add(new_user)
         db.session.commit()
+        db.session.refresh(new_user)
+        print(new_user.user_id)
 
-        flash(f"User {user_email} added.")
 
-        return redirect("/")
+        # return jsonify(new_user.to_dict())
+        print(new_user.user_id)
+        return jsonify(new_user.user_id)
+       
+    
+    # return redirect("/")``
+    return jsonify(new_user.user_id)
+  
+    # return jsonify({'code': result_code, 'msg': result_text})
 
-    return redirect("/")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -774,8 +819,8 @@ def venue_list(user_id):
 
 
 
-
-@app.route("/show_list/<int:user_id>", methods=["GET"])
+@app.route("/show_list", methods=["GET"])
+# @app.route("/show_list/<int:user_id>", methods=["GET"])
 def show_list(user_id):
     """Update info"""
 
@@ -786,6 +831,49 @@ def show_list(user_id):
  
 
     return render_template("show_list.html", user_id=user_id, show_list=show_list)
+
+
+
+
+
+
+
+
+
+@app.route("/get_info", methods=["POST"])
+
+def getting_info():
+
+    number = request.json.get("userId")
+
+    user = User.query.filter_by(user_id=number).first()
+
+    print (user.user_lname)
+
+    # return jsonify(user) 
+
+    return jsonify(user.lname)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

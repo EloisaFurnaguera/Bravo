@@ -143,6 +143,7 @@ def register_process():
 
         db.session.add(new_user)
         db.session.commit()
+        # db.session.refresh(new_user)
 
         flash(f"User {user_email} added.")
 

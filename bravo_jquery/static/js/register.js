@@ -1,8 +1,8 @@
 
 
-function ShowRegisterForm(){
+function ShowRegisterForm(results){
  
-    console.log("hshsh")
+    console.log("results")
 
 }
 
@@ -10,13 +10,21 @@ function ShowRegisterForm(){
 function handleRegisterForm(e){
 e.preventDefault();
 
-    const register = document.querySelector('#register-form')
-    const registerData = $(register).serialize();
+    console.log("registerData");
 
-    console.log(registerData);
-}
+//     const register = document.querySelector('#register-form')
+//     const registerData = new FormData(register);
 
-$.post("/register-2", registerData, ShowRegisterForm)
+  
+//     // const registerData = $(register).serialize();
+
+//     console.log(registerData);
+//     console.log("ttttt");
+
+
+// }
+
+// $.post("/register-2", registerData, ShowRegisterForm)
 
 
 
@@ -35,25 +43,6 @@ $.post("/register-2", registerData, ShowRegisterForm)
 
 
 // name.style.backgroundColor="red";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
