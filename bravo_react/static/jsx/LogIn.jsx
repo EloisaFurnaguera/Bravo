@@ -6,7 +6,8 @@ class LogIn extends React.Component {
 
     this.state = { email: " ",
                   password: " ",
-                  user_type: " "}
+                  user_type: " ",
+                  user_id: " "}              
                  
                    
     this.handleLogInSubmit = this.handleLogInSubmit.bind(this);
@@ -15,7 +16,6 @@ class LogIn extends React.Component {
     this.handleTypeUserChange = this.handleTypeUserChange.bind(this);
   
     }
-
 
 
 
@@ -40,6 +40,8 @@ class LogIn extends React.Component {
     handleLogInSubmit(e) {
       e.preventDefault();
 
+        // console.log(this.state)
+
         fetch('/login', 
         {method: 'POST',
         body: JSON.stringify(this.state),
@@ -61,18 +63,20 @@ class LogIn extends React.Component {
 
         else if (logInResponse === '"No_such_user"'){
            alert("Please Register")
-           this.props.changePage("RegisterForm")
+           this.props.changePage("RegisterForm" , )
         }
 
         else{        
             if (this.state.user_type === 'venue'){
-                this.props.changePage("VenueUserPage")
+                this.props.changePage("VenueUserPage", logInResponse)
                 }
 
             else{
-                this.props.changePage("ProducerUserPage")
-                }
-             }
+                this.props.changePage("ProducerUserPage", logInResponse)
+               
+              }
+
+            }            
 
      });         
 

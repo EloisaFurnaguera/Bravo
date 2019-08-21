@@ -56,7 +56,7 @@ class RegisterForm extends React.Component {
     handleRegubmit(e){
         e.preventDefault();
         
-
+      
         fetch("/register", 
         {method: 'POST',
         body: JSON.stringify(this.state),

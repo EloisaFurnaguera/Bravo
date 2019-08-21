@@ -2,43 +2,55 @@ class VenueUserPage extends React.Component {
 
     constructor(props) {
         super(props);
- 
-        this.state = {venue_id: " ",
-                      user_id: " ",
-                      venue_id: " ",
-                      venue_address: " ",
-                      venue_email: " "
-                      }
+  
+        this.state = {user_id: " ",
+                     venue_name: " ",
+                     venue_id: " ",
+                     monday: " ",
+                     tuesday: " ",
+                     wednesday: " ",
+                     thursday: " ",
+                     friday: " ",
+                     saturday: " ",
+                     sunday: " ",
+                     morning: " ",
+                     late_morning: " ",
+                     early_night: " ",
+                     late_night: " "}
 
-        this.handleRegubmit = this.handleRegubmit.bind(this);
+
+     console.log(venueResponse) 
+    
+    }
+                      
+       
+
+ 
+
+
+    componentDidMount() {
+
+         
+
+        fetch("/venue_single", 
+        {method: 'POST',
+        body: JSON.stringify(this.pops),
+        headers:{'Content-Type': 'application/json'}
+        }) 
+
+        .then(res1 => res1.json())
+        .then(res2 =>{
+        console.log('Success:', JSON.stringify(res2));
+
+        const venueResponse = JSON.stringify(res2)
+
+        console.log(venueResponse) 
+
+      });
 
     }
-          
-
-    handleRegubmit(e){
-    e.preventDefault();
-    
-
-    fetch("/register", 
-    {method: 'GET',
-    body: JSON.stringify(this.state),
-    headers:{'Content-Type': 'application/json'}
-    }) 
-
-    .then(res1 => res1.json())
-    .then(res2 =>{
-    console.log('Success:', JSON.stringify(res2));
-
-    const venueResponse = JSON.stringify(res2))
-
-    this.setState({user_id: res2});
-    console.log(this.state.user_id)
 
 
-
-    });
-
-       
 
 
 
@@ -48,7 +60,7 @@ class VenueUserPage extends React.Component {
              <div>
 
                  <h1>VENUE PAGE</h1>
-                 <h1> Hello, {this.state.venue_id}</h1>
+                 <h1> Hello, {this.state.name}</h1>
 
              </div>
 

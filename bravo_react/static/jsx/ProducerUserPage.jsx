@@ -1,54 +1,47 @@
 class ProducerUserPage extends React.Component {
 
-//     constructor(props) {
-//         super(props);
+    constructor(props) {
+        super(props);
  
-//         this.state = {something:"",
-//                       response:" "};
-       
-//     this.handleRegubmit = this.handleRegubmit.bind(this);
-//     this.handleUserIdChange = this.handleUserIdChange.bind(this);
+        this.state = {user_id: this.props.name,
+                      user_fname: " ",
+                      user_lname: " ",
+                      show_name: []}
 
-//     }
+                      
+    }
 
+ 
 
-//     handleUserIdChange(e){  
-//          console.log(e.target.value);
-//          this.setState({something: e.target.value});
+    componentDidMount() {
 
-//     }
+        // console.log(this.state) 
 
-
-//     handleRegubmit(e){
-//         e.preventDefault();
-
-
-//         fetch("/get_info", 
-//               {method: 'POST',
-//               body: JSON.stringify(this.state),
-//               headers:{'Content-Type': 'application/json'} 
-//            // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-
-//                 })
+        fetch("/producer_page", 
+        {method: 'POST',
+        body: JSON.stringify(this.state),
+        headers:{'Content-Type': 'application/json'}}) 
+        .then(res1 => res1.json())     
+        .then(res2 => { this.setState({
+                      user_fname: res2.user_fname, 
+                      user_lname: res2.user_lname})}) 
+           
+  }
 
 
-//         .then(res1 => res1.json())
-//         .then(res2 =>{
-//           console.log('Success:', JSON.stringify(res2));
-
-//         this.setState({response: res2});})
-
-// }
-        
-
-
+  // NEED TO ALL THE ERROR MESSAFE
 
     render(){
+   
         return(
 
              <div>
 
                  <h1>PRODUCER PAGE</h1>
+                 <h3>{this.state.user_fname}</h3>
+                 <h3>{this.state.user_lname}</h3>
+                 <h3>{this.state.user_}</h3>
+
 
              </div>
 
@@ -57,3 +50,6 @@ class ProducerUserPage extends React.Component {
     }
 
 }
+
+
+
