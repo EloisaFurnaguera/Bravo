@@ -1,4 +1,5 @@
 
+
 class LogIn extends React.Component {
 
   constructor(props) {
@@ -34,16 +35,12 @@ class LogIn extends React.Component {
     };
 
 
-
-
-
     handleLogInSubmit(e) {
       e.preventDefault();
 
-        // console.log(this.state)
 
-        fetch('/login', 
-        {method: 'POST',
+        fetch("/login", 
+        {method: "POST",
         body: JSON.stringify(this.state),
         headers:{'Content-Type': 'application/json'}
         }) 
@@ -51,7 +48,7 @@ class LogIn extends React.Component {
         .then(res1 => res1.json())
         .then(res2 =>{
         const logInResponse = JSON.stringify(res2)
-        console.log('Success:', logInResponse);
+        console.log("Success:", logInResponse);
 
         if (logInResponse === '"Incorrect_user_type"'){
            alert("Incorrect User Type")
@@ -63,27 +60,27 @@ class LogIn extends React.Component {
 
         else if (logInResponse === '"No_such_user"'){
            alert("Please Register")
-           this.props.changePage("RegisterForm" , )
+           this.props.changePage("UserRegisterForm")
         }
 
+
+        else if (logInResponse === '"Register_Venue"'){          
+           this.props.changePage("VenueRegisterForm")
+        }
+
+
         else{        
-            if (this.state.user_type === 'venue'){
+            if (this.state.user_type === "venue"){
                 this.props.changePage("VenueUserPage", logInResponse)
                 }
 
             else{
-                this.props.changePage("ProducerUserPage", logInResponse)
-               
-              }
-
+                this.props.changePage("ProducerUserPage", logInResponse)         
+                }
             }            
-
      });         
 
 }
-
-
-
 
 
 
@@ -106,7 +103,6 @@ class LogIn extends React.Component {
 
                 <div onChange={this.handleTypeUserChange}>
                     <input type="radio" name="user_type" value="venue" /> venue
-
                     <input type="radio" name="user_type" value="producer"/> producer
                 </div> 
 

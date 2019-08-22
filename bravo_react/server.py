@@ -22,14 +22,6 @@ def show_homepage():
 
 
 
-# @app.route("/login", methods=['POST'])
-# def login_process():
-#     """Process login info"""
-
-
-
-
-
 @app.route("/login", methods=['POST'])
 def login_process():
     """Process login info"""
@@ -44,125 +36,61 @@ def login_process():
     user = User.query.filter_by(user_email=user_email).first()
 
 
-    if not user:
-
-        # flash("No such user")
+    if not user:     
         return jsonify("No_such_user")
 
-    if user.password != password_user:
-
-        # flash("Incorrect password")
+    if user.password != password_user:   
         return jsonify("Incorrect_Password")
 
     if user.user_type != user_type:
-
-        # flash("Incorrect user type")
         return jsonify("Incorrect_user_type")
 
 
 
-
-
-    if user_type == "venue":
-
-        check_venue = Venue.query.filter_by(user_id=user.user_id).first()
-
-
-
-
-        if "venue_id" in session:
-
-            venue_id = session.get("venue_id")
-
-            # return redirect(f"/venue_single/{venue_id}")
-            return jsonify(venue_id)
-
-        else:
-
-            check_venue = Venue.query.filter_by(user_id=user.user_id).first()
-
-            if check_venue == None:
-
-                # return redirect(f"/new_venue_page/{user.user_id}")
-                return jsonify(check_venue.venue_id)
-
-            else:
-
-
-                session["user_id"] = user.user_id
-                session["venue_id"] = check_venue.venue_id
-                session["user_type"] = user.user_type
-
-
-
-                return jsonify(check_venue.venue_id)
-
-
+    #if the user is a producer go to the producer's page and save the user id in a session.
     if user_type == "producer":
 
-        check_producer= Show.query.filter_by(user_id=user.user_id).all()
-
-        
+        check_producer= Show.query.filter_by(user_id=user.user_id).all()     
 
         session["user_id"] = user.user_id
 
-
-    
-
-        # return redirect(f"/producer_page/{user.user_id}")
         return jsonify(user.user_id)
 
+    
+    #if venue go to the venue page and if new venue send no register note
+    if user_type == "venue":
+
+        check_venue_info = Venue.query.filter_by(user_id=user.user_id).first()
+
+        if check_venue_info == None:
+
+            return jsonify("Register_Venue")
+
+        else:
+                session["user_id"] = user.user_id
+
+                return jsonify(user.user_id)
         
-
-
-    #     check_venue = Venue.query.filter_by(user_id=user.user_id).first()
-       
-
-    #     if check_venue == None:
-
-    #         return redirect(f"/new_venue_page/{user.user_id}")
-
-
-    #     else:
-
-    #         session["user_id"] = user.user_id
-    #         session["venue_id"] = check_venue.venue_id
-
-    #         return redirect(f"/venue_single/{check_venue.venue_id}")
-
    
 
-    # if user_type == "performer":
-
-    #     return render_template(f"performer.html/{user.user_id}")
 
 
-@app.route('/logout')
+
+@app.route("/logout",  methods=["POST"])
 def logout():
     """Log out and delete the cookies"""
 
-    del session["user_id"]
-
-    if "venue_id" in session:
-
-        del session["venue_id"]
-
-    flash("Logged Out.")
-    return redirect("/")
+    session.clear()
+   
+    return jsonify("logout")
 
 
-
-# @app.route("/register-page", methods=["GET"])
-# def show_register_form():
-#     """Show register form"""
-#     return render_template("user_register_form.html")
 
 
 
 @app.route("/register", methods=["POST"])
 def register_process():
     """Register process"""
-
 
 
     #get user info
@@ -189,30 +117,20 @@ def register_process():
         db.session.add(new_user)
         db.session.commit()
         db.session.refresh(new_user)
-        print(new_user.user_id)
+
+        session["user_id"] = new_user.user_id
+        
 
 
         # return jsonify(new_user.to_dict())
-        print(new_user.user_id)
-        return jsonify(new_user.user_id)
+       
+        return jsonify(new_user.user_email)
        
     
     # return redirect("/")``
-    return jsonify(new_user.user_id)
+    return jsonify("Email_already_in_data")
   
     # return jsonify({'code': result_code, 'msg': result_text})
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -395,45 +313,33 @@ def venue_page_process(user_id):
 
 
 
-@app.route("/venue_single", methods=["POST"])
+@app.route("/venue_page", methods=["POST"])
 def single_venue_info():
 
-    user_id = request.json.get("user_id")
+    # user_id = request.json.get("user_id")
+    user_id = session.get("user_id")
+
 
 
     venue = Venue.query.filter_by(user_id=user_id).first()
     time = Time.query.filter_by(time_id=venue.time_id).first()
 
-    return jsonify(venue.venue_name)
 
 
-
-    
-
-    
-
-
-
-
-
-
-
-
-    # return render_template("venue_single_page.html", user_type=user_type,
-    #                                                  user_id=venue.user_id, 
-    #                                                  venue_name=venue.venue_name,
-    #                                                  venue_id=venue.venue_id,
-    #                                                  monday=time.monday,
-    #                                                  tuesday=time.tuesday,
-    #                                                  wednesday=time.wednesday,
-    #                                                  thursday=time.thursday,
-    #                                                  friday=time.friday,
-    #                                                  saturday=time.saturday,
-    #                                                  sunday=time.sunday,
-    #                                                  morning=time.morning,
-    #                                                  late_morning=time.late_morning,
-    #                                                  early_night=time.early_night,
-    #                                                  late_night=time.late_night)
+    return jsonify(user_id=venue.user_id, 
+                  venue_name=venue.venue_name,
+                  venue_id=venue.venue_id,
+                  monday=time.monday,
+                  tuesday=time.tuesday,
+                  wednesday=time.wednesday,
+                  thursday=time.thursday,
+                  friday=time.friday,
+                  saturday=time.saturday,
+                  sunday=time.sunday,
+                  morning=time.morning,
+                  late_morning=time.late_morning,
+                  early_night=time.early_night,
+                  late_night=time.late_night)
 
 
 
@@ -711,25 +617,25 @@ def producer_page():
 
     show_list = Show.query.filter_by(user_id=user.user_id).all()
 
-    {
-        fname: 'andrew',
-        lname: 'blum',
-        shows: {
-            0: 'show name 1',
-            1: 'show name 2'
-        }      
-    }
+    # {
+    #     fname: 'andrew',
+    #     lname: 'blum',
+    #     shows: {
+    #         0: 'show name 1',
+    #         1: 'show name 2'
+    #     }      
+    # }
     
-    const responseJson = {}
+    # const responseJson = {}
 
-    for show, i in enumate(show_list):
-        responseJson[shows][i] = show
+    # for show, i in enumate(show_list):
+    #     responseJson[shows][i] = show
 
-    # return jsonify(user.user_fname)
+    # # return jsonify(user.user_fname)
 
-    return jsonify({"user_fname": user.user_fname,
-                    "user_lname": user.user_lname,
-                    "show_name": show_list})
+    # return jsonify({"user_fname": user.user_fname,
+    #                 "user_lname": user.user_lname,
+    #                 "show_name": show_list})
 
 
     # return render_template("producer_page.html", user_id=user.user_id, 

@@ -5,7 +5,8 @@ class Base extends React.Component {
         super(props);
 
 
-    this.state = {currentPage: "BravoApp",
+    this.state = {
+                  currentPage: "BravoApp",
                   user_id: " "}              
 
     this.changePage = this.changePage.bind(this);
@@ -14,17 +15,16 @@ class Base extends React.Component {
 
 
 
-
     changePage(newPage, user_id) {
         this.setState({currentPage: newPage,
-                       user_id: user_id });
-
-        
-         
+                       user_id: user_id });               
     }
+
+
 
     changeState(state){
         this.setState(state);
+
     }
 
 
@@ -34,14 +34,16 @@ class Base extends React.Component {
 
         const  pages = { 
                BravoApp : <BravoApp changePage={this.changePage} name={this.state.name} />,
-               LogIn: <LogIn changePage={this.changePage} />,
-               RegisterForm: <RegisterForm changePage={this.changePage} name={this.state.name} />,
-               VenueUserPage: <VenueUserPage name={this.state.user_id} />,
-               ProducerUserPage: <ProducerUserPage name={this.state.user_id} />,
+               LogOut: <LogOut changePage={this.changePage} name={this.state.name} />,
+               LogIn: <LogIn changePage={this.changePage} name={this.state.name} />,
+               UserRegisterForm: <UserRegisterForm changePage={this.changePage} name={this.state.user_id } />,   
+               VenueRegisterForm: <LogIn changePage={this.changePage} name={this.state.name} />, 
+               VenueUserPage: <VenueUserPage changePage={this.changePage} name={this.state.name} />,
+               ProducerPage: <ProducerPage changePage={this.changePage} name={this.state.name} />,
 
 
 
-               UserInfo: <UserInfo changePage={this.changePage} name={this.state.name} />
+               TryStuff: <TryStuff changePage={this.changePage} name={this.state.name} />
                }
 
              
