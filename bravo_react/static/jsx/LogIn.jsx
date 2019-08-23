@@ -45,6 +45,8 @@ class LogIn extends React.Component {
         headers:{'Content-Type': 'application/json'}
         }) 
 
+        
+
         .then(res1 => res1.json())
         .then(res2 =>{
         const logInResponse = JSON.stringify(res2)
@@ -75,7 +77,7 @@ class LogIn extends React.Component {
                 }
 
             else{
-                this.props.changePage("ProducerUserPage", logInResponse)         
+                this.props.changePage("ProducerPage", logInResponse)         
                 }
             }            
      });         

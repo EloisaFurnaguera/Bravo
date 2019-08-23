@@ -123,14 +123,69 @@ class Something extends React.Component {
 
                
 
-console.log('Success:', JSON.stringify(res2));
+class Melons extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      melons: []
+    };
+  }
+
+  componentDidMount() {
+    fetch('/api/melons')
+      .then(res => res.json())
+      .then(melons => {
+        this.setState({ melons: melons });
+      });
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Melons from the database</h1>
+        {this.state.melons.map(melon => {
+          return (
+            <ul key={melon.melon_id}>
+              <li>ID: {melon.melon_id}</li>
+              <li>Name: {melon.name}</li>
+              <li>Created at: {melon.created_at}</li>
+            </ul>
+          );
+        })}
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<Melons />, document.getElementById('root'));
 
 
 
 
+-----------------------------------------
 
 
+class App extends Component {
+  constructor (props) {
+      super(props);
+      this.state = {
+          inputvalue: ''
+      }
 
+      this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange (event) {
+      this.setState({
+          inputvalue: event.target.value
+      })
+  }
+
+  handleSubmit (event) {
+      console.log('Form value: ' + this.state.inputvalue);
+      event.preventDefault();
+  }
 
 
 

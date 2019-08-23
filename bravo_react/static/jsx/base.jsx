@@ -37,7 +37,8 @@ class Base extends React.Component {
                LogOut: <LogOut changePage={this.changePage} name={this.state.name} />,
                LogIn: <LogIn changePage={this.changePage} name={this.state.name} />,
                UserRegisterForm: <UserRegisterForm changePage={this.changePage} name={this.state.user_id } />,   
-               VenueRegisterForm: <LogIn changePage={this.changePage} name={this.state.name} />, 
+               VenueRegisterForm: <VenueRegisterForm changePage={this.changePage} name={this.state.name} />, 
+               UserUpdateForm: <UserUpdateForm changePage={this.changePage} name={this.state.name} />, 
                VenueUserPage: <VenueUserPage changePage={this.changePage} name={this.state.name} />,
                ProducerPage: <ProducerPage changePage={this.changePage} name={this.state.name} />,
 

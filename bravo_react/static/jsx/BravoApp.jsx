@@ -7,6 +7,9 @@ class BravoApp extends React.Component {
     this.handleLogInSubmit = this.handleLogInSubmit.bind(this);
     this.handleSigInSubmit = this.handleSigInSubmit.bind(this);
 
+
+    this.handleTrySubmit = this.handleTrySubmit.bind(this);
+
 }
 
 
@@ -29,6 +32,19 @@ handleSigInSubmit(e) {
 
 
 
+handleTrySubmit(e) {
+      e.preventDefault();
+
+      this.props.changePage("VenueRegisterForm")
+    };
+
+
+
+
+
+
+
+
     render(){
         return(
 
@@ -38,6 +54,10 @@ handleSigInSubmit(e) {
          
             <button  onClick= {this.handleSigInSubmit}>Sign in</button>
             <button  onClick= {this.handleLogInSubmit}>Login</button>
+
+
+
+            <button  onClick= {this.handleTrySubmit}>Trying Component</button>
 
 
          </div>

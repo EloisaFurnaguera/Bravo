@@ -19,7 +19,8 @@ class VenueUserPage extends React.Component {
                      late_night:""}  
    
          
-         this.handleLogOutSubmit = this.handleLogOutSubmit.bind(this);  
+         this.handleLogOutSubmit = this.handleLogOutSubmit.bind(this); 
+         this.handleUpdateUserInfo = this.handleUpdateUserInfo.bind(this); 
     }
                       
       
@@ -28,6 +29,13 @@ class VenueUserPage extends React.Component {
     handleLogOutSubmit(e) {
       e.preventDefault();
       this.props.changePage("LogOut")
+    };
+
+
+
+    handleUpdateUserInfo(e) {
+      e.preventDefault();
+      this.props.changePage("UserUpdateForm")
     };
 
 
@@ -61,7 +69,7 @@ class VenueUserPage extends React.Component {
 
                        console.log('Success:', JSON.stringify(res2))
                     
-                      });               
+        });               
         
     }
 
@@ -77,9 +85,10 @@ class VenueUserPage extends React.Component {
 
                  <h1>VENUE PAGE</h1>
                  
-                 <h1> Hello, {this.state.name}</h1>
+                 <h1> Hello, {this.state.venue_name}</h1>
 
                  <button  onClick= {this.handleLogOutSubmit}>Log Out</button>
+                 <button  onClick= {this.handleUpdateUserInfo}>Update User Info</button>
 
              </div>
 
