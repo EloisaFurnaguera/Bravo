@@ -6,7 +6,7 @@ class ProducerPage extends React.Component {
         this.state = {user_id:" ",
                       user_fname: " ",
                       user_lname: " ",
-                      show_name: [],
+                      show: [],
                     }               
 
 
@@ -43,7 +43,11 @@ handleUpdateUserInfo(e) {
         .then(producerResponse =>{
           this.setState({ 
                         user_fname: producerResponse.user_fname,
-                        user_lname: producerResponse.user_lname}) 
+                        user_lname: producerResponse.user_lname,
+                        show: producerResponse.show
+
+                      }
+                        ) 
 
           console.log("Success:", JSON.stringify(producerResponse))
 

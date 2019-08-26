@@ -40,6 +40,7 @@ class Base extends React.Component {
                VenueRegisterForm: <VenueRegisterForm changePage={this.changePage} name={this.state.name} />, 
                UserUpdateForm: <UserUpdateForm changePage={this.changePage} name={this.state.name} />, 
                VenueUserPage: <VenueUserPage changePage={this.changePage} name={this.state.name} />,
+               VenueUpdateForm: <VenueUpdateForm changePage={this.changePage} name={this.state.name} />,
                ProducerPage: <ProducerPage changePage={this.changePage} name={this.state.name} />,
 
 

@@ -1,87 +1,46 @@
 class TryStuff extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      venueInfo: []
+    };
+  }
 
-    constructor(props) {
-        super(props);
- 
-        this.state = {userId:"",
-                      r:" "};
+  componentDidMount() {
+    fetch("/venue_page",
+          {method: "POST",
+          headers:{'Content-Type': 'application/json'}
+          })
 
 
 
+      .then(res => res.json())
+      .then(venueInfo => {
+        this.setState({ venueInfo: venueInfo });
+      });
+  }
   
-       
-    this.handleRegubmit = this.handleRegubmit.bind(this);
-    this.handleUserIdChange = this.handleUserIdChange.bind(this);
 
-    }
+  render() {
 
 
+    return (
+      <div>
+{/*        <h1>VENUE INFO</h1>
+        {this.state.venueInfo.map(venueInfo => {
 
-
-    handleUserIdChange(e){  
-
-         console.log(e.target.value);
-         this.setState({userId: e.target.value});
- 
-
-    }
-
-
-
-    handleRegubmit(e){
-        e.preventDefault();
-
-
-        fetch("/get_info", 
-              {method: 'POST',
-              body: JSON.stringify(this.state),
-              headers:{'Content-Type': 'application/json'} 
-
-              // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-
-                })
-
-
-        .then(res1 => res1.json())
-        .then(res2 =>{
-          console.log('Success:', JSON.stringify(res2));
-
-          this.setState({r: res2});})
-
-}
-        
-
-
-
-    render(){
-        return(
-
-             <div>
-
-                <form onSubmit= {this.handleRegubmit}>
-
-               
-                    <label>
-                        UserId
-                        <input type="user_id" name="user_id" 
-                               onChange={this.handleUserIdChange} required />                   
-                    </label>       
-                       
-   
-                    <input type="submit" value="user_id" />                              
-
-            </form>
-
-
-            
-            <p> {this.state.r.user_lname} </p>
-
-            </div>
-
+          return (
+            <ul key={venueInfo.venue_id}>   
+              <li>Name: {venueInfo.venue_name}</li>
+              <li>Address: {venueInfo.venue_id}</li>
+            </ul>
           );
-          
-    }
 
+
+        })}*/}
+      </div>
+    );
+  }
 }
 
 

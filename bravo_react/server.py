@@ -53,8 +53,7 @@ def login_process():
         # check_producer= Show.query.filter_by(user_id=user.user_id).all()     
 
         session["user_id"] = user.user_id
-        session["user_type"] = user.user_type
-
+      
         return jsonify(user.user_id)
 
     
@@ -69,7 +68,7 @@ def login_process():
 
         else:
                 session["user_id"] = user.user_id
-                session["user_type"] = user.user_type
+                session["venue_id"] = check_venue_info.venue_id
 
                 return jsonify(user.user_id)
         
@@ -83,7 +82,6 @@ def logout():
     session.clear()
    
     return jsonify("logout")
-
 
 
 
@@ -161,34 +159,6 @@ def user_info_update_process():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @app.route("/register_venue", methods=["POST"])
 def venue_page_process():
     """Process new venue"""
@@ -213,7 +183,6 @@ def venue_page_process():
 
 
 
-
     venue_name = request.json.get("venue_name")
     venue_url = request.json.get("venue_url")
     venue_email = request.json.get("venue_email")
@@ -222,8 +191,8 @@ def venue_page_process():
     venue_type = request.json.get("venue_type") 
     venue_backspace = request.json.get("venue_backspace")  
     venue_capacity = request.json.get("venue_capacity")
-    venue_license = request.json.get("cabaret_license") 
-    venue_free_rent = request.json.get("venue_free")
+    venue_license = request.json.get("venue_license") 
+    venue_free_rent = request.json.get("venue_free_rent")
     venue_rent = request.json.get("venue_rent")
 
 
@@ -287,8 +256,7 @@ def venue_page_process():
                         late_morning=new_time.late_morning,
                         early_night=new_time.early_night,
                         late_night=new_time.late_night,
-
-                        vanue_id=new_venue.venue_id,
+                    
                         venue_name=new_venue.venue_name,
                         venue_url=new_venue.venue_url, 
                         venue_email=new_venue.venue_email, 
@@ -303,48 +271,7 @@ def venue_page_process():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
 
 
 @app.route("/venue_page", methods=["POST"])
@@ -354,95 +281,66 @@ def single_venue_info():
     user_id = session.get("user_id")
 
 
-
     venue = Venue.query.filter_by(user_id=user_id).first()
     time = Time.query.filter_by(time_id=venue.time_id).first()
 
 
+    return jsonify(monday=time.monday,
+                    tuesday=time.tuesday,
+                    wednesday=time.wednesday,
+                    thursday=time.thursday,
+                    friday=time.friday,
+                    saturday=time.saturday,
+                    sunday=time.sunday,
+                    morning=time.morning,
+                    late_morning=time.late_morning,
+                    early_night=time.early_night,
+                    late_night=time.late_night,
 
-    return jsonify(user_id=venue.user_id, 
-                  venue_name=venue.venue_name,
-                  venue_id=venue.venue_id,
-                  monday=time.monday,
-                  tuesday=time.tuesday,
-                  wednesday=time.wednesday,
-                  thursday=time.thursday,
-                  friday=time.friday,
-                  saturday=time.saturday,
-                  sunday=time.sunday,
-                  morning=time.morning,
-                  late_morning=time.late_morning,
-                  early_night=time.early_night,
-                  late_night=time.late_night)
-
-
-
-
-
-@app.route("/venue_update/<int:venue_id>", methods=["GET"])
-def updated_venue_info(venue_id):   
-
-
-    venue = Venue.query.filter_by(venue_id=venue_id).first()
-    time = Time.query.filter_by(time_id=venue.time_id).first()
+                    venue_name=venue.venue_name,
+                    venue_url=venue.venue_url, 
+                    venue_email=venue.venue_email, 
+                    venue_address=venue.venue_address, 
+                    venue_city=venue.venue_city,
+                    venue_backspace=venue.venue_backspace,
+                    venue_capacity=venue.venue_capacity,
+                    venue_license=venue.venue_license,
+                    venue_free_rent=venue.venue_free_rent,
+                    venue_rent=venue.venue_rent)
 
 
 
-    """Update info"""
-
-    # venue_id = Venue.query.filter_by(user_id=user_id).first()
-
-    return render_template("venue_update_form.html", venue_id=venue_id,
-                                                     venue_rent=venue.venue_rent)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@app.route("/venue_update/<int:venue_id>", methods=["POST"])
-def process_update_venue_info(venue_id):
+@app.route("/venue_update", methods=["POST"])
+def process_update_venue_info():
     """Process update info"""
+
+    user_id = session.get("user_id")
+    venue_id = session.get("venue_id")
 
     update_venue_info = Venue.query.filter_by(venue_id=venue_id).first()
     update_venue_time = Time.query.filter_by(time_id=update_venue_info.time_id).first()
 
 
-    monday = request.form.get("monday")
-    tuesday = request.form.get("tuesday")
-    wednesday = request.form.get("wednesday")
-    thursday = request.form.get("thursday")
-    friday = request.form.get("friday")
-    saturday = request.form.get("saturday")
-    sunday = request.form.get("sunday")
-    morning = request.form.get("morning")
-    late_morning = request.form.get("late_morning")
-    early_night = request.form.get("early_night")
-    late_night = request.form.get("late_night")
+    monday = request.json.get("monday")
+    tuesday = request.json.get("tuesday")
+    wednesday = request.json.get("wednesday")
+    thursday = request.json.get("thursday")
+    friday = request.json.get("friday")
+    saturday = request.json.get("saturday")
+    sunday = request.json.get("sunday")
+    morning = request.json.get("morning")
+    late_morning = request.json.get("late_morning")
+    early_night = request.json.get("early_night")
+    late_night = request.json.get("late_night")
 
 
-    # venue_name = request.form.get("venue_name")
-    venue_url = request.form.get("venue_url")
-    venue_email = request.form.get("venue_email")
-    # venue_type = request.form.get("venue_type") 
-    venue_backspace = request.form.get("venue_backspace")  
-    venue_capacity = request.form.get("venue_capacity")
-    venue_license = request.form.get("cabaret_license") 
-    venue_free_rent = request.form.get("venue_free")
-    venue_rent = request.form.get("venue_rent")
+    venue_url = request.json.get("venue_url")
+    venue_email = request.json.get("venue_email")
+    venue_backspace = request.json.get("venue_backspace")  
+    venue_capacity = request.json.get("venue_capacity")
+    venue_license = request.json.get("cabaret_license") 
+    venue_free_rent = request.json.get("venue_free")
+    venue_rent = request.json.get("venue_rent")
 
 
 
@@ -457,15 +355,12 @@ def process_update_venue_info(venue_id):
     update_venue_time.late_morning = late_morning
     update_venue_time.early_night = early_night
     update_venue_time.late_night = late_night
-
-
-    
-    # update_venue.venue_name = venue_name
+   
+  
     update_venue_info.venue_url = venue_url
     update_venue_info.venue_email = venue_email
-    #update_venue.venue_type = venue_type
+    update_venue_info.venue_capacity = venue_capacity
     update_venue_info.venue_backspace = venue_backspace
-    # update_venue.venue_capacity = venue_capacity
     update_venue_info.venue_license = venue_license
     update_venue_info.venue_free_rent = venue_free_rent
     update_venue_info.venue_rent = venue_rent
@@ -474,44 +369,168 @@ def process_update_venue_info(venue_id):
     db.session.commit()
 
 
+
+    return jsonify(monday=monday,
+                    tuesday=tuesday,
+                    wednesday=wednesday,
+                    thursday=thursday,
+                    friday=friday,
+                    saturday=saturday,
+                    sunday=sunday,
+                    morning=morning,
+                    late_morning=late_morning,
+                    early_night=early_night,
+                    late_night=late_night,
+
+                    venue_url=venue_url, 
+                    venue_email=venue_email, 
+                    venue_backspace=venue_backspace,
+                    venue_capacity=venue_capacity,
+                    venue_license=venue_license,
+                    venue_free_rent=venue_free_rent,
+                    venue_rent=venue_rent)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.route("/producer_page", methods=["POST"])
+def producer_page():
+
+
     user_id = session.get("user_id")
 
 
+    user = User.query.filter_by(user_id=user_id).first()
+
+    show_list = Show.query.filter_by(user_id=user.user_id).all()
+
+    responseJson = {}
+    print(user_id)
 
 
-    return render_template("venue_single_page.html", user_id=user_id, 
-                                                     venue_id=venue_id,
-                                                     monday=update_venue_time.monday,
-                                                     tuesday=update_venue_time.tuesday,
-                                                     wednesday=update_venue_time.wednesday,
-                                                     thursday=update_venue_time.thursday,
-                                                     friday=update_venue_time.friday,
-                                                     saturday=update_venue_time.saturday,
-                                                     sunday=update_venue_time.sunday,
-                                                     morning=update_venue_time.morning,
-                                                     late_morning=update_venue_time.late_morning,
-                                                     early_night=update_venue_time.early_night,
-                                                     late_night=update_venue_time.late_night)
+    print(show_list.venue_name)
 
+
+   
+   
 
 
 
 
-@app.route("/new_show_page/<int:user_id>", methods=["GET"])
-def new_show_page(user_id):
+    return jsonify(user_id)
 
 
-    user_show = User.query.filter_by(user_id=user_id).first()
+    # return jsonify(user_id=user_id,
+    #                user_fname=user.user_fname, 
+    #                user_lname=user.user_lname)
+                  
+
+
+
+    # {
+    #     fname: 'andrew',
+    #     lname: 'blum',
+    #     shows: {
+    #         0: 'show name 1',
+    #         1: 'show name 2'
+    #     }      
+    # }
     
-    return render_template("producer_new_show_page.html", user_id=user_id,
-                                                         user_email=user_show.user_email,
-                                                         user_fname=user_show.user_fname,
-                                                         user_lname=user_show.user_lname)
+    # const responseJson = {}
+
+    # for show, i in enumate(show_list):
+    #     responseJson[shows][i] = show
+
+    # # return jsonify(user.user_fname)
+
+    # return jsonify({"user_fname": user.user_fname,
+    #                 "user_lname": user.user_lname,
+    #                 "show_name": show_list})
+
+
+    # return render_template("producer_page.html", user_id=user.user_id, 
+    #                                              user_fname =user.user_fname,
+    #                                              user_lname =user.user_lname,
+    #                                              show_list=show_list)
+                                                                          
+          
 
 
 
 
-@app.route("/new_show_page/<int:user_id>", methods=["POST"])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.route("/show_page", methods=["POST"])
 def new_show_page_process(user_id):
 
     monday = request.form.get("monday")
@@ -636,51 +655,7 @@ def new_show_page_process(user_id):
 
 
 
-@app.route("/producer_page", methods=["POST"])
-def producer_page():
-
-
-    user_id = session.get("user_id")
-
-
-    user = User.query.filter_by(user_id=user_id).first()
-
-    show_list = Show.query.filter_by(user_id=user.user_id).all()
-
-
-    return jsonify(user_id=user_id,
-                   user_fname=user.user_fname, 
-                   user_lname=user.user_lname)
-                  
-
-
-
-    # {
-    #     fname: 'andrew',
-    #     lname: 'blum',
-    #     shows: {
-    #         0: 'show name 1',
-    #         1: 'show name 2'
-    #     }      
-    # }
-    
-    # const responseJson = {}
-
-    # for show, i in enumate(show_list):
-    #     responseJson[shows][i] = show
-
-    # # return jsonify(user.user_fname)
-
-    # return jsonify({"user_fname": user.user_fname,
-    #                 "user_lname": user.user_lname,
-    #                 "show_name": show_list})
-
-
-    # return render_template("producer_page.html", user_id=user.user_id, 
-    #                                              user_fname =user.user_fname,
-    #                                              user_lname =user.user_lname,
-    #                                              show_list=show_list)
-                                                                          
+             
                                                  
                                                  
                                                    

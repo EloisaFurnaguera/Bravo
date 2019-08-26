@@ -35,7 +35,7 @@ handleSigInSubmit(e) {
 handleTrySubmit(e) {
       e.preventDefault();
 
-      this.props.changePage("VenueRegisterForm")
+      this.props.changePage("VenueUpdateForm")
     };
 
 
