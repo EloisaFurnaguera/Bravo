@@ -34,13 +34,21 @@ class Base extends React.Component {
 
         const  pages = { 
                BravoApp : <BravoApp changePage={this.changePage} name={this.state.name} />,
+               
                LogOut: <LogOut changePage={this.changePage} name={this.state.name} />,
                LogIn: <LogIn changePage={this.changePage} name={this.state.name} />,
+
                UserRegisterForm: <UserRegisterForm changePage={this.changePage} name={this.state.user_id } />,   
                VenueRegisterForm: <VenueRegisterForm changePage={this.changePage} name={this.state.name} />, 
-               UserUpdateForm: <UserUpdateForm changePage={this.changePage} name={this.state.name} />, 
-               VenueUserPage: <VenueUserPage changePage={this.changePage} name={this.state.name} />,
+               ShowRegisterForm: <ShowRegisterForm changePage={this.changePage} name={this.state.name} />, 
+
+
                VenueUpdateForm: <VenueUpdateForm changePage={this.changePage} name={this.state.name} />,
+               UserUpdateForm: <UserUpdateForm changePage={this.changePage} name={this.state.name} />, 
+               ShowUdateForm: <ShowUdateForm changePage={this.changePage} name={this.state.name} />, 
+
+               ShowPage: <ShowPage changePage={this.changePage} name={this.state.name} />,
+               VenueUserPage: <VenueUserPage changePage={this.changePage} name={this.state.name} />,
                ProducerPage: <ProducerPage changePage={this.changePage} name={this.state.name} />,
 
 

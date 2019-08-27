@@ -406,7 +406,13 @@ def process_update_venue_info():
 
 
 
+# def object_as_dict(obj): 
 
+
+
+
+#     return {c.key: getattr(obj, c.key) 
+#             for c in inspect(obj).mapper.column_attrs} 
 
 
 
@@ -424,20 +430,32 @@ def producer_page():
 
     show_list = Show.query.filter_by(user_id=user.user_id).all()
 
-    responseJson = {}
-    print(user_id)
 
 
-    print(show_list.venue_name)
+    [{"show_id ": x.show_id, 
+      "show_name": x.show_name,
+      "show_type": x.show_type,
+      "show_url": x.show_url,
+      "show_amount_people": x.show_amount_people,
+      "show_dressing_room": x.show_dressing_room,
+      "show_length": x.show_length,
+      "location_id": x.location_id,
+      "show_ticket_price": x.show_free_rent,
+      "show_free_rent": x.show_rent} for x in show_list]
 
 
-   
-   
 
 
+    
+ 
 
 
-    return jsonify(user_id)
+    
+
+    return jsonify(user_id=user.user_id, 
+                     user_fname =user.user_fname,
+                     user_lname =user.user_lname)
+                   
 
 
     # return jsonify(user_id=user_id,
@@ -445,7 +463,7 @@ def producer_page():
     #                user_lname=user.user_lname)
                   
 
-
+    # return jsonify(show_list.to_dict()) 
 
     # {
     #     fname: 'andrew',
@@ -461,7 +479,7 @@ def producer_page():
     # for show, i in enumate(show_list):
     #     responseJson[shows][i] = show
 
-    # # return jsonify(user.user_fname)
+    # return jsonify(user.user_fname)
 
     # return jsonify({"user_fname": user.user_fname,
     #                 "user_lname": user.user_lname,
@@ -480,119 +498,23 @@ def producer_page():
 
 
 
+@app.route("/register_show", methods=["POST"])
+def new_show_page_process():
+
+    user_id = session.get("user_id")
+
+    monday = request.json.get("monday")
+    tuesday = request.json.get("tuesday")
+    wednesday = request.json.get("wednesday")
+    thursday = request.json.get("thursday")
+    friday = request.json.get("friday")
+    saturday = request.json.get("saturday")
+    sunday = request.json.get("sunday")
+    morning = request.json.get("morning")
+    late_morning = request.json.get("late_morning")
+    early_night = request.json.get("early_night")
+    late_night = request.json.get("late_night")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@app.route("/show_page", methods=["POST"])
-def new_show_page_process(user_id):
-
-    monday = request.form.get("monday")
-    tuesday = request.form.get("tuesday")
-    wednesday = request.form.get("wednesday")
-    thursday = request.form.get("thursday")
-    friday = request.form.get("friday")
-    saturday = request.form.get("saturday")
-    sunday = request.form.get("sunday")
-    morning = request.form.get("morning")
-    late_morning = request.form.get("late_morning")
-    early_night = request.form.get("early_night")
-    late_night = request.form.get("late_night")
-
-
-
-    # I NEED TO FIND HOW TO DO THIS
-
-    location_list = request.form.getlist("show_location_preferred")
-
-
-
-    for idx in range(10):
-        if len(location_list) <= idx:
-            location_list.append(None)
-    
-
-
-    #MAKE THIS INTO JSON
-
-
-    new_location = Location(anywhere=None,
-                            location_1=location_list[0],
-                            location_2=location_list[1],
-                            location_3=location_list[2],
-                            location_4=location_list[3],
-                            location_5=location_list[4],
-                            location_6=location_list[5],
-                            location_7=location_list[6],
-                            location_8=location_list[7],
-                            location_9=location_list[8],
-                            location_10=location_list[9])
-
-    db.session.add(new_location)
-    db.session.commit()
-    db.session.refresh(new_location)
-
-
-
-
-
-
-    show_name = request.form.get("show_name")
-    show_type = request.form.get("show_type")
-    show_url = request.form.get("show_url")
-    show_amount_people = request.form.get("show_amount_people")
-    show_dressing_room = request.form.get("show_dressing_room")
-    show_length = request.form.get("show_length")
-    show_location_preferred = request.form.get("show_location_preferred")
-    show_ticket_price = request.form.get("show_ticket_price")
-    show_rent = request.form.get("show_rent")
-    show_free_rent = request.form.get("show_free_rent")
 
 
 
@@ -613,6 +535,48 @@ def new_show_page_process(user_id):
     db.session.refresh(new_time)
 
 
+    # location_list = request.json.getlist("show_location_preferred")
+
+
+
+    # for idx in range(10):
+    #     if len(location_list) <= idx:
+    #         location_list.append(None)
+    
+
+    # new_location = Location(anywhere=None,
+    #                         location_1=location_list[0],
+    #                         location_2=location_list[1],
+    #                         location_3=location_list[2],
+    #                         location_4=location_list[3],
+    #                         location_5=location_list[4],
+    #                         location_6=location_list[5],
+    #                         location_7=location_list[6],
+    #                         location_8=location_list[7],
+    #                         location_9=location_list[8],
+    #                         location_10=location_list[9])
+
+    # db.session.add(new_location)
+    # db.session.commit()
+    # db.session.refresh(new_location)
+
+
+
+
+
+
+    show_name = request.json.get("show_name")
+    show_type = request.json.get("show_type")
+    show_url = request.json.get("show_url")
+    show_amount_people = request.json.get("show_amount_people")
+    show_dressing_room = request.json.get("show_dressing_room")
+    show_length = request.json.get("show_length")
+    show_location_preferred = request.json.get("show_location_preferred")
+    show_ticket_price = request.json.get("show_ticket_price")
+    show_rent = request.json.get("show_rent")
+    show_free_rent = request.json.get("show_free_rent")
+
+
 
     new_show = Show(user_id=user_id,
                 show_name=show_name,
@@ -630,33 +594,48 @@ def new_show_page_process(user_id):
 
     db.session.add(new_show)
     db.session.commit()
-    # db.session.refresh(new_show) #I ONLY NEED THIS IF I WANT TO KEEP THE SHOW ID IN A SESSION
 
 
-
-    user_id = session.get("user_id")
-    # session["show_id"] = new_show.show_id
-
-
-    #     flash(f"Venue {venue_name} added.")
-
-
-    # return redirect(f"/producer_page/{user_id}")
-
-
-    user = User.query.filter_by(user_id=user_id).first()
-    show_list = Show.query.filter_by(user_id=user_id).all()
-
-    return redirect(f"/producer_page/{user_id}")
    
 
+    return jsonify(monday=monday,
+                    tuesday=tuesday,
+                    wednesday=wednesday,
+                    thursday=thursday,
+                    friday=friday,
+                    saturday=saturday,
+                    sunday=sunday,
+                    morning=morning,
+                    late_morning=late_morning,
+                    early_night=early_night,
+                    late_night=late_night,
+
+                    show_name=show_name,
+                    show_type=show_type, 
+                    show_url=show_url, 
+                    show_amount_people=show_amount_people, 
+                    show_dressing_room=show_dressing_room,
+                    show_length=show_length,
+                    show_ticket_price=show_ticket_price,
+                    time_id=new_time.time_id,
+                    show_rent=show_rent,
+                    show_free_rent=show_free_rent)
+
+                    # anywhere=None,
+                    # berkeley=location_list[0],
+                    # burlingame=location_list[1],
+                    # daly_city=location_list[2],
+                    # dublin=location_list[3],
+                    # emeryville=location_list[4],
+                    # palo_alto=location_list[5],
+                    # san_francisco=location_list[6],
+                    # san_jose=location_list[7],
+                    # santa_clara=location_list[8],
+                    # sunnyvale=location_list[9])
 
 
 
 
-
-             
-                                                 
                                                  
                                                    
 
@@ -678,22 +657,22 @@ def single_show_info():
 
 
     
-    return render_template("show_single_page.html", user_id= user_id,
-                                                    user_fname=user_info.user_fname,
-                                                    user_lname=user_info.user_lname,
-                                                    user_type=user_info.user_type,
-                                                    show_id=show_info.show_id,
-                                                    show_name=show_info.show_name,
-                                                    show_type=show_info.show_type,
-                                                    show_url=show_info.show_url,
-                                                    show_amount_people=show_info.show_amount_people,
-                                                    show_dressing_room=show_info.show_dressing_room,
-                                                    show_length=show_info.show_length,
-                                                    location_id=show_info.location_id,
-                                                    time_id=show_info.time_id,
-                                                    show_ticket_price=show_info.show_ticket_price,
-                                                    show_rent=show_info.show_rent,
-                                                    show_free_rent=show_info.show_free_rent)
+    return jsonify( user_id= user_id,
+                    user_fname=user_info.user_fname,
+                    user_lname=user_info.user_lname,
+                    user_type=user_info.user_type,
+                    show_id=show_info.show_id,
+                    show_name=show_info.show_name,
+                    show_type=show_info.show_type,
+                    show_url=show_info.show_url,
+                    show_amount_people=show_info.show_amount_people,
+                    show_dressing_room=show_info.show_dressing_room,
+                    show_length=show_info.show_length,
+                    location_id=show_info.location_id,
+                    time_id=show_info.time_id,
+                    show_ticket_price=show_info.show_ticket_price,
+                    show_rent=show_info.show_rent,
+                    show_free_rent=show_info.show_free_rent)
 
 
  
@@ -701,47 +680,76 @@ def single_show_info():
 
 
 
-@app.route("/show_update/<int:show_id>", methods=["GET"])
-def updated_show_info(show_id):
-    """Update info"""
-
-    return render_template("show_update_form.html", show_id=show_id)
 
 
 
 
-@app.route("/show_update/<int:show_id>", methods=["POST"])
-def process_update_show_info(show_id):
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.route("/show_update", methods=["POST"])
+def process_update_show_info():
+
+    user_id = session.get("user_id")
+
+
 
     update_show_info = Show.query.filter_by(show_id=show_id).first()
     update_show_time = Time.query.filter_by(time_id=update_show_info.time_id).first()
 
 
-    monday = request.form.get("monday")
-    tuesday = request.form.get("tuesday")
-    wednesday = request.form.get("wednesday")
-    thursday = request.form.get("thursday")
-    friday = request.form.get("friday")
-    saturday = request.form.get("saturday")
-    sunday = request.form.get("sunday")
-    morning = request.form.get("morning")
-    late_morning = request.form.get("late_morning")
-    early_night = request.form.get("early_night")
-    late_night = request.form.get("late_night")
+    monday = request.json.get("monday")
+    tuesday = request.json.get("tuesday")
+    wednesday = request.json.get("wednesday")
+    thursday = request.json.get("thursday")
+    friday = request.json.get("friday")
+    saturday = request.json.get("saturday")
+    sunday = request.json.get("sunday")
+    morning = request.json.get("morning")
+    late_morning = request.json.get("late_morning")
+    early_night = request.json.get("early_night")
+    late_night = request.json.get("late_night")
 
 
-    show_name = request.form.get("show_name")
-    show_type = request.form.get("show_type")
-    show_url = request.form.get("show_url")
-    show_amount_people = request.form.get("show_amount_people")
-    show_dressing_room = request.form.get("show_dressing_room")
-    show_length = request.form.get("show_length")
-    show_location_preferred = request.form.get("show_location_preferred")
-    show_ticket_price = request.form.get("show_ticket_price")
-    show_rent = request.form.get("show_rent")
-    show_free_rent = request.form.get("show_free_rent")
+    new_time = Time(monday=monday,
+                    tuesday=tuesday,
+                    wednesday=wednesday,
+                    thursday=thursday,
+                    friday=friday,
+                    saturday=saturday,
+                    sunday=sunday,
+                    morning=morning,
+                    late_morning=late_morning,
+                    early_night=early_night,
+                    late_night=late_night)
+
+   
+    db.session.commit()
+    
+
+
+    show_name = request.json.get("show_name")
+    show_type = request.json.get("show_type")
+    show_url = request.json.get("show_url")
+    show_amount_people = request.json.get("show_amount_people")
+    show_dressing_room = request.json.get("show_dressing_room")
+    show_length = request.json.get("show_length")
+    show_location_preferred = request.json.get("show_location_preferred")
+    show_ticket_price = request.json.get("show_ticket_price")
+    show_rent = request.json.get("show_rent")
+    show_free_rent = request.json.get("show_free_rent")
 
 
 
@@ -756,28 +764,46 @@ def process_update_show_info(show_id):
     update_show_info.show_rent=show_rent
     update_show_info.show_free_rent=show_free_rent
 
-    
-
-
 
     db.session.commit()
 
 
-    user_id = session.get("user_id")
 
+    return jsonify(monday=monday,
+                    tuesday=tuesday,
+                    wednesday=wednesday,
+                    thursday=thursday,
+                    friday=friday,
+                    saturday=saturday,
+                    sunday=sunday,
+                    morning=morning,
+                    late_morning=late_morning,
+                    early_night=early_night,
+                    late_night=late_night,
 
-    return render_template("show_single_page.html", user_id=user_id, 
-                                                    show_id=show_id,
-                                                    show_name=update_show_info.show_name,
-                                                    show_type=update_show_info.show_type,
-                                                    show_url=update_show_info.show_url,
-                                                    show_amount_people=update_show_info.show_amount_people,
-                                                    show_dressing_room=update_show_info.show_dressing_room,
-                                                    show_length=update_show_info.show_length,
-                                                    show_location_preferred=update_show_info.show_location_preferred,
-                                                    show_ticket_price=update_show_info.show_ticket_price,
-                                                    show_rent=update_show_info.show_rent,
-                                                    show_free_rent=update_show_info.show_free_rent)
+                    show_name=show_name,
+                    show_type=show_type, 
+                    show_url=show_url, 
+                    show_amount_people=show_amount_people, 
+                    show_dressing_room=show_dressing_room,
+                    show_length=show_length,
+                    show_ticket_price=show_ticket_price,
+                    time_id=update_show_time.time_id,
+                    show_rent=show_rent,
+                    show_free_rent=show_free_rent)
+
+                    # anywhere=None,
+                    # berkeley=location_list[0],
+                    # burlingame=location_list[1],
+                    # daly_city=location_list[2],
+                    # dublin=location_list[3],
+                    # emeryville=location_list[4],
+                    # palo_alto=location_list[5],
+                    # san_francisco=location_list[6],
+                    # san_jose=location_list[7],
+                    # santa_clara=location_list[8],
+                    # sunnyvale=location_list[9])
+
 
 
 
@@ -860,7 +886,7 @@ if __name__ == "__main__":
 
 
 
-
+ # import pdb; pdb.set_trace()
 
 
 

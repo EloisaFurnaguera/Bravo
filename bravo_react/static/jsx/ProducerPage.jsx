@@ -6,14 +6,14 @@ class ProducerPage extends React.Component {
         this.state = {user_id:" ",
                       user_fname: " ",
                       user_lname: " ",
-                      show: [],
+                      show_list: [],
                     }               
 
 
         this.handleLogOutSubmit = this.handleLogOutSubmit.bind(this);
-        this.handleUpdateUserInfo = this.handleUpdateUserInfo.bind(this);                
-
-                      
+        this.handleUpdateUserInfo = this.handleUpdateUserInfo.bind(this); 
+        this.handleShowRegister = this.handleShowRegister.bind(this); 
+        this.handleShowPage = this.handleShowPage.bind(this);                                     
     }
 
  
@@ -31,6 +31,21 @@ handleUpdateUserInfo(e) {
 
 
 
+handleShowRegister(e) {
+      e.preventDefault();
+      this.props.changePage("ShowRegisterForm")
+    };
+    
+
+handleShowPage(e) {
+      e.preventDefault();
+      this.props.changePage("ShowPage")
+    };
+    
+
+
+
+
 
     componentDidMount() {
         
@@ -44,7 +59,7 @@ handleUpdateUserInfo(e) {
           this.setState({ 
                         user_fname: producerResponse.user_fname,
                         user_lname: producerResponse.user_lname,
-                        show: producerResponse.show
+                        show_list: producerResponse.show_list
 
                       }
                         ) 
@@ -78,17 +93,15 @@ handleUpdateUserInfo(e) {
                  <h1> {this.state.user_fname} </h1>
                  <h1> {this.state.user_lname} </h1>
 
-
-
-
-
-
                         
                   
 
 
                  <button  onClick= {this.handleLogOutSubmit}>Log Out</button>
                  <button  onClick= {this.handleUpdateUserInfo}>Update User Info</button>
+                 <button  onClick= {this.handleShowRegister}>Add a Show</button>
+
+                  <Link to={this.handleShowPage}>React</Link>
 
 
              </div>
