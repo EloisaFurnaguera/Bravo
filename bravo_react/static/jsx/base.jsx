@@ -7,7 +7,7 @@ class Base extends React.Component {
 
     this.state = {
                   currentPage: "BravoApp",
-                  user_id: " "}              
+                  id: " "}              
 
     this.changePage = this.changePage.bind(this);
 
@@ -15,9 +15,9 @@ class Base extends React.Component {
 
 
 
-    changePage(newPage, user_id) {
+    changePage(newPage, id) {
         this.setState({currentPage: newPage,
-                       user_id: user_id });               
+                       id: id });               
     }
 
 
@@ -33,27 +33,27 @@ class Base extends React.Component {
 
 
         const  pages = { 
-               BravoApp : <BravoApp changePage={this.changePage} name={this.state.name} />,
+               BravoApp : <BravoApp changePage={this.changePage} name={this.state} />,
                
-               LogOut: <LogOut changePage={this.changePage} name={this.state.name} />,
-               LogIn: <LogIn changePage={this.changePage} name={this.state.name} />,
+               LogOut: <LogOut changePage={this.changePage} name={this.state} />,
+               LogIn: <LogIn changePage={this.changePage} name={this.state} />,
 
-               UserRegisterForm: <UserRegisterForm changePage={this.changePage} name={this.state.user_id } />,   
-               VenueRegisterForm: <VenueRegisterForm changePage={this.changePage} name={this.state.name} />, 
-               ShowRegisterForm: <ShowRegisterForm changePage={this.changePage} name={this.state.name} />, 
-
-
-               VenueUpdateForm: <VenueUpdateForm changePage={this.changePage} name={this.state.name} />,
-               UserUpdateForm: <UserUpdateForm changePage={this.changePage} name={this.state.name} />, 
-               ShowUdateForm: <ShowUdateForm changePage={this.changePage} name={this.state.name} />, 
-
-               ShowPage: <ShowPage changePage={this.changePage} name={this.state.name} />,
-               VenueUserPage: <VenueUserPage changePage={this.changePage} name={this.state.name} />,
-               ProducerPage: <ProducerPage changePage={this.changePage} name={this.state.name} />,
+               UserRegisterForm: <UserRegisterForm changePage={this.changePage} name={this.state.id } />,   
+               VenueRegisterForm: <VenueRegisterForm changePage={this.changePage} name={this.state} />, 
+               ShowRegisterForm: <ShowRegisterForm changePage={this.changePage} name={this.state} />, 
 
 
+               VenueUpdateForm: <VenueUpdateForm changePage={this.changePage} name={this.state} />,
+               UserUpdateForm: <UserUpdateForm changePage={this.changePage} name={this.state} />, 
+               ShowUdateForm: <ShowUdateForm changePage={this.changePage} name={this.state.id} />, 
 
-               TryStuff: <TryStuff changePage={this.changePage} name={this.state.name} />
+               ShowPage: <ShowPage changePage={this.changePage} show_id={this.state.id} />,
+               VenueUserPage: <VenueUserPage changePage={this.changePage} name={this.state} />,
+               ProducerPage: <ProducerPage changePage={this.changePage} name={this.state} />,
+
+
+
+               TryStuff: <TryStuff changePage={this.changePage} name={this.state} />
                }
 
              

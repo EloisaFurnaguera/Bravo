@@ -394,31 +394,6 @@ def process_update_venue_info():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-# def object_as_dict(obj): 
-
-
-
-
-#     return {c.key: getattr(obj, c.key) 
-#             for c in inspect(obj).mapper.column_attrs} 
-
-
-
-
-
-
 @app.route("/producer_page", methods=["POST"])
 def producer_page():
 
@@ -432,66 +407,26 @@ def producer_page():
 
 
 
-    [{"show_id ": x.show_id, 
-      "show_name": x.show_name,
-      "show_type": x.show_type,
-      "show_url": x.show_url,
-      "show_amount_people": x.show_amount_people,
-      "show_dressing_room": x.show_dressing_room,
-      "show_length": x.show_length,
-      "location_id": x.location_id,
-      "show_ticket_price": x.show_free_rent,
-      "show_free_rent": x.show_rent} for x in show_list]
+    list_shows = []
 
+    for row in show_list:
+        list_shows.append({"show_id": row.show_id, 
+                          "show_name": row.show_name,
+                          "show_type": row.show_type,
+                          "show_url": row.show_url,
+                          "show_amount_people": row.show_amount_people,
+                          "show_dressing_room": row.show_dressing_room,
+                          "show_length": row.show_length,
+                          "location_id": row.location_id,
+                          "show_ticket_price": row.show_ticket_price,
+                          "show_free_rent": row.show_free_rent})
 
-
-
-    
- 
-
-
-    
 
     return jsonify(user_id=user.user_id, 
                      user_fname =user.user_fname,
+                     show_list=list_shows,
                      user_lname =user.user_lname)
                    
-
-
-    # return jsonify(user_id=user_id,
-    #                user_fname=user.user_fname, 
-    #                user_lname=user.user_lname)
-                  
-
-    # return jsonify(show_list.to_dict()) 
-
-    # {
-    #     fname: 'andrew',
-    #     lname: 'blum',
-    #     shows: {
-    #         0: 'show name 1',
-    #         1: 'show name 2'
-    #     }      
-    # }
-    
-    # const responseJson = {}
-
-    # for show, i in enumate(show_list):
-    #     responseJson[shows][i] = show
-
-    # return jsonify(user.user_fname)
-
-    # return jsonify({"user_fname": user.user_fname,
-    #                 "user_lname": user.user_lname,
-    #                 "show_name": show_list})
-
-
-    # return render_template("producer_page.html", user_id=user.user_id, 
-    #                                              user_fname =user.user_fname,
-    #                                              user_lname =user.user_lname,
-    #                                              show_list=show_list)
-                                                                          
-          
 
 
 
@@ -639,19 +574,20 @@ def new_show_page_process():
                                                  
                                                    
 
-@app.route("/show_single_page", methods=["GET"])
+@app.route("/show_single_page", methods=["POST"])
 def single_show_info():
 
    
     user_id = session.get("user_id")
+
+    show_id = request.json.get("show_id")
+
    
 
 
     user_info = User.query.filter_by(user_id=user_id).first()
 
     show_info = Show.query.filter_by(show_id=show_id).first()
-
-
 
 
 
@@ -679,30 +615,13 @@ def single_show_info():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @app.route("/show_update", methods=["POST"])
 def process_update_show_info():
+    
 
     user_id = session.get("user_id")
+
+    show_id = request.json.get("show_id")
 
 
 
