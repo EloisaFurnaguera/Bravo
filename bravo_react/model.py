@@ -91,7 +91,7 @@ class Venue(db.Model):
     time_id = db.Column(db.Integer, db.ForeignKey('times.time_id'))
     venue_free_rent = db.Column(db.String(200))
     venue_rent = db.Column(db.String(200))
-    venue_ranking = db.Column(db.String(200))
+    venue_ranking = db.Column(db.Integer)
    
 
 
@@ -117,7 +117,7 @@ class Show(db.Model):
     show_ticket_price = db.Column(db.String(200))
     show_rent = db.Column(db.String(200))
     show_free_rent = db.Column(db.String(200))
-    show_ranking = db.Column(db.String(10))
+    show_ranking = db.Column(db.Integer)
 
 
 

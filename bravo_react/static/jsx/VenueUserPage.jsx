@@ -15,7 +15,7 @@ class VenueUserPage extends React.Component {
                         late_morning: " ",
                         early_night: " ",
                         late_night: " ",
-                        vanue_id: " ",
+                        venue_id: " ",
                         venue_name: " ",
                         venue_url: " ",
                         venue_email: " ",
@@ -25,17 +25,18 @@ class VenueUserPage extends React.Component {
                         venue_capacity: " ",
                         venue_license: " ",
                         venue_free_rent: " ",
-                        venue_rent: " "}  
+                        venue_rent: " ",
+                        venue_type: "venue ",                }  
    
 
          
          this.handleLogOutSubmit = this.handleLogOutSubmit.bind(this); 
          this.handleUpdateUserInfo = this.handleUpdateUserInfo.bind(this); 
-         this.handleVenueUpdate = this.handleVenueUpdate.bind(this); 
+         this.handleVenueUpdate = this.handleVenueUpdate.bind(this);
+         this.handleMatchPage = this.handleMatchPage.bind(this);  
     }
                       
       
-
 
     handleLogOutSubmit(e) {
       e.preventDefault();
@@ -56,6 +57,12 @@ class VenueUserPage extends React.Component {
     };
 
 
+     handleMatchPage(e , id, type) {
+      e.preventDefault();
+      this.props.changePage("MatchPage", id, "venue")
+    };
+
+
 
 
     componentDidMount() {
@@ -69,7 +76,7 @@ class VenueUserPage extends React.Component {
         .then(res1 => res1.json())
         .then(venueResponse =>{
                       this.setState({
-                                 monday: venueResponse.monday,
+                                monday: venueResponse.monday,
                                 tuesday: venueResponse.tuesday,
                                 wednesday: venueResponse.wednesday,
                                 thursday: venueResponse.thursday,
@@ -80,7 +87,7 @@ class VenueUserPage extends React.Component {
                                 late_morning: venueResponse.late_morning,
                                 early_night: venueResponse.early_night,
                                 late_night: venueResponse.late_night,
-                                vanue_id: venueResponse.vanue_id,
+                                venue_id: venueResponse.venue_id,
                                 venue_name: venueResponse.venue_name,
                                 venue_url: venueResponse.venue_url,
                                 venue_email: venueResponse.venue_email,
@@ -112,13 +119,13 @@ class VenueUserPage extends React.Component {
                  <h1>VENUE PAGE</h1>
                  
                  <h1> Hello, {this.state.venue_name}</h1>
-                    <p>id: {this.state.vanue_id}</p>
+                    <p>id: {this.state.venue_id}</p>
                     <p>name: {this.state.venue_name}</p>
                     <p>url: {this.state.venue_url}</p>
                     <p>email: {this.state.venue_email}</p>
                     <p>address: {this.state.venue_address}</p>
                     <p>city: {this.state.venue_city}</p>
-RegisterForm
+
                     <p>backspace: {this.state.venue_backspace}</p>
                     <p>capacity: {this.state.venue_capacity}</p>
                     <p>license: {this.state.venue_license}</p>
@@ -149,7 +156,9 @@ RegisterForm
 
                  <button  onClick= {this.handleLogOutSubmit}>Log Out</button>
                  <button  onClick= {this.handleUpdateUserInfo}>Update User Info</button>
-                <button  onClick= {this.handleVenueUpdate}>Update Venue Info</button>
+                 <button  onClick= {this.handleVenueUpdate}>Update Venue Info</button>
+                 <button  onClick= {this.handleMatchPage}>Find Matches</button>
+                 <button  onClick={(e) => this.handleMatchPage(e, this.state.venue_id)}>Match</button>
 
              </div>
 

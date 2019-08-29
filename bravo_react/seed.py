@@ -97,7 +97,7 @@ def load_shows(file_user):
     for row in (open(file_user)):
         row = row.strip()
 
-        user_id, show_name, show_type, show_url, show_amount_people, show_dressing_room, show_length, location_id, time_id, show_ticket_price, show_rent, show_free_rent  = row.split(",")
+        user_id, show_name, show_type, show_url, show_amount_people, show_dressing_room, show_length, location_id, time_id, show_ticket_price, show_rent, show_free_rent, show_ranking  = row.split(",")
 
      
          # IF YOU ADD THE ACT PREFERRED: ADD THE show_venue_preferred TO THE UMPAKING
@@ -114,7 +114,8 @@ def load_shows(file_user):
                         time_id=time_id,
                         show_ticket_price=show_ticket_price, 
                         show_rent=show_rent,
-                        show_free_rent=show_free_rent)
+                        show_free_rent=show_free_rent,
+                        show_ranking=show_ranking)
                            
         db.session.add(new_show)
         db.session.commit()
@@ -130,7 +131,7 @@ def load_venues(file_user):
         row = row.strip()
 
         
-        user_id, venue_name, venue_url, venue_email, venue_address, venue_city, venue_type, venue_backspace, venue_capacity, venue_license,time_id, venue_free_rent, venue_rent= row.split(",")
+        user_id, venue_name, venue_url, venue_email, venue_address, venue_city, venue_type, venue_backspace, venue_capacity, venue_license,time_id, venue_free_rent, venue_rent, venue_ranking = row.split(",")
 
             # IF YOU ADD THE ACT PREFERRED: ADD THE venue_show_preferred TO THE UMPAKING
 
@@ -147,7 +148,8 @@ def load_venues(file_user):
                           venue_license=venue_license,
                           time_id=time_id,
                           venue_free_rent=venue_free_rent,
-                          venue_rent=venue_rent)
+                          venue_rent=venue_rent,
+                          venue_ranking=venue_ranking)
                      
         db.session.add(new_venue)
         db.session.commit()

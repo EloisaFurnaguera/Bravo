@@ -1,5 +1,0 @@
-1,show_name1,music,show1.com,2,no,1,1,1,0,50,yes
-2,show_name2,burlesque,show2.com,5,yes,2,2,2,10,300,no
-3,show_name3,improv,show3.com,8,yes,2,3,3,20,100,no
-4,show_name4,music,show4.com,4,no,2,4,4,5,100,no
-5,show_name5,dj,show4.com,1,no,5,5,5,0,50,yes

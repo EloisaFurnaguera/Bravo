@@ -297,6 +297,7 @@ def single_venue_info():
                     early_night=time.early_night,
                     late_night=time.late_night,
 
+                    venue_id=venue.venue_id,
                     venue_name=venue.venue_name,
                     venue_url=venue.venue_url, 
                     venue_email=venue.venue_email, 
@@ -410,22 +411,23 @@ def producer_page():
     list_shows = []
 
     for row in show_list:
-        list_shows.append({"show_id": row.show_id, 
-                          "show_name": row.show_name,
-                          "show_type": row.show_type,
-                          "show_url": row.show_url,
-                          "show_amount_people": row.show_amount_people,
-                          "show_dressing_room": row.show_dressing_room,
-                          "show_length": row.show_length,
-                          "location_id": row.location_id,
-                          "show_ticket_price": row.show_ticket_price,
-                          "show_free_rent": row.show_free_rent})
+        list_shows.append({"show_id":row.show_id, 
+                          "show_name":row.show_name,
+                          "show_type":row.show_type,
+                          "show_url":row.show_url,
+                          "show_amount_people":row.show_amount_people,
+                          "show_dressing_room":row.show_dressing_room,
+                          "show_length":row.show_length,
+                          "location_id":row.location_id,
+                          "show_ticket_price":row.show_ticket_price,
+                          "show_free_rent":row.show_free_rent})
+    print(list_shows)
 
 
     return jsonify(user_id=user.user_id, 
-                     user_fname =user.user_fname,
+                     user_fname=user.user_fname,
                      show_list=list_shows,
-                     user_lname =user.user_lname)
+                     user_lname=user.user_lname)
                    
 
 
@@ -529,6 +531,7 @@ def new_show_page_process():
 
     db.session.add(new_show)
     db.session.commit()
+    db.session.refresh(new_show)
 
 
    
@@ -554,7 +557,8 @@ def new_show_page_process():
                     show_ticket_price=show_ticket_price,
                     time_id=new_time.time_id,
                     show_rent=show_rent,
-                    show_free_rent=show_free_rent)
+                    show_free_rent=show_free_rent,
+                    show_id=show_id)
 
                     # anywhere=None,
                     # berkeley=location_list[0],
@@ -617,7 +621,7 @@ def single_show_info():
 
 @app.route("/show_update", methods=["POST"])
 def process_update_show_info():
-    
+
 
     user_id = session.get("user_id")
 
@@ -764,9 +768,7 @@ def show_list(user_id):
 
 
 
-
 @app.route("/get_info", methods=["POST"])
-
 def getting_info():
 
     number = request.json.get("userId")
@@ -778,6 +780,266 @@ def getting_info():
     # return jsonify(user) 
 
     return jsonify(user.lname)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.route("/get_match", methods=["POST"])
+def getting_match():
+
+
+    user_type = request.json.get("user_type")
+
+    type_id = request.json.get("type_id")
+
+
+    if user_type == "venue":
+
+        venue_info = Venue.query.filter_by(venue_id=type_id).first()
+
+        venue_ranking = venue_info.venue_ranking
+
+        matched_shows = Show.query.filter(Show.show_ranking == venue_ranking).all()
+
+        
+        list_matched_shows = []
+
+        for row in matched_shows:
+            list_matched_shows.append({"show_id":row.show_id, 
+                              "show_name":row.show_name,
+                              "show_type":row.show_type,
+                              "show_url":row.show_url,
+                              "show_amount_people":row.show_amount_people,
+                              "show_dressing_room":row.show_dressing_room,
+                              "show_length":row.show_length,
+                              "location_id":row.location_id,
+                              "show_ticket_price":row.show_ticket_price,
+                              "show_free_rent":row.show_free_rent})
+    
+
+
+        return jsonify(list_matched_shows=list_matched_shows)
+
+
+    else:    
+
+        show_info = Show.query.filter_by(show_id=type_id).first()
+
+        show_ranking = show_info.show_ranking
+
+        matched_venues = Venue.query.filter(Venue.venue_ranking == show_ranking).all()
+
+        
+        list_matched_venues = []
+
+        for row in matched_venues:
+            list_matched_venues.append({"venue_id":row.venue_id, 
+                                      "venue_name":row.venue_name,
+                                      "venue_type":row.venue_type,
+                                      "venue_address":row.venue_address,
+                                      "venue_city":row.venue_city,
+                                      "venue_backspace":row.venue_backspace,
+                                      "venue_capacity":row.venue_capacity,
+                                      "venue_license":row.venue_license,
+                                      "venue_free_rent":row.venue_free_rent,
+                                      "venue_rent":row.venue_rent})
+    
+
+
+        return jsonify(list_matched_venues=list_matched_venues)
+
+   
+
+
+    
+
+
+
+
+    # return jsonify(user) 
+
+    # return jsonify(user.lname)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+show_ranking_dict ={ "show_rent": {(20, 100):1, (101, 300):2, (301, 400):3, (500, 100000000):4}, 
+                     "show_free_rent" : {True:1, False:0, "yes":1, "no":0, "Yes":1, "No":0},                                    
+                     "tickets": {(0, 10):1, (11, 20):2, (21, 40):3, (41, 10000000):4},  
+                     "show_length": {(1, 2):2, (2, 3):3, (4, 1000000000):4},   
+                     "show_dressing_room": {True:1, False:0, "yes":1, "no":0, "Yes":1, "No":0},                                            
+                     "show_amount_people": {(1, 2):1, (3, 6):2, (7, 1000000):3},                           
+                     "show_type": {"stand_up":1, "spoken_word":1,"improv":3, "music":2, "Ted_talk":2,  
+                                   "skecks":3, "burlesque":4, "play":4} }   
+
+
+
+venue_ranking_dict ={ "venue_rent": {(1, 100):1, (101, 300):2, (301, 500):3, (500, 10000000):4},
+                     "venue_free_rent": {True:1, False:0, "yes":1, "no":0, "Yes":1, "No":0},        
+                     "venue_backspace": {True:3, False:0, "yes":3, "no":0, "Yes":3, "No":0}, 
+                     "venue_license": {True:3, False:0, "yes":3, "no":0, "Yes":3, "No":0},
+                     "venue_capacity": {(1, 20):1, (21, 40):2, (41, 80):3, (81, 100):4, (100, 10000000):5 },
+                     "venue_type": {"bar":1, "cafe":1,"restaurant":3, "night_club":3, "special_event":3, "theater":4}}  
+
+
+
+
+
+@app.route("/add_ranking", methods=["POST"])
+def adding_ranking():
+
+
+    type_id = request.json.get("type_id")
+
+    user_type = request.json.get("user_type")
+
+               
+    if user_type == "venue":
+
+        user_venue_chooses = {}
+
+        ranking_dict = venue_ranking_dict
+
+        venue_info = Venue.query.filter_by(venue_id=type_id).first()
+
+
+        user_venue_chooses["venue_rent"] = venue_info.venue_rent
+        user_venue_chooses["venue_free_rent"] = venue_info.venue_free_rent
+        user_venue_chooses["venue_backspace"] = venue_info.venue_backspace
+        user_venue_chooses["venue_license"] = venue_info.venue_license
+        user_venue_chooses["venue_capacity"] = venue_info.venue_capacity
+        user_venue_chooses["venue_type"] = venue_info.venue_type
+
+
+        venue_score = get_ranking(user_venue_chooses , ranking_dict) 
+
+        venue_info.venue_ranking = venue_score
+
+        db.session.commit()
+
+
+
+    else:
+
+        user_show_chooses = {}
+
+        ranking_dict = show_ranking_dict
+
+        show_info = Show.query.filter_by(show_id=type_id).first()
+
+        user_show_chooses["show_rent"] = show_info.show_rent
+        user_show_chooses["show_free_rent"] = show_info.show_free_rent
+        user_show_chooses["tickets"] = show_info.tickets
+        user_show_chooses["show_length"] = show_info.show_length
+        user_show_chooses["show_dressing_room"] = show_info.show_dressing_room
+        user_show_chooses["show_amount_people"] = show_info.show_amount_people
+        user_show_chooses["show_type"] = show_info.show_type
+
+        show_score = get_ranking(user_show_chooses , ranking_dict) 
+
+        show_info.show_ranking = show_score
+
+        db.session.commit()
+   
+
+
+
+
+
+
+def get_ranking(user_dict, big_dict):
+
+    overall_score = 0
+
+    for (big_dict_key, big_dict_line) in big_dict.items():  
+
+        user_value = user_dict[big_dict_key]
+   
+        #because the key for both dict are the same (user_dict_key = big_dict_key) 
+        #The user_dict[big_dict_key] is the value from the user dict ("show_rent": 100)
+
+        score_for_big_dict_line = get_ranking_for_criteria(user_value, big_dict_line) 
+
+        overall_score += score_for_big_dict_line
+
+
+    
+     
+    return overall_score
+
+
+
+def get_ranking_for_criteria(user_value, big_dict_line):
+
+    for key in big_dict_line: 
+
+        if type(key) is tuple:
+            return get_range_value(user_value, big_dict_line)
+           
+        elif type(key) is bool:         
+            return get_boolean_value(user_value, big_dict_line)
+                     
+        else:       
+            return get_string_value(user_value, big_dict_line)
+       
+
+
+def get_range_value(user_value, big_dict_line):
+
+
+    for k1, k2 in big_dict_line:
+        if int(user_value) >= int(k1) and int(user_value) <= int(k2):    
+            tuple_val = (big_dict_line[k1, k2])
+
+            return tuple_val 
+
+
+def get_boolean_value(user_value, big_dict_line):
+
+
+    return big_dict_line[user_value]
+
+
+
+def get_string_value(user_value, big_dict_line):
+
+        return big_dict_line[user_value]
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

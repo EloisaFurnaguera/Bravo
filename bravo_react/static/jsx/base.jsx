@@ -7,7 +7,8 @@ class Base extends React.Component {
 
     this.state = {
                   currentPage: "BravoApp",
-                  id: " "}              
+                  id: " ",
+                  type: " "}              
 
     this.changePage = this.changePage.bind(this);
 
@@ -15,9 +16,10 @@ class Base extends React.Component {
 
 
 
-    changePage(newPage, id) {
+    changePage(newPage, id, type) {
         this.setState({currentPage: newPage,
-                       id: id });               
+                       id: id,
+                       type: type});               
     }
 
 
@@ -34,6 +36,8 @@ class Base extends React.Component {
 
         const  pages = { 
                BravoApp : <BravoApp changePage={this.changePage} name={this.state} />,
+
+               MatchPage: <MatchPage changePage={this.changePage} id={this.state.id} userType={this.state.type}/>,
                
                LogOut: <LogOut changePage={this.changePage} name={this.state} />,
                LogIn: <LogIn changePage={this.changePage} name={this.state} />,
@@ -47,7 +51,7 @@ class Base extends React.Component {
                UserUpdateForm: <UserUpdateForm changePage={this.changePage} name={this.state} />, 
                ShowUdateForm: <ShowUdateForm changePage={this.changePage} name={this.state.id} />, 
 
-               ShowPage: <ShowPage changePage={this.changePage} show_id={this.state.id} />,
+               ShowPage: <ShowPage changePage={this.changePage} name={this.state} />,
                VenueUserPage: <VenueUserPage changePage={this.changePage} name={this.state} />,
                ProducerPage: <ProducerPage changePage={this.changePage} name={this.state} />,
 

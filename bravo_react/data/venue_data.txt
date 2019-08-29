@@ -1,5 +1,5 @@
-6,venue_name_1,venue1.com,venue1@gmail.com,venue_address_1,San Francico,bar,no,30,no,6,yes,
-7,venue_name_2,venue2.com,venue2@gmail.com,venue_address_2,San Jose,theater,yes,100,yes,7,no,300
-8,venue_name_3,venue3.com,venue3@gmail.com,venue_address_3,Oakland,hall,no,24,no,8,no,50
-9,venue_name_4,venue4.com,venue4@gmail.com,venue_address_4,San Francico,theater,yes,70,yes,9,no,250
-10,venue_name_5,venue3.com,venue3@gmail.com,venue_address_5,Oakland,hall,no,116,no,10,no,30
+6,venue_name_1,venue1.com,venue1@gmail.com,venue_address_1,San Francico,bar,no,30,no,6,yes,,10
+7,venue_name_2,venue2.com,venue2@gmail.com,venue_address_2,San Jose,theater,yes,100,yes,7,no,300,20
+8,venue_name_3,venue3.com,venue3@gmail.com,venue_address_3,Oakland,hall,no,24,no,8,no,50,20
+9,venue_name_4,venue4.com,venue4@gmail.com,venue_address_4,San Francico,theater,yes,70,yes,9,no,250,30
+10,venue_name_5,venue3.com,venue3@gmail.com,venue_address_5,Oakland,hall,no,116,no,10,no,30,40

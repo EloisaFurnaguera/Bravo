@@ -37,13 +37,15 @@ handleShowRegister(e) {
     };
     
 
-handleShowPage(e , id) {
+handleShowPage(e , id, type) {
      e.preventDefault();
-      this.props.changePage("ShowPage", id)
-      
-         
+      this.props.changePage("ShowPage", id, "show")
+            
 
     };
+
+
+    
 
 
 
@@ -76,7 +78,7 @@ componentDidMount() {
    
         return(
 
-             <div>
+             <div className = "container">
                         
 
                  <h1>PRODUCER PAGE</h1>
@@ -90,52 +92,21 @@ componentDidMount() {
 
 
 
-                <div>
-                  
-                  {this.state.show_list.map(show => {
-
-                    return (
-                    
-                        <li key={show.show_id}> 
-
-                        Show Name: {show.show_id}</li>
-               
-                    );
-                  })}
-                </div>
 
 
 
 
-
-
-
-
-
-
-              {/*   <div>
+                 <div>
                    {this.state.show_list.map(show =>
                    <li key={show.show_id}>
                    <a href="#" onClick={(e) => this.handleShowPage(e, show.show_id)}>{show.show_name}</a></li>)}
 
                 </div>
-*/}
+
 
 
         
 
-
-
-         {/*       <div>
-
-                 {this.state.show_list.map(show =>
-                 <li key={show.show_name} value={show.show_name}><a href="#" 
-                     onClick={this.handleShowPage}>{show.show_name}</a></li>)}
-
-                </div>
-*/}
-
-               
 
 
              </div>
