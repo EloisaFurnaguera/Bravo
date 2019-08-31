@@ -77,7 +77,8 @@ class LogIn extends React.Component {
                 }
 
             else{
-                this.props.changePage("ProducerPage", logInResponse)   
+                this.props.changePage("ProducerPage", logInResponse) 
+              console.log(this.state.user_type)  
 
                 }
             }            
@@ -128,6 +129,8 @@ class LogIn extends React.Component {
 
            <button type="submit" className="btn btn-default">Submit</button>
       </div>
+
+      
     </form>
 
        </div>
@@ -158,138 +161,4 @@ class LogIn extends React.Component {
 
 
 
-{/*          <form onSubmit= {this.handleLogInSubmit}>
-            
-          
-              <input type="email" name="email"  
-                       onChange={this.handleEmailChange} placeholder="Email" required /><br />    
-    
-              <input type="password" name="password"  
-                    onChange={this.handlePassWordChange} placeholder="Password" required />*/}
-          
-  {/*            <div>
-                <div onChange={this.handleTypeUserChange}>
-                    <input type="radio" name="user_type" value="venue" /> venue
-                    <input type="radio" name="user_type" value="producer"/> producer
-                </div> 
-              </div>
-*/}
-{/*
-              <input type="submit" value="Log In" />*/}
-      
-    
-   
-
-
-
-
-{/*
-
-<form onSubmit= {this.handleLogInSubmit}>
-    <div className="form-group">
-  
-      <input type="email" className="form-control" 
-              onChange={this.handleEmailChange} placeholder="Enter email" required /><br />   
-   </div>
-   <div className="form-group">
-   
-     <input type="password" className="form-control" 
-           onChange={this.handleEmailChange} placeholder="Password" required /><br /> 
-  </div>
-
-
-  <div className="form-check">
-      <input className="form-check-input" type="radio" name="user_type" value="venue" />
-  <label className="form-check-label">Venue</label>
-</div>
-
-<div className="form-check" onChange={this.handleTypeUserChange}>
-  <input className="form-check-input" type="radio" name="user_type" value="producer" />
-  <label className="form-check-label">Producer </label>
-</div>
-
-
-
-
-
-  <button type="submit" className="btn btn-primary">Submit</button>
-</form>
-*/}
-
-
-
-
-
-
-
-
-// <div >
-
-
-
-//     <style>{"body { background-color: #FFAF00; }"}</style>
-  
-//         <NavagationBar changePage={this.props.changePage} />
-
-
-
-// <div className="container">
-//   <div className="row">
-//     <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
-//       <div className="card card-signin my-5">
-//          <div className="card-body">
-
-
-
-
-
-// <form onSubmit= {this.handleLogInSubmit}>
-//     <div className="form-group">
-  
-//       <input type="email" className="form-control" 
-//               onChange={this.handleEmailChange} placeholder="Enter email" required /><br />   
-//    </div>
-//    <div className="form-group">
-   
-//      <input type="password" className="form-control" 
-//            onChange={this.handlePassWordChange} placeholder="Password" required /><br /> 
-//   </div>
-
-
-//   <div className="form-check" onChange={this.handleTypeUserChange}>
-  
-//       <input type="radio" name="user_type" value="venue" />
-//   <label className="form-check-label">Venue</label>
-
-
-
-//   <input type="radio" name="user_type" value="producer" />
-//   <label className="form-check-label">Producer </label>
-// </div>
-
-
-
-
-
-//   <button type="submit" className="btn btn-primary">Submit</button>
-// </form>
-
-
-
-
-
-
-// </div>
-// </div>
-// </div>
-// </div>
-// </div>
-
-
-
-
-
-
-
-// </div>
 

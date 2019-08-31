@@ -11,36 +11,34 @@ class UserRegisterForm extends React.Component {
                        user_id: " "};
        
     this.handleUserRegister = this.handleUserRegister.bind(this);
-    this.handleFnameChange = this.handleFnameChange.bind(this);
-    this.handleLnameChange = this.handleLnameChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleTypeUserChange = this.handleTypeUserChange.bind(this);
+    this.handleUserRedInput = this.handleUserRedInput.bind(this);
+    this.handleUserRedSelect = this.handleUserRedSelect.bind(this);
+  
 
     }
 
 
 
 
-  handleUserRedInput(e) { 
+  handleUserRedInput(e , id, type) { 
 
       const target = e.target;
       const value = target.value;
       const name = target.name;
 
       this.setState({ [name]: value });
-
     };
 
 
 
-  handleUserRedSelect(e) { 
+  handleUserRedSelect(e , id, type) { 
 
       const target = e.target;
       const value = target.checked;
       const name = target.name;
 
       this.setState({ [name]: value });
+
 
     };
 
@@ -63,8 +61,7 @@ class UserRegisterForm extends React.Component {
         const RegUserResponse = JSON.stringify(res2)
         console.log("Success:", RegUserResponse);
 
-        console.log(this.state);
-
+     
 
 
         if (RegUserResponse === '"Email_already_in_data"'){
@@ -90,69 +87,70 @@ class UserRegisterForm extends React.Component {
 
 
     render(){
-
-
         return(
 
-        <div>
+ <div>
+    <NavagationBar changePage={this.props.changePage} />
+
+
+<div className="container">
+  <div className="row">
+    <div className="form_login">
+
+
+
             <form onSubmit= {this.handleUserRegister}>
 
        
 
-               <div>
-                    <label>
-                        First name
+               <div className="form-group">
                         <input type="fname" name="fname" 
-                               onChange={this.handleFnameChange} required />                   
-                    </label>       
-                </div>
+                               onChange={this.handleUserRedInput} placeholder="First Name" required />                                    
+               </div>
 
 
-               <div>
-                    <label>
-                        Last name
+               <div className="form-group">        
                         <input type="lname" name="lname" 
-                               onChange={this.handleLnameChange} required />                   
-                    </label>       
+                             onChange={this.handleUserRedInput} placeholder="Last Name" required />                             
                 </div>
 
 
-                <div>
-                    <label>
-                        Email
-                        <input type="email" name="email" 
-                               onChange={this.handleEmailChange} required />       
-                    </label>       
+                <div className="form-group">            
+                      <input type="email" name="email" 
+                        onChange={this.handleUserRedInput} placeholder="Enter email" required />                       
                 </div> 
 
 
-                <div>
-                    <label>
-                        Password
+                <div className="form-group">         
                         <input type="password" name="password" 
-                               onChange={this.handlePasswordChange} required />      
-                    </label>       
+                             onChange={this.handleUserRedInput} placeholder="Password" required />   
+
                 </div>
 
+     
+               <div className="align-center_login"> 
 
-       
-                <div onChange={this.handleTypeUserChange}>
-                    <input type="radio" name="user_type" value="venue" /> venue
+                       <div className="form-check" onChange={this.handleUserRedInput}>
+                           <input type="radio" name="user_type" value="venue" />
+                           <label className="form-check-label">Venue</label>
 
-                    <input type="radio" name="user_type" value="producer"/> producer
-                </div> 
-                                           
-   
-                    <input type="submit" value="Register" />                               
+                          <input type="radio" name="user_type" value="producer" />
+                          <label className="form-check-label">Producer </label>
+                       </div>
+
+                      <button type="submit" className="btn btn-default">Submit</button>
+                </div>
+
 
             </form>
 
-
+         </div>
+     </div>
+    </div>
              
-
-          </div>
+</div>
 
         );
     
-}
+   }
 }
