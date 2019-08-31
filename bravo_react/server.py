@@ -29,8 +29,7 @@ def login_process():
     user_email = request.json.get("email")
     password_user = request.json.get("password")
     user_type = request.json.get("user_type")
-    print(user_type)
-    print("user_type")
+
 
   
     #search if user is already in the data and that enter the
@@ -135,7 +134,7 @@ def register_process():
 def user_info_update_process():
 
     user_id = session.get("user_id")
-    user_type = session.get("user_type")
+
 
     fname = request.json.get("fname")
     lname = request.json.get("lname")
@@ -431,7 +430,8 @@ def producer_page():
     return jsonify(user_id=user.user_id, 
                      user_fname=user.user_fname,
                      show_list=list_shows,
-                     user_lname=user.user_lname)
+                     user_lname=user.user_lname,
+                     user_email=user.user_email)
                    
 
 

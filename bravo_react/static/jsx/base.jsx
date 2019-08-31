@@ -35,8 +35,9 @@ class Base extends React.Component {
 
 
         const  pages = {
-
-               NavagationBar: <NavagationBar changePage={this.changePage} name={this.state} />, 
+               
+               NavagationBar: <NavagationBar changePage={this.changePage} name={this.state} />,
+               NavagationBarHome: <NavagationBarHome changePage={this.changePage} name={this.state} />, 
                BravoApp : <BravoApp changePage={this.changePage} name={this.state} />,
 
                MatchPage: <MatchPage changePage={this.changePage} id={this.state.id} userType={this.state.type}/>,

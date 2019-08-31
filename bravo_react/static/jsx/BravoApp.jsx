@@ -51,7 +51,7 @@ handleTrySubmit(e) {
 
        <div>   
        
-          <NavagationBar changePage={this.props.changePage} />
+          <NavagationBarHome changePage={this.props.changePage} />
 
         
 

@@ -10,34 +10,24 @@ class UserUpdateForm extends React.Component {
                   
        
     this.handleUserUpdate = this.handleUserUpdate.bind(this);
-    this.handleFnameUpdate = this.handleFnameUpdate.bind(this);
-    this.handleLnameUpdate = this.handleLnameUpdate.bind(this);
-    this.handleEmailUpdate = this.handleEmailUpdate.bind(this);
-    this.handlePasswordUpdat = this.handlePasswordUpdat.bind(this);
+    this.handleUserUpdateInput = this.handleUserUpdateInput.bind(this);
+ 
 
     }
 
 
 
-    handleFnameUpdate(e) {      
-        this.setState({ fname: e.target.value});
+  handleUserUpdateInput(e , id, type) { 
+
+      const target = e.target;
+      const value = target.value;
+      const name = target.name;
+
+      this.setState({ [name]: value });
     };
 
 
-    handleLnameUpdate(e) {
-        this.setState({ lname: e.target.value});
 
-    };
-
-    handleEmailUpdate(e) {
-        this.setState({ email: e.target.value});
-
-    };
-
-    handlePasswordUpdat(e) {
-        this.setState({ password: e.target.value});
-
-    };
 
 
 
@@ -78,52 +68,64 @@ class UserUpdateForm extends React.Component {
 
 
 
-        <div>
+
+
+
+
+ <div>
+    <NavagationBar changePage={this.props.changePage} />
+
+
+<div className="container">
+  <div className="row">
+
+    <div className="form_login">
+
             <form onSubmit= {this.handleUserUpdate}>
-  
-               <div>
-                    <label>
-                        First name
+
+       
+
+               <div className="form-group">
                         <input type="fname" name="fname" 
-                               onChange={this.handleFnameUpdate} required />                   
-                    </label>       
-                </div>
+                               onChange={this.handleUserUpdateInput} placeholder= {this.state.fname} required />                                    
+               </div>
 
 
-               <div>
-                    <label>
-                        Last name
+               <div className="form-group">        
                         <input type="lname" name="lname" 
-                               onChange={this.handleLnameUpdate} required />                   
-                    </label>       
+                             onChange={this.handleUserUpdateInput} placeholder={ this.state.lname} required />                             
                 </div>
 
 
-                <div>
-                    <label>
-                        Email
-                        <input type="email" name="email" 
-                               onChange={this.handleEmailUpdate} required />       
-                    </label>       
+                <div className="form-group">            
+                      <input type="email" name="email" 
+                        onChange={this.handleUserUpdateInput} placeholder= {this.state.email} required />                       
                 </div> 
 
 
-                <div>
-                    <label>
-                        Password
+                <div className="form-group"> 
+
                         <input type="password" name="password" 
-                               onChange={this.handlePasswordUpdat} required />      
-                    </label>       
+                             onChange={this.handleUserUpdateInput} placeholder="New password" required />   
+
                 </div>
 
-                                  
-   
-                    <input type="submit" value="Update" />                               
+     
+               <div className="align-center_login"> 
+
+
+                      <button type="submit" className="btn btn-default">Submit</button>
+                </div>
+
 
             </form>
 
+         </div>
+     </div>
+    </div>
+             
+</div>
 
-          </div>
 
 
           );

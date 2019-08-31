@@ -6,14 +6,17 @@ class ProducerPage extends React.Component {
         this.state = {user_id:" ",
                       user_fname: " ",
                       user_lname: " ",
+                      user_email: " ",
                       show_list: [],
                     }               
 
 
         this.handleLogOutSubmit = this.handleLogOutSubmit.bind(this);
-        this.handleUpdateUserInfo = this.handleUpdateUserInfo.bind(this); 
         this.handleShowRegister = this.handleShowRegister.bind(this); 
-        this.handleShowPage = this.handleShowPage.bind(this);                                     
+        this.handleShowPage = this.handleShowPage.bind(this); 
+
+        this.handleUpdateUserInfoButton = this.handleUpdateUserInfoButton.bind(this); 
+        this.handleUpdateUserInfoNavLink = this.handleUpdateUserInfoNavLink.bind(this);                                      
     }
 
  
@@ -24,10 +27,6 @@ handleLogOutSubmit(e) {
       this.props.changePage("LogOut")
     };
 
-handleUpdateUserInfo(e) {
-      e.preventDefault();
-      this.props.changePage("UserUpdateForm")
-    };
 
 
 
@@ -45,8 +44,28 @@ handleShowPage(e , id, type) {
     };
 
 
-    
 
+
+handleUpdateUserInfoButton(e , id, type) {
+      e.preventDefault();
+      this.props.changePage("UserUpdateForm", id, "producer")
+    };
+
+
+
+handleUpdateUserInfoNavLink(e , id, type, user_fname, user_lname, user_email) {
+      e.preventDefault();
+      this.props.changePageUpdateUserInfo("UserUpdateForm", 
+                                           id, 
+                                           "producer", 
+                                           user_fname, 
+                                           user_lname, 
+                                           user_email)
+                                          };
+
+
+
+    
 
 
 componentDidMount() {
@@ -59,13 +78,17 @@ componentDidMount() {
       .then(res1 => res1.json())
       .then(producerResponse =>{
         this.setState({ 
+                      user_id: producerResponse.user_id,
                       user_fname: producerResponse.user_fname,
                       user_lname: producerResponse.user_lname,
+                      user_email: producerResponse.user_email,
                       show_list: producerResponse.show_list
 
                     })
                        
-        console.log("Success:", JSON.stringify(producerResponse))   
+        // console.log("Success:", JSON.stringify(producerResponse)) 
+        console.log(this.state)   
+
 
            });         
 
@@ -77,21 +100,29 @@ componentDidMount() {
     render(){
    
         return(
+           
 
-             <div className = "container">
-                        
+        <div>
+            
+             <NavagationBar handleUpdateUserInfoNav={this.props.handleUpdateUserInfoNavLink} 
+                            changePage={this.props.changePage} />
+            
 
-                 <h1>PRODUCER PAGE</h1>
-                 <h1> {this.state.user_fname} </h1>
-                 <h1> {this.state.user_lname} </h1>
+
+                 <p>PRODUCER PAGE</p>
+                 <p> {this.state.user_fname} </p>
+                 <p> {this.state.user_lname} </p>
+     
 
 
-                 <button  onClick= {this.handleUpdateUserInfo}>Update User Info</button>
+                 <button  onClick= {this.handleUpdateUserInfoButton}>Update User Info</button>
+
+
                  <button  onClick= {this.handleLogOutSubmit}>Log Out</button>
                  <button  onClick= {this.handleShowRegister}>Add a Show</button>
 
 
-
+               
 
 
 

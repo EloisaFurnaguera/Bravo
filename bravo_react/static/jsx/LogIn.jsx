@@ -78,7 +78,7 @@ class LogIn extends React.Component {
 
             else{
                 this.props.changePage("ProducerPage", logInResponse) 
-              console.log(this.state.user_type)  
+        
 
                 }
             }            
@@ -94,7 +94,7 @@ class LogIn extends React.Component {
 
   <div >      
   
-      <NavagationBar changePage={this.props.changePage} />
+      <NavagationBarHome changePage={this.props.changePage} />
 
 
 
