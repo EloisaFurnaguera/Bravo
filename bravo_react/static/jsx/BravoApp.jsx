@@ -45,22 +45,29 @@ handleTrySubmit(e) {
 
 
 
+
     render(){
         return(
 
-         <div className="container">
+       <div>   
+       
+          <NavagationBar changePage={this.props.changePage} />
 
-             <h1> Welcome to Bravo </h1>        
-         
-            <button  onClick= {this.handleSigInSubmit}>Sign in</button>
-            <button  onClick= {this.handleLogInSubmit}>Login</button>
+        
+
+              <div className="card bg-dark text-white">
+                <img className="card-img" src="/static/img/kilyan-sockalingum-nW1n9eNHOsc-unsplash.jpg" alt="Card image" />
+                <div className="card-img-overlay">
+                  <h1 className="text-xl-center"></h1>
+                  <p className="card-text"></p>
+                  <p className="card-text"></p>
+                </div>
+              </div>
+ 
+
+     </div>
 
 
-
-            <button  onClick= {this.handleTrySubmit}>Trying Component</button>
-
-
-         </div>
         );
     }
 }

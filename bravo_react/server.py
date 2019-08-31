@@ -29,6 +29,8 @@ def login_process():
     user_email = request.json.get("email")
     password_user = request.json.get("password")
     user_type = request.json.get("user_type")
+    print(user_type)
+    print("user_type")
 
   
     #search if user is already in the data and that enter the
@@ -73,6 +75,8 @@ def login_process():
                 return jsonify(user.user_id)
         
    
+
+
 
 
 @app.route("/logout",  methods=["POST"])

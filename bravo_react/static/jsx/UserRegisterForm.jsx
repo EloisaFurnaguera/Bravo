@@ -21,32 +21,28 @@ class UserRegisterForm extends React.Component {
 
 
 
-    handleFnameChange(e){      
-        this.setState({ fname: e.target.value});
-    };
 
+  handleUserRedInput(e) { 
 
-    handleLnameChange(e) {
-        this.setState({ lname: e.target.value});
+      const target = e.target;
+      const value = target.value;
+      const name = target.name;
 
-    };
-
-    handleEmailChange(e) {
-        this.setState({ email: e.target.value});
-
-    };
-
-    handlePasswordChange(e) {
-        this.setState({ password: e.target.value});
+      this.setState({ [name]: value });
 
     };
 
 
-    handleTypeUserChange(e) {
-        this.setState({ user_type: e.target.value})
+
+  handleUserRedSelect(e) { 
+
+      const target = e.target;
+      const value = target.checked;
+      const name = target.name;
+
+      this.setState({ [name]: value });
 
     };
-
 
 
 
