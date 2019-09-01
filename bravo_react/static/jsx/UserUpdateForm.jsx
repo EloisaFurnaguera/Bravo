@@ -3,10 +3,10 @@ class UserUpdateForm extends React.Component {
     constructor(props) {
         super(props);
  
-        this.state = { fname: " ",
-                       lname: " ",
-                       email: " ",
-                       password: " "}
+        this.state = { fname:" ",
+                       lname:" ",
+                       email:" ",
+                       password:" "}
                   
        
     this.handleUserUpdate = this.handleUserUpdate.bind(this);
@@ -14,7 +14,6 @@ class UserUpdateForm extends React.Component {
  
 
     }
-
 
 
   handleUserUpdateInput(e , id, type) { 
@@ -25,8 +24,6 @@ class UserUpdateForm extends React.Component {
 
       this.setState({ [name]: value });
     };
-
-
 
 
 
@@ -46,7 +43,7 @@ class UserUpdateForm extends React.Component {
                 const UserUpdateResponse = JSON.stringify(res2)
                 console.log('Success:', JSON.stringify(res2));
 
-                if (this.state.user_type === "venue"){
+                if (this.props.type === "venue"){
                 this.props.changePage("VenueUserPage", UserUpdateResponse)
                 }
 
@@ -87,19 +84,19 @@ class UserUpdateForm extends React.Component {
 
                <div className="form-group">
                         <input type="fname" name="fname" 
-                               onChange={this.handleUserUpdateInput} placeholder= {this.state.fname} required />                                    
+                               onChange={this.handleUserUpdateInput} placeholder= {this.props.user_fname} required />                                    
                </div>
 
 
                <div className="form-group">        
                         <input type="lname" name="lname" 
-                             onChange={this.handleUserUpdateInput} placeholder={ this.state.lname} required />                             
+                             onChange={this.handleUserUpdateInput} placeholder={this.props.user_lname} required />                             
                 </div>
 
 
                 <div className="form-group">            
                       <input type="email" name="email" 
-                        onChange={this.handleUserUpdateInput} placeholder= {this.state.email} required />                       
+                        onChange={this.handleUserUpdateInput} placeholder= {this.props.user_email} required />                       
                 </div> 
 
 

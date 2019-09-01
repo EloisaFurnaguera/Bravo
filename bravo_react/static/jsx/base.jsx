@@ -25,8 +25,6 @@ class Base extends React.Component {
                        id: id,
                        type: type}); 
 
-     console.log("vvvvv") 
-      console.log(id)
 
     }
 
@@ -46,10 +44,7 @@ class Base extends React.Component {
                        type:type,
                        user_fname:user_fname,
                        user_lname:user_lname,
-                       user_email:user_email}) 
-      console.log("TTTTTTT") 
-      console.log(user_fname) 
-      console.log(id)                 
+                       user_email:user_email})                
     }
  
 
@@ -89,9 +84,7 @@ class Base extends React.Component {
                ShowUdateForm: <ShowUdateForm changePage={this.changePage} name={this.state.id} />, 
 
                ShowPage: <ShowPage changePage={this.changePage} name={this.state} />,
-               VenueUserPage: <VenueUserPage changePage={this.changePage} name={this.state} />,
-
-
+               VenueUserPage: <VenueUserPage changePage={this.changePage} changePageUserUpdate={this.changePageUserUpdate} id={this.state.id} />,
                ProducerPage: <ProducerPage changePage={this.changePage} changePageUserUpdate={this.changePageUserUpdate} id={this.state.id}/>,
 
                TryStuff: <TryStuff changePage={this.changePage} name={this.state} />

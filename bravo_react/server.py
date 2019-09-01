@@ -283,12 +283,17 @@ def single_venue_info():
     # user_id = request.json.get("user_id")
     user_id = session.get("user_id")
 
-
+    user = User.query.filter_by(user_id=user_id).first()
     venue = Venue.query.filter_by(user_id=user_id).first()
     time = Time.query.filter_by(time_id=venue.time_id).first()
 
 
-    return jsonify(monday=time.monday,
+    return jsonify( user_id=user.user_id,
+                    user_email=user.user_email, 
+                    user_fname=user.user_fname, 
+                    user_lname=user.user_lname, 
+                       
+                    monday=time.monday,
                     tuesday=time.tuesday,
                     wednesday=time.wednesday,
                     thursday=time.thursday,

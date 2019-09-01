@@ -48,22 +48,13 @@ handleShowPage(e , id, type) {
 
     
 
-// handleUpdateUserInfo(e , id, type) {
-//       e.preventDefault();
-//       this.props.changePage("UserUpdateForm", id, "producer")
-//     };
 
 
 
-
-
-
-handleUpdateUserInfo(e , id, type, user_fname, user_lname, user_email) {
+handleUpdateUserInfo(e , id, user_fname, user_lname, user_email) {
       e.preventDefault();
       this.props.changePageUserUpdate("UserUpdateForm", id, "producer", user_fname, user_lname, user_email )
-  
-     console.log("ososososooso") 
-      console.log(id)
+
             
 
     };
@@ -120,17 +111,16 @@ componentDidMount() {
              <a className="producer-page" href="#" onClick= {this.handleShowRegister}>Add a Show</a>
             </div>
 
-{/*            <div className="col-2">                      
-             <a className="producer-page" href="#" onClick= {this.handleUpdateUserInfo}>udate user info</a>
-            </div>
-*/}
-
-
 
             <div className="col-2">                      
-             <a className="producer-page" href="#" onClick= {(e) => this.handleUpdateUserInfo(e, this.state.user_fname)}>udate user info</a>
+             <a className="producer-page" 
+                           href="#" onClick= {(e) => this.handleUpdateUserInfo( e, 
+                                                                                this.state.user_id,
+                                                                                this.state.user_fname,
+                                                                                this.state.user_lname,
+                                                                                this.state.user_email 
+                                                                                                     )}>udate user info</a>
             </div>
-
 
 
 
