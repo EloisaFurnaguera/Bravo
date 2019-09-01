@@ -1,3 +1,4 @@
+/*base from before the is the base for the whole side*/
 * {
 
   box-sizing: border-box;
@@ -11,17 +12,16 @@ body {
 
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
-  background-color: #FFAF00
+  background-color: #000000
+ 
 
 }
 
+/*------------------------------------------*/
 
-}
-
+/*The nav bar*/
 .navbar {
  background-color: #000000 !important;
-/* background-color: rgba(255,255,255,0.5) !important;*/
- /*opacity: 0.9;*/
  line-height: .4;
 }
 
@@ -32,7 +32,6 @@ body {
 
 }
 
-
 #home-text{
 color: #FFAF00;
 text-align: left;
@@ -42,7 +41,8 @@ font-size: 160%;
 
 
 
-
+/*---------------------------------------------------*/
+ /*The login, register and updateUsers froms*/
 .form_login {
     background-color:#eee;
     color:#666;
@@ -64,6 +64,17 @@ font-size: 160%;
     text-align:center;
 }
 
+
+/*--------------------------------------*/
+
+.producer-page{
+  
+  line-height: 3.4;
+  background-color: #1b1d26;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+
+}
 
 
 

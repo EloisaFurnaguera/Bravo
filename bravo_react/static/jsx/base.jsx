@@ -6,11 +6,15 @@ class Base extends React.Component {
 
 
     this.state = {
-                  currentPage: "BravoApp",
-                  id: " ",
-                  type: " "}              
+                  currentPage:"BravoApp",
+                  id:" ",
+                  type:" ",
+                  user_fname:"",
+                  user_lname:" ",
+                  user_email:" "}              
 
     this.changePage = this.changePage.bind(this);
+    this.changePageUserUpdate = this.changePageUserUpdate.bind(this);
 
     }
 
@@ -19,7 +23,11 @@ class Base extends React.Component {
     changePage(newPage, id, type) {
         this.setState({currentPage: newPage,
                        id: id,
-                       type: type});               
+                       type: type}); 
+
+     console.log("vvvvv") 
+      console.log(id)
+
     }
 
 
@@ -30,9 +38,23 @@ class Base extends React.Component {
     }
 
 
+
+
+  changePageUserUpdate(newPage, id, type, user_fname, user_lname, user_email) {
+        this.setState({currentPage: newPage,
+                       id: id,
+                       type:type,
+                       user_fname:user_fname,
+                       user_lname:user_lname,
+                       user_email:user_email}) 
+      console.log("TTTTTTT") 
+      console.log(user_fname) 
+      console.log(id)                 
+    }
+ 
+
+
     render(){
-
-
 
         const  pages = {
                
@@ -50,17 +72,29 @@ class Base extends React.Component {
                ShowRegisterForm: <ShowRegisterForm changePage={this.changePage} name={this.state} />, 
 
 
+               UserUpdateForm: <UserUpdateForm changePage={this.changePage} hangePageUserUpdate={this.changePageUserUpdate} id={this.state.id}
+                                                                                      type={this.state.type}
+                                                                                      user_fname={this.state.user_fname}
+                                                                                      user_lname={this.state.user_lname}
+                                                                                      user_email={this.state.user_email}/>, 
+
+
+
+
+  
+
+
+
                VenueUpdateForm: <VenueUpdateForm changePage={this.changePage} name={this.state} />,
-               UserUpdateForm: <UserUpdateForm changePage={this.changePage} name={this.state} />, 
                ShowUdateForm: <ShowUdateForm changePage={this.changePage} name={this.state.id} />, 
 
                ShowPage: <ShowPage changePage={this.changePage} name={this.state} />,
                VenueUserPage: <VenueUserPage changePage={this.changePage} name={this.state} />,
-               ProducerPage: <ProducerPage changePage={this.changePage} name={this.state} />,
+
+
+               ProducerPage: <ProducerPage changePage={this.changePage} changePageUserUpdate={this.changePageUserUpdate} id={this.state.id}/>,
 
                TryStuff: <TryStuff changePage={this.changePage} name={this.state} />
-
-
 
                
                }
@@ -84,4 +118,12 @@ class Base extends React.Component {
 
 
 
+
+
+
+
 ReactDOM.render(<Base />, document.getElementById('root'));
+
+
+
+

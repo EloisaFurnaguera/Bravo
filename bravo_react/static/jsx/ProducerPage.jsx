@@ -4,28 +4,21 @@ class ProducerPage extends React.Component {
         super(props);
  
         this.state = {user_id:" ",
-                      user_fname: " ",
-                      user_lname: " ",
-                      user_email: " ",
-                      show_list: [],
+                      user_fname:"",
+                      user_lname:" ",
+                      user_email:" ",
+                      show_list:[],
                     }               
 
 
-        this.handleLogOutSubmit = this.handleLogOutSubmit.bind(this);
+        this.handleLogOut = this.handleLogOut.bind(this)
         this.handleShowRegister = this.handleShowRegister.bind(this); 
         this.handleShowPage = this.handleShowPage.bind(this); 
-
-        this.handleUpdateUserInfoButton = this.handleUpdateUserInfoButton.bind(this); 
-        this.handleUpdateUserInfoNavLink = this.handleUpdateUserInfoNavLink.bind(this);                                      
+        this.handleUpdateUserInfo = this.handleUpdateUserInfo.bind(this); 
+                                             
     }
 
  
-
-
-handleLogOutSubmit(e) {
-      e.preventDefault();
-      this.props.changePage("LogOut")
-    };
 
 
 
@@ -39,6 +32,7 @@ handleShowRegister(e) {
 handleShowPage(e , id, type) {
      e.preventDefault();
       this.props.changePage("ShowPage", id, "show")
+     
             
 
     };
@@ -46,26 +40,39 @@ handleShowPage(e , id, type) {
 
 
 
-handleUpdateUserInfoButton(e , id, type) {
+  handleLogOut(e) {
+             e.preventDefault();
+      this.props.changePage("LogOut")
+    }
+
+
+    
+
+// handleUpdateUserInfo(e , id, type) {
+//       e.preventDefault();
+//       this.props.changePage("UserUpdateForm", id, "producer")
+//     };
+
+
+
+
+
+
+handleUpdateUserInfo(e , id, type, user_fname, user_lname, user_email) {
       e.preventDefault();
-      this.props.changePage("UserUpdateForm", id, "producer")
+      this.props.changePageUserUpdate("UserUpdateForm", id, "producer", user_fname, user_lname, user_email )
+  
+     console.log("ososososooso") 
+      console.log(id)
+            
+
     };
 
 
 
-handleUpdateUserInfoNavLink(e , id, type, user_fname, user_lname, user_email) {
-      e.preventDefault();
-      this.props.changePageUpdateUserInfo("UserUpdateForm", 
-                                           id, 
-                                           "producer", 
-                                           user_fname, 
-                                           user_lname, 
-                                           user_email)
-                                          };
 
 
 
-    
 
 
 componentDidMount() {
@@ -86,61 +93,102 @@ componentDidMount() {
 
                     })
                        
-        // console.log("Success:", JSON.stringify(producerResponse)) 
-        console.log(this.state)   
-
+        console.log("Success:", JSON.stringify(producerResponse)) 
+      
 
            });         
 
 
 }     
     
-  // NEED TO ALL THE ERROR MESSAFE
+
 
     render(){
    
         return(
            
 
-        <div>
-            
-             <NavagationBar handleUpdateUserInfoNav={this.props.handleUpdateUserInfoNavLink} 
-                            changePage={this.props.changePage} />
-            
+ <div className = "producer-page">
+                 
+    
+
+        <div className="container">
+          <div className="row justify-content-end">
+
+   
+            <div className="col-2">                      
+             <a className="producer-page" href="#" onClick= {this.handleShowRegister}>Add a Show</a>
+            </div>
+
+{/*            <div className="col-2">                      
+             <a className="producer-page" href="#" onClick= {this.handleUpdateUserInfo}>udate user info</a>
+            </div>
+*/}
 
 
-                 <p>PRODUCER PAGE</p>
-                 <p> {this.state.user_fname} </p>
-                 <p> {this.state.user_lname} </p>
+
+            <div className="col-2">                      
+             <a className="producer-page" href="#" onClick= {(e) => this.handleUpdateUserInfo(e, this.state.user_fname)}>udate user info</a>
+            </div>
+
+
+
+
+
+             <div className="col-1">                      
+             <a className="producer-page" href="#" onClick= {this.handleLogOut}>Log Out</a>
+            </div>
+
+
+          </div>
+         </div>
+
+  
+
+        <div className="container">
+          <div className="row center-content-start">
+             <div className="col-2">              
+                       {this.state.user_fname} 
+            </div>
+          </div>
+       </div>
+
+
+
+
+         <h1></h1>
+          <div className="card bg-dark text-white">
+             <img className="card-img" src="/static/img/tim-mossholder-bJa_vJzwJTE-unsplash.jpg"/>
+                <div className="card-img-overlay">
+                  <h1 className="text-xl-center"></h1>
+                  <p className="card-text"></p>
+                  <p className="card-text"></p>
+                </div>
+              </div>
+ 
+
+
+
+             <div className="col-xs-12 col-md-6 offset-md-3 col-lg-6 offset-lg-6">
+
+             <h1>Your Shows</h1>              
+
+              {this.state.show_list.map(show =>
+                 <div key={show.show_id}>
+             
+                <h2><a className="producer-page" href="#" onClick={(e) => this.handleShowPage(e, show.show_id)}>{show.show_name}</a></h2></div>)}
+
+              </div>
      
 
 
-                 <button  onClick= {this.handleUpdateUserInfoButton}>Update User Info</button>
 
 
-                 <button  onClick= {this.handleLogOutSubmit}>Log Out</button>
-                 <button  onClick= {this.handleShowRegister}>Add a Show</button>
-
-
-               
+</div>
 
 
 
 
-                 <div>
-                   {this.state.show_list.map(show =>
-                   <li key={show.show_id}>
-                   <a href="#" onClick={(e) => this.handleShowPage(e, show.show_id)}>{show.show_name}</a></li>)}
-
-                </div>
-
-
-
-        
-
-
-
-             </div>
 
  
           );       
