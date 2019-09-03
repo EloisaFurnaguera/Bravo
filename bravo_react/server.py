@@ -246,6 +246,11 @@ def venue_page_process():
 
 
 
+        venue_rarking = adding_ranking("venue", new_venue.venue_id)
+
+
+
+
 
         return jsonify(time_id=new_time.time_id,
                         monday=new_time.monday,
@@ -259,7 +264,8 @@ def venue_page_process():
                         late_morning=new_time.late_morning,
                         early_night=new_time.early_night,
                         late_night=new_time.late_night,
-                    
+
+                        venue_id=new_venue.venue_id,
                         venue_name=new_venue.venue_name,
                         venue_url=new_venue.venue_url, 
                         venue_email=new_venue.venue_email, 
@@ -429,7 +435,7 @@ def producer_page():
                           "location_id":row.location_id,
                           "show_ticket_price":row.show_ticket_price,
                           "show_free_rent":row.show_free_rent})
-    print(list_shows)
+    
 
 
     return jsonify(user_id=user.user_id, 
@@ -607,10 +613,11 @@ def single_show_info():
 
     
     return jsonify( user_id= user_id,
+                    show_id=show_id,
                     user_fname=user_info.user_fname,
                     user_lname=user_info.user_lname,
                     user_type=user_info.user_type,
-                    show_id=show_info.show_id,
+
                     show_name=show_info.show_name,
                     show_type=show_info.show_type,
                     show_url=show_info.show_url,
@@ -618,7 +625,6 @@ def single_show_info():
                     show_dressing_room=show_info.show_dressing_room,
                     show_length=show_info.show_length,
                     location_id=show_info.location_id,
-                    time_id=show_info.time_id,
                     show_ticket_price=show_info.show_ticket_price,
                     show_rent=show_info.show_rent,
                     show_free_rent=show_info.show_free_rent)
@@ -639,7 +645,10 @@ def process_update_show_info():
 
 
     update_show_info = Show.query.filter_by(show_id=show_id).first()
+
     update_show_time = Time.query.filter_by(time_id=update_show_info.time_id).first()
+
+ 
 
 
     monday = request.json.get("monday")
@@ -720,7 +729,6 @@ def process_update_show_info():
                     show_dressing_room=show_dressing_room,
                     show_length=show_length,
                     show_ticket_price=show_ticket_price,
-                    time_id=update_show_time.time_id,
                     show_rent=show_rent,
                     show_free_rent=show_free_rent)
 
@@ -784,12 +792,11 @@ def getting_info():
 
     user = User.query.filter_by(user_id=number).first()
 
-    print (user.user_lname)
+   
 
     # return jsonify(user) 
 
     return jsonify(user.lname)
-
 
 
 
@@ -812,6 +819,14 @@ def getting_match():
 
     type_id = request.json.get("type_id")
 
+    print ("TTTTTTT")
+    print (user_type)
+    print (type_id)
+
+    # show_id = request.json.get("show_id")
+
+    # venue_id = request.json.get("venue_id")
+
 
     if user_type == "venue":
 
@@ -825,20 +840,23 @@ def getting_match():
         list_matched_shows = []
 
         for row in matched_shows:
-            list_matched_shows.append({"show_id":row.show_id, 
-                              "show_name":row.show_name,
-                              "show_type":row.show_type,
-                              "show_url":row.show_url,
-                              "show_amount_people":row.show_amount_people,
-                              "show_dressing_room":row.show_dressing_room,
-                              "show_length":row.show_length,
-                              "location_id":row.location_id,
-                              "show_ticket_price":row.show_ticket_price,
-                              "show_free_rent":row.show_free_rent})
+            list_matched_shows.append({"id":row.show_id, 
+                                 "name":row.show_name,
+                                 "type":"show"})
+
+
+                              # "show_type":row.show_type,
+                              # "show_url":row.show_url,
+                              # "show_amount_people":row.show_amount_people,
+                              # "show_dressing_room":row.show_dressing_room,
+                              # "show_length":row.show_length,
+                              # "location_id":row.location_id,
+                              # "show_ticket_price":row.show_ticket_price,
+                              # "show_free_rent":row.show_free_rent})
     
 
 
-        return jsonify(list_matched_shows=list_matched_shows)
+        return jsonify(matched_list=list_matched_shows)
 
 
     else:    
@@ -853,20 +871,24 @@ def getting_match():
         list_matched_venues = []
 
         for row in matched_venues:
-            list_matched_venues.append({"venue_id":row.venue_id, 
-                                      "venue_name":row.venue_name,
-                                      "venue_type":row.venue_type,
-                                      "venue_address":row.venue_address,
-                                      "venue_city":row.venue_city,
-                                      "venue_backspace":row.venue_backspace,
-                                      "venue_capacity":row.venue_capacity,
-                                      "venue_license":row.venue_license,
-                                      "venue_free_rent":row.venue_free_rent,
-                                      "venue_rent":row.venue_rent})
+            list_matched_venues.append({"id":row.venue_id, 
+                                 "name":row.venue_name,
+                                 "type":"venue"})
+
+                                      # "address":row.venue_address,
+                                      # "city":row.venue_city,
+                                      # "backspace":row.venue_backspace,
+                                      # "capacity":row.venue_capacity,
+                                      # "license":row.venue_license,
+                                      # "rent":row.venue_free_rent,
+                                      # "rent":row.venue_rent
+                                      # "venue_type":row.venue_type})
     
 
+   
 
-        return jsonify(list_matched_venues=list_matched_venues)
+
+        return jsonify(matched_list=list_matched_venues)
 
    
 
@@ -879,8 +901,6 @@ def getting_match():
     # return jsonify(user) 
 
     # return jsonify(user.lname)
-
-
 
 
 
@@ -916,15 +936,13 @@ venue_ranking_dict ={ "venue_rent": {(1, 100):1, (101, 300):2, (301, 500):3, (50
 
 
 
-@app.route("/add_ranking", methods=["POST"])
-def adding_ranking():
 
 
-    type_id = request.json.get("type_id")
 
-    user_type = request.json.get("user_type")
 
-               
+def adding_ranking(user_type, type_id):
+
+     
     if user_type == "venue":
 
         user_venue_chooses = {}
@@ -972,8 +990,6 @@ def adding_ranking():
 
         db.session.commit()
    
-
-
 
 
 
@@ -1037,20 +1053,6 @@ def get_string_value(user_value, big_dict_line):
         return big_dict_line[user_value]
 
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

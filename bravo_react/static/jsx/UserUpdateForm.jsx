@@ -73,8 +73,12 @@ class UserUpdateForm extends React.Component {
     <NavagationBar changePage={this.props.changePage} />
 
 
-<div className="container">
-  <div className="row">
+
+
+
+<div className ="producer-page">
+
+    <div className="container-fluid">
 
     <div className="form_login">
 
@@ -119,6 +123,7 @@ class UserUpdateForm extends React.Component {
 
          </div>
      </div>
+   
     </div>
              
 </div>

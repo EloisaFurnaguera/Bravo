@@ -90,8 +90,8 @@ class VenueRegisterForm extends React.Component {
         
 
 
-    render(){
-        return(
+render(){
+    return(
 
              <div>
 

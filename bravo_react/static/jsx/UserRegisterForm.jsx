@@ -96,7 +96,7 @@ class UserRegisterForm extends React.Component {
     {/*<NavagationBar changePage={this.props.changePage} />*/}
 
 
-<div className="container-fluid shows-update">
+<div className="container-fluid signin-page">
        <div className ="row bravo-big-row">
 
             <div className="col-md-4 col-md-offset-4 centered">

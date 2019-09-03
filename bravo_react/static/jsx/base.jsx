@@ -83,7 +83,8 @@ class Base extends React.Component {
                VenueUpdateForm: <VenueUpdateForm changePage={this.changePage} name={this.state} />,
                ShowUdateForm: <ShowUdateForm changePage={this.changePage} name={this.state.id} />, 
 
-               ShowPage: <ShowPage changePage={this.changePage} name={this.state} />,
+               ShowPage: <ShowPage changePage={this.changePage} id={this.state.id} />,
+               
                VenueUserPage: <VenueUserPage changePage={this.changePage} changePageUserUpdate={this.changePageUserUpdate} id={this.state.id} />,
                ProducerPage: <ProducerPage changePage={this.changePage} changePageUserUpdate={this.changePageUserUpdate} id={this.state.id}/>,
 

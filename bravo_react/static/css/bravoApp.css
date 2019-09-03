@@ -51,6 +51,13 @@ color: white;
   border: solid 1px black;
 }
 
+/*--------------------------*/
+/*line*/
+
+.line {
+  border: 1px solid white;
+}
+
 
 /*-------------------------------*/
 /*land page*/
@@ -104,19 +111,6 @@ font-size: 160%;
   }
 
 
-.form-sigin {
-    background-color: transparent;
-    /*opacity: 0.3;*/
-    color: white;
-    padding:20px;
-    border-radius:10px;
-    border:1px solid #fff;
-    height: 35px;
-
-  }
-
-
-
 .align-center_login {
     
     text-align:center;
@@ -133,10 +127,45 @@ font-size: 160%;
 
 
 .signin-page {
-  background: url("/static/img/carson-masterson-g-23pY-8I20-unsplash copy 4.jpg") no-repeat center center;
+  background: url("/static/img/carson-masterson-g-23pY-8I20-unsplash copy 2.jpg") no-repeat center center;
   background-size: cover;
   color: white;
 }
+
+
+
+.form-sigin {
+    background-color: transparent;
+    /*opacity: 0.3;*/
+    color: white;
+    padding:20px;
+    border-radius:10px;
+    border:1px solid #fff;
+    height: 400px;
+
+  }
+
+
+
+.form-update {
+    background-color: transparent;
+    /*opacity: 0.3;*/
+    color: white;
+    padding:20px;
+    border-radius:10px;
+    border:1px solid #fff;
+    height: 400px;
+
+  }
+
+
+.update_form {
+  background: url("/static/img/matthias-wagner-QrqeusbpFMM-unsplash.jpg") no-repeat center center;
+  background-size: cover;
+  color: white;
+}
+
+
 
 
 /*--------------------------------*/
@@ -152,7 +181,11 @@ font-size: 160%;
 
 
 
-
+.venue-update {
+  background: url("/static/img/patterns/spiration-light.png") no-repeat center center;
+  background-size: cover;
+  color: black;
+}
 
 
 .shows-update {
@@ -271,4 +304,3 @@ border: transparent 1px !important;
 
 
 
-}

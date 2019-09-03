@@ -345,3 +345,139 @@ class TryStuff extends React.Component {
     
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// class MatchPage extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//                   shows: {show_id:" ",
+//                           show_rent:" ",
+//                           show_free_rent:" ",                                   
+//                           tickets:" ", 
+//                           show_length:" ",  
+//                           show_dressing_room:" ",                                         
+//                           show_amount_people:" ",                          
+//                           show_type: {stand_up:" ",  
+//                                        spoken_word:" ", 
+//                                        improv:" ",  
+//                                        music:" ",  
+//                                        Ted_talk:" ",   
+//                                        skecks:" ",  
+//                                        burlesque:" ",  
+//                                        play:" "} 
+//                           },
+//                   venues: {venue_id:" ",
+//                            venue_rent:" ", 
+//                            venue_free_rent:" ",        
+//                            venue_backspace:" ", 
+//                            venue_license:" ", 
+//                            venue_capacity:" ", 
+//                            venue_type: {bar:" ", 
+//                                         cafe:" ",
+//                                         restaurant:" ", 
+//                                         night_club:" ", 
+//                                         special_event:" ", 
+//                                         theater:" "}           
+//                           }                        
+//                 }
+ 
+//   console.log(this.props)
+
+//   }
+
+
+
+
+
+//     componentDidMount() {
+        
+//         fetch("/get_match", 
+//         {method: "POST",
+//         body: JSON.stringify({user_type: this.props.userType,
+//                               type_id: this.props.id}),
+
+
+
+//         headers:{'Content-Type': 'application/json'}
+//         }) 
+
+//         .then(res1 => res1.json())
+//         .then(.macthResponse =>{
+//                       this.setState({
+//                                 monday: venueResponse.monday,
+//                                 tuesday: venueResponse.tuesday,
+//                                 wednesday: venueResponse.wednesday,
+//                                 thursday: venueResponse.thursday,
+//                                 friday: venueResponse.friday,
+//                                 saturday: venueResponse.saturday,
+//                                 sunday: venueResponse.sunday,
+//                                 morning: venueResponse.morning,
+//                                 late_morning: venueResponse.late_morning,
+//                                 early_night: venueResponse.early_night,
+//                                 late_night: venueResponse.late_night,
+//                                 venue_id: venueResponse.venue_id,
+//                                 venue_name: venueResponse.venue_name,
+//                                 venue_url: venueResponse.venue_url,
+//                                 venue_email: venueResponse.venue_email,
+//                                 venue_address: venueResponse.venue_address,
+//                                 venue_city: venueResponse.venue_city,
+//                                 venue_backspace: venueResponse.venue_backspace,
+//                                 venue_capacity: venueResponse.venue_capacity,
+//                                 venue_license: venueResponse.venue_license,
+//                                 venue_free_rent: venueResponse.venue_free_rent,
+//                                 venue_rent: venueResponse.venue_rent,
+
+//                            venue_id: venue_id.macthResponse,
+//                            venue_rent: venue_rent.macthResponse,
+//                            venue_free_rent: venue_free_rent.macthResponse,        
+//                            venue_backspace: venue_backspace.macthResponse, 
+//                            venue_license: venue_license.macthResponse, 
+//                            venue_capacity: venue_capacity.macthResponse,
+//                            venue_type.bar:. venue_type.bar.macthResponse,
+//                            venue_type.cafe: venue_type.cafe.macthResponse,
+//                            venue_type.restaurant: venue_type.restaurant.macthResponse, 
+//                            venue_type.night_club: venue_type.night_club.macthResponse, 
+//                            venue_type.special_event:.macthResponse, 
+//                            venue_type.theater:.macthResponse,   
+//                                  })
+
+//                        console.log('Success:', JSON.stringify(macthResponse))
+                    
+//         });               
+        
+//     }
+
+
+  
+
+
+
+
+
+
+
+//   render() {
+
+
+//     return (
+//       <div>
+//          <h1>MATCHING</h1>
+//       </div>
+//     );
+//   }
+// }

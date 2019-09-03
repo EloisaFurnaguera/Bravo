@@ -126,66 +126,63 @@ class VenueUserPage extends React.Component {
     render(){
         return(
 
- <div className = "producer-page">
+<div className ="producer-page">
 
-             
-
-
-<div className="container">
-
-      <div className="row justify-content-end">
+    <div className="container-fluid">
 
 
+          <div className="d-flex flex-row-reverse bd-highlight">
 
-          <div className="col-2">                      
-             <a className="producer-page" 
-                           href="#" onClick= {(e) => this.handleUpdateUserInfo( e, 
-                                                                                this.state.user_id,
-                                                                                this.state.user_fname,
-                                                                                this.state.user_lname,
-                                                                                this.state.user_email 
-                                                                                                     )}>udate user info</a>
-          </div>
+                 <div className="p-2 bd-highlight"> 
+                      <a className="big-letter-M-White" href="#" onClick= {this.handleLogOut}>Log Out</a>
+                </div>
 
 
+               <div className="p-2 bd-highlight">
+                      <a className="big-letter-M-White" href="#" onClick= {(e) => this.handleUpdateUserInfo( e, 
+                                                                                  this.state.user_id,
+                                                                                  this.state.user_fname,
+                                                                                  this.state.user_lname,
+                                                                                  this.state.user_email )}>Account</a>
+              </div>
 
-          <div className="col-2">                      
-             <a className="producer-page" href="#" onClick= {this.handleLogOut}>Log Out</a>
-          </div>
+
+              <div className="p-2 bd-highlight">
+                    <a className="big-letter-M-White" href="#" onClick= {this.handleVenueUpdate}>Update Venue</a>
+              </div>
 
         </div>
-   </div>
+         
 
+     
+             <div className ="p-2 bd-highlight">
+
+                    <div className="text-nowrap big-letter-M-White"> Signed in as: <h1>{this.state.user_fname}</h1> </div>
   
-
-
-
-
-      <div className="container">
-
-          <div className="row center-content-start">
-              <div className="col-1">              
-                       <h4>{this.state.user_fname}</h4>
-               </div>
-          </div>
-       </div>
-
-
-
-
-            <h1></h1>
-          <div className="card bg-dark text-white">
-             <img className="card-img" src="/static/img/carson-masterson-g-23pY-8I20-unsplash.jpg"/>
-                <div className="card-img-overlay">
-                  <h1 className="text-xl-center"></h1>
-                  <p className="card-text"></p>
-                  <p className="card-text"></p>
-                </div>
             </div>
  
+
+
+<div className ="line"> </div>
+
+
+<div className="d-flex flex-row-reverse bd-highlight">
+             <div className ="p-2 bd-highlight">
+             <a className="big-letter-M-White" href="#" onClick={(e) => this.handleMatchPage(e, this.state.venue_id)}>Match</a>
+            </div>
+
+</div>
+
+
+
+   <div className ="container-fluid">
+
+  
+      <div className ="row">
+        <div className ="col">
+
                  
-                 <h1> Hello, {this.state.venue_name}</h1>
-                    <p>id: {this.state.venue_id}</p>
+                    <p></p>
                     <p>name: {this.state.venue_name}</p>
                     <p>url: {this.state.venue_url}</p>
                     <p>email: {this.state.venue_email}</p>
@@ -197,6 +194,16 @@ class VenueUserPage extends React.Component {
                     <p>license: {this.state.venue_license}</p>
                     <p>free rent: {this.state.venue_free_rent}</p>
                     <p>rent: {this.state.venue_rent}</p>
+
+       </div>
+      </div>
+    </div>
+
+
+
+  <div className ="container-fluid">        
+      <div className ="row">
+          <div className ="col">
 
                     <ul>
 
@@ -216,17 +223,17 @@ class VenueUserPage extends React.Component {
                     </ul>
                  
 
-
+           </div>
+    </div>
+</div>
 
 
 
                
            
-                 <button  onClick= {this.handleMatchPage}>Find Matches</button>
-                 <button  onClick={(e) => this.handleMatchPage(e, this.state.venue_id)}>Match</button>
-
-             </div>
-
+                 
+  </div>
+</div>
  
           );       
     }

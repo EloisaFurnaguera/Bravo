@@ -3,3 +3,6 @@
 8,venue_name_3,venue3.com,venue3@gmail.com,venue_address_3,Oakland,hall,no,24,no,8,no,50,20
 9,venue_name_4,venue4.com,venue4@gmail.com,venue_address_4,San Francico,theater,yes,70,yes,9,no,250,30
 10,venue_name_5,venue3.com,venue3@gmail.com,venue_address_5,Oakland,hall,no,116,no,10,no,30,40
+11,venue_name_6,venue3.com,venue3@gmail.com,venue_address_6,Oakland,hall,no,116,no,10,no,30,30
+12,venue_name_7,venue3.com,venue3@gmail.com,venue_address_7,Oakland,hall,no,116,no,10,no,30,20
+13,venue_name_8,venue3.com,venue3@gmail.com,venue_address_8,Oakland,hall,no,116,no,10,no,30,20
