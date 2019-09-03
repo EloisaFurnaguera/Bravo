@@ -10,19 +10,68 @@
 
 body {
 
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Montserrat", "Lato", "Quicksand", "Roboto", "Raleway", "Open Sans", sans-serif;
+  font-size: medium;
   line-height: 1.4;
-  background-color: #000000
- 
+  background-color: 
+  color: white;
 
 }
+/*-------------------------------*/
+/*rows*/
 
-/*------------------------------------------*/
+.big-row {
+  height: 120px;
+}
+
+/*------------------------------*/
+
+/*letters*/
+
+.big-letter-Lato{
+font-size: 120%;
+font-family: "Lato" sans-serif;
+color: black;
+}
+
+
+
+
+.big-letter-M-White{
+font-size: 130%;
+font-family: "Montserrat" sans-serif;
+color: white;
+}
+
+/*----------------------------*/
+/*pic*/
+
+#img {
+  height: 100px;
+  border: solid 1px black;
+}
+
+
+/*-------------------------------*/
+/*land page*/
+
+.bravo-page {
+  background: url("/static/img/kilyan-sockalingum-nW1n9eNHOsc-unsplash.jpg") no-repeat center center;
+  background-size: cover;
+
+ }
+
+
+.bravo-big-row {
+  height: 1000px;
+}
+
+/*--------------------------*/
 
 /*The nav bar*/
 .navbar {
  background-color: #000000 !important;
- line-height: .4;
+ line-height: 2.4;
 }
 
 
@@ -40,24 +89,33 @@ font-size: 160%;
 
 
 
-
-/*---------------------------------------------------*/
+/*------------------------------------*/
  /*The login, register and updateUsers froms*/
-.form_login {
-    background-color:#eee;
-    color:#666;
+
+.form-login {
+    background-color: transparent;
+    /*opacity: 0.3;*/
+    color: white;
     padding:20px;
     border-radius:10px;
-    position: absolute;
     border:1px solid #fff;
-    margin: auto;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 320px;
-    height: 280px;
-}
+    height: 320px;
+
+  }
+
+
+.form-sigin {
+    background-color: transparent;
+    /*opacity: 0.3;*/
+    color: white;
+    padding:20px;
+    border-radius:10px;
+    border:1px solid #fff;
+    height: 35px;
+
+  }
+
+
 
 .align-center_login {
     
@@ -65,15 +123,141 @@ font-size: 160%;
 }
 
 
-/*--------------------------------------*/
 
-.producer-page{
-  
-  line-height: 3.4;
-  background-color: #1b1d26;
-  font-family: Arial, Helvetica, sans-serif;
+.login-page {
+  background: url("/static/img/darius-soodmand-E-_I18oX5NQ-unsplash.jpg") no-repeat center center;
+  background-size: cover;
   color: white;
+}
 
+
+
+.signin-page {
+  background: url("/static/img/carson-masterson-g-23pY-8I20-unsplash copy 4.jpg") no-repeat center center;
+  background-size: cover;
+  color: white;
+}
+
+
+/*--------------------------------*/
+
+
+/*show page*/
+
+
+#producer-img {
+  height: 300px;
+  border: solid 1px black;
+}
+
+
+
+
+
+
+.shows-update {
+  background: url("/static/img/patterns/spiration-light.png") no-repeat center center;
+  background-size: cover;
+  color: black;
+}
+
+.big-row-update{
+  height: 120px;
+}
+
+
+
+
+.producer-box {
+    background: url("/static/img/patterns/spiration dark.png") no-repeat center center;
+    /*opacity: 0.3;*/
+    color: white;
+    padding:20px;
+    border-radius:110px;
+    border:1px solid #fff;
+    height: 585px;
+}
+
+
+
+
+  .left-col-black {
+  width: 25%;
+  height: 100%;
+  background-image: url("/static/img/patterns/spiration dark.png");
+  color: white;
+}
+
+
+  .left-col {
+  width: 220%;
+  height: 1000%;
+  background-image: url("/static/img/patterns/spiration-light.png");
+  color: black;
+}
+
+
+
+.producer-page {
+  background: url("/static/img/patterns/spiration dark.png") no-repeat center center;
+  background-size: cover;
+  color: white;
+}
+
+
+
+.my-text{ 
+  top:20px;          
+  height:500px; 
+  background: url("/static/img/patterns/spiration-light.png");
+  border:1px solid #ccc;
+  overflow:auto;
+  color: black;
+}
+
+
+
+
+.producer-page {
+  background: url("/static/img/patterns/spiration dark.png") no-repeat center center;
+  background-size: cover;
+  color: white;
+}
+
+
+
+.shows-page {
+  background: url("/static/img/patterns/spiration-light.png") no-repeat center center;
+  background-size: cover;
+  color: black;
+}
+
+.shows-page-text{ 
+  top:20px;          
+  height:1100px; 
+  background: url("/static/img/patterns/spiration dark.png");
+  border:1px solid #ccc;
+  overflow:auto;
+  color: white;
+}
+
+
+.table {
+border: transparent 1px !important;
+}
+
+
+
+.table td{
+    border: transparent 1px !important;
+}
+
+
+
+
+
+.table th{
+    border: transparent 1px !important;
 }
 
 
@@ -87,5 +271,4 @@ font-size: 160%;
 
 
 
-
-
+}

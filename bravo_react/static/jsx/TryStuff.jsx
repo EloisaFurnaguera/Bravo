@@ -295,10 +295,53 @@ class TryStuff extends React.Component {
 
 // </div>
 
+// _______________________________
 
 
 
 
 
+
+
+   // <div className="d-flex justify-content-end">  
+   //         <div className="p-2"> 
+   //              <a className="big-letter-M-White" href="#" onClick= {this.handleLogOut}>Log Out</a>
+   //         </div>
+   //          <div className="p-2">                      
+   //               <a className="big-letter-M-White" href="#" onClick= {this.handleShowRegister}>Add a Show</a>
+   //          </div>
+    
+   //          <div className="p-2">                      
+   //           <a className="big-letter-M-White" 
+   //                         href="#" onClick= {(e) => this.handleUpdateUserInfo( e, 
+   //                                                                              this.state.user_id,
+   //                                                                              this.state.user_fname,
+   //                                                                              this.state.user_lname,
+   //                                                                              this.state.user_email 
+   //                                                                                                   )}>Account</a>
+   //          </div>
+
+
+
+
+
+   //          <div className="p-2 big-letter-M-White">{this.state.user_fname} </div>
+
+
+   //    </div>
+            
+ 
+   //    <div className="d-flex justify-content-center">
+
+   //           <div>
+   //               <h1>Your Shows:</h1>              
+
+   //            {this.state.show_list.map(show =>
+   //               <div key={show.show_id}> 
+   //              <a className="big-letter-M-White" href="#" onClick={(e) => this.handleShowPage(e, show.show_id)}>{show.show_name}</a>
+   //              </div>)}
+   //           </div>
+   //      </div>
+    
 
 

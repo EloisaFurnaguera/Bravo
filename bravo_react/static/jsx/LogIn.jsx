@@ -15,6 +15,7 @@ class LogIn extends React.Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePassWordChange = this.handlePassWordChange.bind(this);
     this.handleTypeUserChange = this.handleTypeUserChange.bind(this);
+    this.handleSingIn = this.handleSingIn.bind(this)
   
     }
 
@@ -34,6 +35,13 @@ class LogIn extends React.Component {
         this.setState({ user_type: e.target.value})
     };
 
+
+
+    handleSingIn(e) {
+             e.preventDefault();
+      this.props.changePage("UserRegisterForm")
+    }
+  
 
     handleLogInSubmit(e) {
       e.preventDefault();
@@ -94,47 +102,57 @@ class LogIn extends React.Component {
 
   <div >      
   
-      <NavagationBarHome changePage={this.props.changePage} />
+     {/* <NavagationBarHome changePage={this.props.changePage} />*/}
+
+  
+<div className="container-fluid login-page">
+       <div className ="row bravo-big-row">
+
+           <div className="col-4 align-self-center">
 
 
 
-<div className="container">
-  <div className="row">
-    <div className="form_login">
+
+               <form className="form-login" onSubmit= {this.handleLogInSubmit}>
+                         
+                          <div className="form-group">
+                                   <input type="email" className="form-control" 
+                                          onChange={this.handleEmailChange} placeholder="Enter email" required /><br />   
+                          </div>
+                          <div className="form-group">
+                                  <input type="password" className="form-control" 
+                                         onChange={this.handlePassWordChange} placeholder="Password" required /><br /> 
+                            </div>
 
 
+                           <div className="align-center_login"> 
 
-      <form onSubmit= {this.handleLogInSubmit}>
+                                <div className="form-check form-check-inline" onChange={this.handleTypeUserChange}>
 
-         <div className="form-group">
-               <input type="email" className="form-control" 
-                      onChange={this.handleEmailChange} placeholder="Enter email" required /><br />   
-        </div>
 
-        <div className="form-group">
-              <input type="password" className="form-control" 
-                     onChange={this.handlePassWordChange} placeholder="Password" required /><br /> 
-        </div>
+                                   <label className="radio-inline">
+                                       <input type="radio" name="user_type" value="venue" />Venue
+                                   </label>
 
-       <div className="align-center_login"> 
+                                   <label className="radio-inline">
+                                       <input type="radio" name="user_type" value="producer" />Producer 
+                                    </label>
+                                    
 
-            <div className="form-check" onChange={this.handleTypeUserChange}>
+                                </div>
 
-             <input type="radio" name="user_type" value="venue" />
-                   <label className="form-check-label">Venue</label>
+                               <button type="submit" className="btn btn-default">Submit</button><br /><br />
+                                
 
-             <input type="radio" name="user_type" value="producer" />
-                   <label className="form-check-label">Producer </label>
-            </div>
+                                 <h2><a href="#" onClick= {this.handleSingIn}>Sign in</a></h2>
+                          </div>
+                  </form>
+                 
+           </div>
+          </div>
+         </div>
 
-           <button type="submit" className="btn btn-default">Submit</button>
-      </div>
 
-      
-    </form>
-
-       </div>
-    </div>
 </div>
 
 
@@ -143,10 +161,6 @@ class LogIn extends React.Component {
 
 
 
-
-
-
- </div>
 
 
            

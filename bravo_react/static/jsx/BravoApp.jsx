@@ -49,24 +49,16 @@ handleTrySubmit(e) {
     render(){
         return(
 
-       <div>   
-       
-          <NavagationBarHome changePage={this.props.changePage} />
+            <div>
 
-        
+                <NavagationBarHome changePage={this.props.changePage} />
 
-              <div className="card bg-dark text-white">
-                <img className="card-img" src="/static/img/kilyan-sockalingum-nW1n9eNHOsc-unsplash.jpg" alt="Card image" />
-                <div className="card-img-overlay">
-                  <h1 className="text-xl-center"></h1>
-                  <p className="card-text"></p>
-                  <p className="card-text"></p>
-                </div>
+                    <div className = "bravo-page">  
+                         <div className = "row bravo-big-row ">
+
+                         </div>
+                    </div>   
               </div>
- 
-
-     </div>
-
 
         );
     }

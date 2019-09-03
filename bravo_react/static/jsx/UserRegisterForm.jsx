@@ -12,7 +12,8 @@ class UserRegisterForm extends React.Component {
        
     this.handleUserRegister = this.handleUserRegister.bind(this);
     this.handleUserRedInput = this.handleUserRedInput.bind(this);
-    this.handleUserRedSelect = this.handleUserRedSelect.bind(this);
+    this.handleTypeUserChange = this.handleTypeUserChange.bind(this);
+    this.handleLogIn = this.handleLogIn.bind(this)
   
 
     }
@@ -31,16 +32,18 @@ class UserRegisterForm extends React.Component {
 
 
 
-  handleUserRedSelect(e , id, type) { 
-
-      const target = e.target;
-      const value = target.checked;
-      const name = target.name;
-
-      this.setState({ [name]: value });
-
-
+  handleTypeUserChange(e) {
+        this.setState({ user_type: e.target.value})
     };
+
+
+    
+
+    handleLogIn(e) {
+             e.preventDefault();
+      this.props.changePage("LogIn")
+    }
+
 
 
 
@@ -90,61 +93,70 @@ class UserRegisterForm extends React.Component {
         return(
 
  <div>
-    <NavagationBar changePage={this.props.changePage} />
+    {/*<NavagationBar changePage={this.props.changePage} />*/}
 
 
-<div className="container">
-  <div className="row">
-    <div className="form_login">
+<div className="container-fluid shows-update">
+       <div className ="row bravo-big-row">
+
+            <div className="col-md-4 col-md-offset-4 centered">
+        
 
 
 
-            <form onSubmit= {this.handleUserRegister}>
 
-       
-
-               <div className="form-group">
-                        <input type="fname" name="fname" 
-                               onChange={this.handleUserRedInput} placeholder="First Name" required />                                    
-               </div>
+  <form className="form-sigin" onSubmit= {this.handleUserRegister}>
 
 
-               <div className="form-group">        
-                        <input type="lname" name="lname" 
-                             onChange={this.handleUserRedInput} placeholder="Last Name" required />                             
-                </div>
+          <div className="form-group">
+                 <input type="text" name="fname" className="form-control" 
+                        onChange={this.handleUserRedInput} placeholder="First Name" required />                                    
+          </div>
+
+          <div className="form-group">        
+                 <input type="text" name="lname" className="form-control" 
+                        onChange={this.handleUserRedInput} placeholder="Last Name" required />                             
+          </div>
+
+          <div className="form-group">
+                 <input type="email" name="email"className="form-control" 
+                        onChange={this.handleUserRedInput} placeholder="Enter email" required /><br />   
+          </div>
+
+          <div className="form-group">
+                  <input type="text" name="password"className="form-control" 
+                          onChange={this.handleUserRedInput} placeholder="Password" required /><br /> 
+            </div>
 
 
-                <div className="form-group">            
-                      <input type="email" name="email" 
-                        onChange={this.handleUserRedInput} placeholder="Enter email" required />                       
-                </div> 
+
+          <div className="align-center_login"> 
+
+              <div className="form-check form-check-inline" onChange={this.handleTypeUserChange}>
+
+                   <label className="radio-inline">
+                       <input type="radio" name="user_type" value="venue" />Venue
+                   </label>
+
+                   <label className="radio-inline">
+                       <input type="radio" name="user_type" value="producer" />Producer 
+                    </label>
+                                    
 
 
-                <div className="form-group">         
-                        <input type="password" name="password" 
-                             onChange={this.handleUserRedInput} placeholder="Password" required />   
+              </div>
 
-                </div>
-
-     
-               <div className="align-center_login"> 
-
-                       <div className="form-check" onChange={this.handleUserRedInput}>
-                           <input type="radio" name="user_type" value="venue" />
-                           <label className="form-check-label">Venue</label>
-
-                          <input type="radio" name="user_type" value="producer" />
-                          <label className="form-check-label">Producer </label>
-                       </div>
-
-                      <button type="submit" className="btn btn-default">Submit</button>
-                </div>
+              <button type="submit" className="btn btn-default">Submit</button><br /><br />
+                                
+                      <h2><a href="#" onClick= {this.handleLogIn}>Login</a></h2>
+          </div>
+  </form>
 
 
-            </form>
 
-         </div>
+
+
+      </div>
      </div>
     </div>
              

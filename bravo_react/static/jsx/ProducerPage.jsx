@@ -20,9 +20,6 @@ class ProducerPage extends React.Component {
 
  
 
-
-
-
 handleShowRegister(e) {
       e.preventDefault();
       this.props.changePage("ShowRegisterForm")
@@ -32,12 +29,8 @@ handleShowRegister(e) {
 handleShowPage(e , id, type) {
      e.preventDefault();
       this.props.changePage("ShowPage", id, "show")
-     
-            
-
+                
     };
-
-
 
 
   handleLogOut(e) {
@@ -46,21 +39,14 @@ handleShowPage(e , id, type) {
     }
 
 
-    
-
-
-
+  
 
 handleUpdateUserInfo(e , id, user_fname, user_lname, user_email) {
       e.preventDefault();
       this.props.changePageUserUpdate("UserUpdateForm", id, "producer", user_fname, user_lname, user_email )
-
-            
+           
 
     };
-
-
-
 
 
 
@@ -86,105 +72,106 @@ componentDidMount() {
                        
         console.log("Success:", JSON.stringify(producerResponse)) 
       
-
-           });         
-
+    });         
 
 }     
     
 
 
-    render(){
-   
-        return(
+render(){   
+    return(
            
-
- <div className = "producer-page">
-                 
-    
-
-        <div className="container">
-          <div className="row justify-content-end">
-
-   
-            <div className="col-2">                      
-             <a className="producer-page" href="#" onClick= {this.handleShowRegister}>Add a Show</a>
-            </div>
+<div className ="container-fluid producer-page">
 
 
-            <div className="col-2">                      
-             <a className="producer-page" 
+
+<div className="d-flex flex-row-reverse bd-highlight">
+
+      <div className="p-2 bd-highlight"> 
+            <a className="big-letter-M-White" href="#" onClick= {this.handleLogOut}>Log Out</a>
+      </div>
+
+
+      <div className="p-2 bd-highlight">
+           <a className="big-letter-M-White" 
                            href="#" onClick= {(e) => this.handleUpdateUserInfo( e, 
                                                                                 this.state.user_id,
                                                                                 this.state.user_fname,
                                                                                 this.state.user_lname,
                                                                                 this.state.user_email 
-                                                                                                     )}>udate user info</a>
-            </div>
+                                                                                                     )}>Account</a>
+      </div>
 
 
-
-
-             <div className="col-1">                      
-             <a className="producer-page" href="#" onClick= {this.handleLogOut}>Log Out</a>
-            </div>
-
-
-          </div>
-         </div>
-
-  
-
-        <div className="container">
-          <div className="row center-content-start">
-             <div className="col-2">              
-                       {this.state.user_fname} 
-            </div>
-          </div>
-       </div>
-
-
-
-
-         <h1></h1>
-          <div className="card bg-dark text-white">
-             <img className="card-img" src="/static/img/tim-mossholder-bJa_vJzwJTE-unsplash.jpg"/>
-                <div className="card-img-overlay">
-                  <h1 className="text-xl-center"></h1>
-                  <p className="card-text"></p>
-                  <p className="card-text"></p>
-                </div>
-              </div>
- 
-
-
-
-             <div className="col-xs-12 col-md-6 offset-md-3 col-lg-6 offset-lg-6">
-
-             <h1>Your Shows</h1>              
-
-              {this.state.show_list.map(show =>
-                 <div key={show.show_id}>
-             
-                <h2><a className="producer-page" href="#" onClick={(e) => this.handleShowPage(e, show.show_id)}>{show.show_name}</a></h2></div>)}
-
-              </div>
-     
-
-
+      <div className="p-2 bd-highlight">
+            <a className="big-letter-M-White" href="#" onClick= {this.handleShowRegister}>Add Shows</a>
+      </div>
 
 
 </div>
 
+    <div>
+
+      <div className="text-nowrap big-letter-M-White"> Signed in as: <h1>{this.state.user_fname}</h1> </div>
+
+ </div>
 
 
+
+
+
+
+  <div className ="row">
+    <div className ="col my-text">
+
+
+  <div className="row">
+
+      <div className= "col">
+
+            <div>
+                 <h1 className= "text-center">Your Shows</h1>              
+
+              {this.state.show_list.map(show =>
+                <div key={show.show_id}> 
+                    <a className="big-letter-Lato" href="#" onClick={(e) => this.handleShowPage(e, show.show_id)}>{show.show_name}</a>
+                </div>)}
+          </div>
+
+
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+  </div>
+ </div>
+</div>
 
 
  
-          );       
+       );       
     }
 
 }
 
 
 
+
+
+
+
+
+
+
+
+
+
+ 
