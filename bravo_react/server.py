@@ -14,6 +14,189 @@ app.secret_key = "mama"
 
 
 
+
+
+
+
+show_ranking_dict ={ "show_rent": {(20, 100):1, (101, 300):2, (301, 400):3, (500, 100000000):4}, 
+                     "show_free_rent" : {True:1, False:0, "yes":1, "no":0, "Yes":1, "No":0},                                    
+                     "tickets": {(0, 10):1, (11, 20):2, (21, 40):3, (41, 10000000):4},  
+                     "show_length": {(1, 2):2, (2, 3):3, (4, 1000000000):4},   
+                     "show_dressing_room": {True:1, False:0, "yes":1, "no":0, "Yes":1, "No":0},                                            
+                     "show_amount_people": {(1, 2):1, (3, 6):2, (7, 1000000):3},                           
+                     "show_type": {"stand_up":1, "spoken_word":1,"improv":3, "music":2, "Ted_talk":2,  
+                                   "skecks":3, "burlesque":4, "play":4} }   
+
+
+
+venue_ranking_dict ={ "venue_rent": {(1, 100):1, (101, 300):2, (301, 500):3, (500, 10000000):4},
+                     "venue_free_rent": {True:1, False:0, "yes":1, "no":0, "Yes":1, "No":0},        
+                     "venue_backspace": {True:3, False:0, "yes":3, "no":0, "Yes":3, "No":0}, 
+                     "venue_license": {True:3, False:0, "yes":3, "no":0, "Yes":3, "No":0},
+                     "venue_capacity": {(1, 20):1, (21, 40):2, (41, 80):3, (81, 100):4, (100, 10000000):5 },
+                     "venue_type": {"bar":1, "cafe":1,"restaurant":3, "night_club":3, "special_event":3, "theater":4}}  
+
+
+
+
+
+
+def adding_ranking(user_type, type_id):
+
+
+    print("GGGGGGGGGG ")
+
+   
+
+
+     
+    if user_type == "venue":
+
+        user_venue_chooses = {}
+
+        ranking_dict = venue_ranking_dict
+
+        venue_info = Venue.query.filter_by(venue_id=type_id).first()
+
+
+
+    
+
+
+        user_venue_chooses["venue_rent"] = venue_info.venue_rent
+        user_venue_chooses["venue_free_rent"] = venue_info.venue_free_rent
+        user_venue_chooses["venue_backspace"] = venue_info.venue_backspace
+        user_venue_chooses["venue_license"] = venue_info.venue_license
+        user_venue_chooses["venue_capacity"] = venue_info.venue_capacity
+        user_venue_chooses["venue_type"] = venue_info.venue_type
+
+
+
+        venue_score = get_ranking(user_venue_chooses , ranking_dict) 
+
+        venue_info.venue_ranking = venue_score
+
+        db.session.commit()
+
+
+
+
+    else:
+
+        user_show_chooses = {}
+
+        ranking_dict = show_ranking_dict
+
+        show_info = Show.query.filter_by(show_id=type_id).first()
+
+        user_show_chooses["show_rent"] = show_info.show_rent
+        user_show_chooses["show_free_rent"] = show_info.show_free_rent
+        user_show_chooses["tickets"] = show_info.tickets
+        user_show_chooses["show_length"] = show_info.show_length
+        user_show_chooses["show_dressing_room"] = show_info.show_dressing_room
+        user_show_chooses["show_amount_people"] = show_info.show_amount_people
+        user_show_chooses["show_type"] = show_info.show_type
+
+        show_score = get_ranking(user_show_chooses, ranking_dict) 
+
+        show_info.show_ranking = show_score
+
+        db.session.commit()
+   
+
+
+
+
+def get_ranking(user_dict, big_dict):
+
+
+    print("user_dict")
+    print(user_dict)
+    print("big_dict")
+    print(big_dict)
+
+
+    overall_score = 0
+
+    for (big_dict_key, big_dict_line) in big_dict.items():  
+
+        user_value = user_dict[big_dict_key]
+   
+        #because the key for both dict are the same (user_dict_key = big_dict_key) 
+        #The user_dict[big_dict_key] is the value from the user dict ("show_rent": 100)
+
+        score_for_big_dict_line = get_ranking_for_criteria(user_value, big_dict_line) 
+
+        overall_score += score_for_big_dict_line
+
+
+     
+    return overall_score
+
+
+
+def get_ranking_for_criteria(user_value, big_dict_line):
+
+    for key in big_dict_line: 
+
+        if type(key) is tuple:
+            return get_range_value(user_value, big_dict_line)
+           
+        elif type(key) is bool:         
+            return get_boolean_value(user_value, big_dict_line)
+                     
+        else:       
+            return get_string_value(user_value, big_dict_line)
+       
+
+
+def get_range_value(user_value, big_dict_line):
+
+
+    for k1, k2 in big_dict_line:
+        if int(user_value) >= int(k1) and int(user_value) <= int(k2):    
+            tuple_val = (big_dict_line[k1, k2])
+
+            return tuple_val 
+
+
+def get_boolean_value(user_value, big_dict_line):
+
+
+    return big_dict_line[user_value]
+
+
+
+def get_string_value(user_value, big_dict_line):
+
+        return big_dict_line[user_value]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @app.route("/")
 def show_homepage():
     """Homepage with login form""" 
@@ -246,7 +429,24 @@ def venue_page_process():
 
 
 
+        # print("new_venue")
+        # print(new_venue)
+
+        # print("new_venue.venue_id")
+        # print(new_venue.venue_id)
+
+
+
+        # print("venue.time_id")
+        # print(new_venue.time_id)
+
+
+
+
         venue_rarking = adding_ranking("venue", new_venue.venue_id)
+
+        print("venue_rarking")
+        print(venue_rarking)
 
 
 
@@ -286,12 +486,16 @@ def venue_page_process():
 @app.route("/venue_page", methods=["POST"])
 def single_venue_info():
 
-    # user_id = request.json.get("user_id")
+    user_id = request.json.get("user_id")
     user_id = session.get("user_id")
 
     user = User.query.filter_by(user_id=user_id).first()
+
     venue = Venue.query.filter_by(user_id=user_id).first()
+
+
     time = Time.query.filter_by(time_id=venue.time_id).first()
+
 
 
     return jsonify( user_id=user.user_id,
@@ -322,6 +526,11 @@ def single_venue_info():
                     venue_license=venue.venue_license,
                     venue_free_rent=venue.venue_free_rent,
                     venue_rent=venue.venue_rent)
+
+
+
+
+
 
 
 
@@ -805,12 +1014,6 @@ def getting_info():
 
 
 
-
-
-
-
-
-
 @app.route("/get_match", methods=["POST"])
 def getting_match():
 
@@ -914,143 +1117,143 @@ def getting_match():
 
 
 
-show_ranking_dict ={ "show_rent": {(20, 100):1, (101, 300):2, (301, 400):3, (500, 100000000):4}, 
-                     "show_free_rent" : {True:1, False:0, "yes":1, "no":0, "Yes":1, "No":0},                                    
-                     "tickets": {(0, 10):1, (11, 20):2, (21, 40):3, (41, 10000000):4},  
-                     "show_length": {(1, 2):2, (2, 3):3, (4, 1000000000):4},   
-                     "show_dressing_room": {True:1, False:0, "yes":1, "no":0, "Yes":1, "No":0},                                            
-                     "show_amount_people": {(1, 2):1, (3, 6):2, (7, 1000000):3},                           
-                     "show_type": {"stand_up":1, "spoken_word":1,"improv":3, "music":2, "Ted_talk":2,  
-                                   "skecks":3, "burlesque":4, "play":4} }   
+# show_ranking_dict ={ "show_rent": {(20, 100):1, (101, 300):2, (301, 400):3, (500, 100000000):4}, 
+#                      "show_free_rent" : {True:1, False:0, "yes":1, "no":0, "Yes":1, "No":0},                                    
+#                      "tickets": {(0, 10):1, (11, 20):2, (21, 40):3, (41, 10000000):4},  
+#                      "show_length": {(1, 2):2, (2, 3):3, (4, 1000000000):4},   
+#                      "show_dressing_room": {True:1, False:0, "yes":1, "no":0, "Yes":1, "No":0},                                            
+#                      "show_amount_people": {(1, 2):1, (3, 6):2, (7, 1000000):3},                           
+#                      "show_type": {"stand_up":1, "spoken_word":1,"improv":3, "music":2, "Ted_talk":2,  
+#                                    "skecks":3, "burlesque":4, "play":4} }   
 
 
 
-venue_ranking_dict ={ "venue_rent": {(1, 100):1, (101, 300):2, (301, 500):3, (500, 10000000):4},
-                     "venue_free_rent": {True:1, False:0, "yes":1, "no":0, "Yes":1, "No":0},        
-                     "venue_backspace": {True:3, False:0, "yes":3, "no":0, "Yes":3, "No":0}, 
-                     "venue_license": {True:3, False:0, "yes":3, "no":0, "Yes":3, "No":0},
-                     "venue_capacity": {(1, 20):1, (21, 40):2, (41, 80):3, (81, 100):4, (100, 10000000):5 },
-                     "venue_type": {"bar":1, "cafe":1,"restaurant":3, "night_club":3, "special_event":3, "theater":4}}  
-
-
-
-
+# venue_ranking_dict ={ "venue_rent": {(1, 100):1, (101, 300):2, (301, 500):3, (500, 10000000):4},
+#                      "venue_free_rent": {True:1, False:0, "yes":1, "no":0, "Yes":1, "No":0},        
+#                      "venue_backspace": {True:3, False:0, "yes":3, "no":0, "Yes":3, "No":0}, 
+#                      "venue_license": {True:3, False:0, "yes":3, "no":0, "Yes":3, "No":0},
+#                      "venue_capacity": {(1, 20):1, (21, 40):2, (41, 80):3, (81, 100):4, (100, 10000000):5 },
+#                      "venue_type": {"bar":1, "cafe":1,"restaurant":3, "night_club":3, "special_event":3, "theater":4}}  
 
 
 
 
 
-def adding_ranking(user_type, type_id):
+
+
+
+
+# def adding_ranking(user_type, type_id):
 
      
-    if user_type == "venue":
+#     if user_type == "venue":
 
-        user_venue_chooses = {}
+#         user_venue_chooses = {}
 
-        ranking_dict = venue_ranking_dict
+#         ranking_dict = venue_ranking_dict
 
-        venue_info = Venue.query.filter_by(venue_id=type_id).first()
-
-
-        user_venue_chooses["venue_rent"] = venue_info.venue_rent
-        user_venue_chooses["venue_free_rent"] = venue_info.venue_free_rent
-        user_venue_chooses["venue_backspace"] = venue_info.venue_backspace
-        user_venue_chooses["venue_license"] = venue_info.venue_license
-        user_venue_chooses["venue_capacity"] = venue_info.venue_capacity
-        user_venue_chooses["venue_type"] = venue_info.venue_type
+#         venue_info = Venue.query.filter_by(venue_id=type_id).first()
 
 
-        venue_score = get_ranking(user_venue_chooses , ranking_dict) 
+#         user_venue_chooses["venue_rent"] = venue_info.venue_rent
+#         user_venue_chooses["venue_free_rent"] = venue_info.venue_free_rent
+#         user_venue_chooses["venue_backspace"] = venue_info.venue_backspace
+#         user_venue_chooses["venue_license"] = venue_info.venue_license
+#         user_venue_chooses["venue_capacity"] = venue_info.venue_capacity
+#         user_venue_chooses["venue_type"] = venue_info.venue_type
 
-        venue_info.venue_ranking = venue_score
 
-        db.session.commit()
+#         venue_score = get_ranking(user_venue_chooses , ranking_dict) 
+
+#         venue_info.venue_ranking = venue_score
+
+#         db.session.commit()
 
 
 
-    else:
+#     else:
 
-        user_show_chooses = {}
+#         user_show_chooses = {}
 
-        ranking_dict = show_ranking_dict
+#         ranking_dict = show_ranking_dict
 
-        show_info = Show.query.filter_by(show_id=type_id).first()
+#         show_info = Show.query.filter_by(show_id=type_id).first()
 
-        user_show_chooses["show_rent"] = show_info.show_rent
-        user_show_chooses["show_free_rent"] = show_info.show_free_rent
-        user_show_chooses["tickets"] = show_info.tickets
-        user_show_chooses["show_length"] = show_info.show_length
-        user_show_chooses["show_dressing_room"] = show_info.show_dressing_room
-        user_show_chooses["show_amount_people"] = show_info.show_amount_people
-        user_show_chooses["show_type"] = show_info.show_type
+#         user_show_chooses["show_rent"] = show_info.show_rent
+#         user_show_chooses["show_free_rent"] = show_info.show_free_rent
+#         user_show_chooses["tickets"] = show_info.tickets
+#         user_show_chooses["show_length"] = show_info.show_length
+#         user_show_chooses["show_dressing_room"] = show_info.show_dressing_room
+#         user_show_chooses["show_amount_people"] = show_info.show_amount_people
+#         user_show_chooses["show_type"] = show_info.show_type
 
-        show_score = get_ranking(user_show_chooses , ranking_dict) 
+#         show_score = get_ranking(user_show_chooses , ranking_dict) 
 
-        show_info.show_ranking = show_score
+#         show_info.show_ranking = show_score
 
-        db.session.commit()
+#         db.session.commit()
    
 
 
 
 
-def get_ranking(user_dict, big_dict):
+# def get_ranking(user_dict, big_dict):
 
-    overall_score = 0
+#     overall_score = 0
 
-    for (big_dict_key, big_dict_line) in big_dict.items():  
+#     for (big_dict_key, big_dict_line) in big_dict.items():  
 
-        user_value = user_dict[big_dict_key]
+#         user_value = user_dict[big_dict_key]
    
-        #because the key for both dict are the same (user_dict_key = big_dict_key) 
-        #The user_dict[big_dict_key] is the value from the user dict ("show_rent": 100)
+#         #because the key for both dict are the same (user_dict_key = big_dict_key) 
+#         #The user_dict[big_dict_key] is the value from the user dict ("show_rent": 100)
 
-        score_for_big_dict_line = get_ranking_for_criteria(user_value, big_dict_line) 
+#         score_for_big_dict_line = get_ranking_for_criteria(user_value, big_dict_line) 
 
-        overall_score += score_for_big_dict_line
+#         overall_score += score_for_big_dict_line
 
 
     
      
-    return overall_score
+#     return overall_score
 
 
 
-def get_ranking_for_criteria(user_value, big_dict_line):
+# def get_ranking_for_criteria(user_value, big_dict_line):
 
-    for key in big_dict_line: 
+#     for key in big_dict_line: 
 
-        if type(key) is tuple:
-            return get_range_value(user_value, big_dict_line)
+#         if type(key) is tuple:
+#             return get_range_value(user_value, big_dict_line)
            
-        elif type(key) is bool:         
-            return get_boolean_value(user_value, big_dict_line)
+#         elif type(key) is bool:         
+#             return get_boolean_value(user_value, big_dict_line)
                      
-        else:       
-            return get_string_value(user_value, big_dict_line)
+#         else:       
+#             return get_string_value(user_value, big_dict_line)
        
 
 
-def get_range_value(user_value, big_dict_line):
+# def get_range_value(user_value, big_dict_line):
 
 
-    for k1, k2 in big_dict_line:
-        if int(user_value) >= int(k1) and int(user_value) <= int(k2):    
-            tuple_val = (big_dict_line[k1, k2])
+#     for k1, k2 in big_dict_line:
+#         if int(user_value) >= int(k1) and int(user_value) <= int(k2):    
+#             tuple_val = (big_dict_line[k1, k2])
 
-            return tuple_val 
-
-
-def get_boolean_value(user_value, big_dict_line):
+#             return tuple_val 
 
 
-    return big_dict_line[user_value]
+# def get_boolean_value(user_value, big_dict_line):
+
+
+#     return big_dict_line[user_value]
 
 
 
-def get_string_value(user_value, big_dict_line):
+# def get_string_value(user_value, big_dict_line):
 
-        return big_dict_line[user_value]
+#         return big_dict_line[user_value]
 
  
 

@@ -77,8 +77,11 @@ class VenueRegisterForm extends React.Component {
 
       .then(res1 => res1.json())
       .then(res2 =>{
-      const VenueRegResponse = JSON.stringify(res2)
-      this.props.changePage("VenueUserPage", VenueRegResponse)   
+      const venueRegResponse = JSON.stringify(res2)
+
+
+      console.log(venueRegResponse)
+      // this.props.changePage("VenueUserPage", venueRegResponse)   
       
 
     })

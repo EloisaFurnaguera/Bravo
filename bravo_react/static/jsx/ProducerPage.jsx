@@ -83,40 +83,35 @@ render(){
            
 <div className ="container-fluid producer-page">
 
+<div>
+
+  <div>
+    <div className="text-nowrap big-letter-M-White"> 
+      Signed in as: 
+      <h1>{this.state.user_fname}</h1> 
+    </div>
+  </div>
 
 
-<div className="d-flex flex-row-reverse bd-highlight">
-
-      <div className="p-2 bd-highlight"> 
-            <a className="big-letter-M-White" href="#" onClick= {this.handleLogOut}>Log Out</a>
-      </div>
-
-
-      <div className="p-2 bd-highlight">
-           <a className="big-letter-M-White" 
-                           href="#" onClick= {(e) => this.handleUpdateUserInfo( e, 
-                                                                                this.state.user_id,
-                                                                                this.state.user_fname,
-                                                                                this.state.user_lname,
-                                                                                this.state.user_email 
-                                                                                                     )}>Account</a>
-      </div>
-
-
-      <div className="p-2 bd-highlight">
-            <a className="big-letter-M-White" href="#" onClick= {this.handleShowRegister}>Add Shows</a>
-      </div>
-
+  <div className="d-flex flex-row-reverse bd-highlight">
+        <div className="p-2 bd-highlight"> 
+              <a className="big-letter-M-White" href="#" onClick= {this.handleLogOut}>Log Out</a>
+        </div>
+        <div className="p-2 bd-highlight">
+             <a className="big-letter-M-White" 
+                             href="#" onClick= {(e) => this.handleUpdateUserInfo( e, 
+                                                                                  this.state.user_id,
+                                                                                  this.state.user_fname,
+                                                                                  this.state.user_lname,
+                                                                                  this.state.user_email 
+                                                                                                 )}>Account</a>
+        </div>
+        <div className="p-2 bd-highlight">
+          <a className="big-letter-M-White" href="#" onClick= {this.handleShowRegister}>Add Shows</a>
+        </div>
+  </div>
 
 </div>
-
-    <div>
-
-      <div className="text-nowrap big-letter-M-White"> Signed in as: <h1>{this.state.user_fname}</h1> </div>
-
- </div>
-
-
 
 
 
@@ -148,7 +143,7 @@ render(){
 
       </div>
     
-  </div>
+      </div>
 
 
   </div>
