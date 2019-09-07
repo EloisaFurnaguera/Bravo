@@ -3,7 +3,7 @@ class ShowPage extends React.Component {
     constructor(props) {
         super(props);
  
-        this.state = {monday: " ",
+        this.state = {monday: "",
                       tuesday: " ",
                       wednesday: " ",
                       thursday: " ",

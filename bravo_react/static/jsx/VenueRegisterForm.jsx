@@ -13,6 +13,7 @@ class VenueRegisterForm extends React.Component {
                       venue_license:" ",
                       venue_free_rent:" ",
                       venue_rent:" ",
+                      venue_type:" ",
 
                       monday:" ",
                       tuesday:" ",
@@ -81,9 +82,9 @@ class VenueRegisterForm extends React.Component {
 
 
       console.log(venueRegResponse)
-      // this.props.changePage("VenueUserPage", venueRegResponse)   
+      this.props.changePage("VenueUserPage", venueRegResponse)   
       
-
+      
     })
 
 
@@ -126,6 +127,7 @@ render(){
                venue_type <select value={this.state.venue_type} name="venue_type"
                          onChange={this.handleVenueInput}>
 
+                <option value=" ">FIX THIS</option>
                 <option value="bar">bar</option>
                 <option value="cafe">cafe</option>
                 <option value="hall">hall</option>

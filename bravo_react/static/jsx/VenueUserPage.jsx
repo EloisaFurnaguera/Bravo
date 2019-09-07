@@ -123,44 +123,167 @@ class VenueUserPage extends React.Component {
 
 
 
-    render(){
-        return(
+render(){
+  return(
 
-<div className ="producer-page">
-
-    <div className="container-fluid">
+<div className ="backgroud-vp">
 
 
-          <div className="d-flex flex-row-reverse bd-highlight">
-
-                 <div className="p-2 bd-highlight"> 
-                      <a className="big-letter-M-White" href="#" onClick= {this.handleLogOut}>Log Out</a>
-                </div>
 
 
-               <div className="p-2 bd-highlight">
-                      <a className="big-letter-M-White" href="#" onClick= {(e) => this.handleUpdateUserInfo( e, 
+    <div className="top-container-vp">
+
+
+        <div className="user-name-container-vp">
+             <div className="big-letter-M-White"> Signed in as: <h1>{this.state.user_fname}</h1> </div>
+              </div>
+
+
+           <div className="top-links-container-vp">
+
+              <div> <a className="big-letter-M-White" href="#" onClick= {this.handleVenueUpdate}>Edit Venue</a> 
+                  </div>
+
+                     <div><a className="big-letter-M-White" href="#" onClick= {(e) => this.handleUpdateUserInfo( e, 
                                                                                   this.state.user_id,
                                                                                   this.state.user_fname,
                                                                                   this.state.user_lname,
                                                                                   this.state.user_email )}>Account</a>
-              </div>
+                        </div>
+                            <div><a className="big-letter-M-White" href="#" onClick= {this.handleLogOut}>Log Out</a>
+                              </div>
+      
+          </div>
+
+    </div>
 
 
-              <div className="p-2 bd-highlight">
-                    <a className="big-letter-M-White" href="#" onClick= {this.handleVenueUpdate}>Update Venue</a>
-              </div>
 
-        </div>
-         
 
-     
-             <div className ="p-2 bd-highlight">
 
-                    <div className="text-nowrap big-letter-M-White"> Signed in as: <h1>{this.state.user_fname}</h1> </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div className ="text-container-vp">
+
+
+<div className ="text-mid-container-vp">
+
+
+
+
+{/*<table className ="info-table-vp">*/}
   
-            </div>
+    <th>Name:</th>
+    <td>{this.state.venue_name}</td>
  
+
+
+    <th>Website:</th>
+    <td>{this.state.venue_url}</td>
+
+
+  <tr>
+    <th>Email:</th>
+    <td>{this.state.venue_email}</td>
+  </tr>
+
+ <tr>
+    <th>Adddress:</th>
+    <td>{this.state.venue_address}</td>
+  </tr>
+
+  <tr>
+    <th>City:</th>
+    <td>{this.state.venue_city}</td>
+  </tr>
+
+  <tr>
+    <th>Backspace:</th>
+    <td>{this.state.venue_backspace}</td>
+  </tr>
+
+<tr>
+    <th>Capacity:</th>
+  <td>{this.state.venue_capacity}</td>
+  </tr>
+
+  <tr>
+    <th>Cabaret license:</th>
+    <td>{this.state.venue_license}</td>
+  </tr>
+
+  <tr>
+    <th>Renting for:</th>
+    <td>{this.state.venue_rent}</td>
+  </tr>
+
+
+
+
+
+{/*</table>*/}
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+                       
+
+                
+                
+
+                 
+                  
+
+                
+                    
+                   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/*          
+
 
 
 <div className ="line"> </div>
@@ -172,36 +295,53 @@ class VenueUserPage extends React.Component {
             </div>
 
 </div>
+*/}
 
 
-
-   <div className ="container-fluid">
-
+ 
+{/*<div className ="info-container-vp">
   
-      <div className ="row">
-        <div className ="col">
+      
+      <div className ="info-column-vp little-letter-info-vp">
 
-                 
-                    <p></p>
-                    <p>name: {this.state.venue_name}</p>
-                    <p>url: {this.state.venue_url}</p>
-                    <p>email: {this.state.venue_email}</p>
-                    <p>address: {this.state.venue_address}</p>
-                    <p>city: {this.state.venue_city}</p>
+          <p>Name: </p>
+          <p>Website: </p>              
+          <p>Email: </p>
+          <p>Adddress: </p>
+          <p>City:</p>
+          <p>Backspace:</p>
+          <p>Capacity: </p>
+          <p>Cabaret license: </p>
+          <p>Renting for: </p>
 
-                    <p>backspace: {this.state.venue_backspace}</p>
-                    <p>capacity: {this.state.venue_capacity}</p>
-                    <p>license: {this.state.venue_license}</p>
-                    <p>free rent: {this.state.venue_free_rent}</p>
-                    <p>rent: {this.state.venue_rent}</p>
-
-       </div>
       </div>
-    </div>
+*/}
+      
+
+  {/*     <div className ="info-column-vp big-letter-M-White-vp">
+
+                    <p>{this.state.venue_name}</p>       
+
+                    <p>{this.state.venue_url}</p>
+                
+
+                    <p>{this.state.venue_email}</p>
+                    <p>{this.state.venue_address}</p>
+                    <p>{this.state.venue_city}</p>
+
+                    <p>{this.state.venue_backspace}</p>
+                    <p>{this.state.venue_capacity}</p>
+                    <p>{this.state.venue_license}</p>
+                    <p>{this.state.venue_rent}</p>
+
+       </div>*/}
+   
+   
+  
 
 
 
-  <div className ="container-fluid">        
+{/*  <div className ="container-fluid">        
       <div className ="row">
           <div className ="col">
 
@@ -225,15 +365,14 @@ class VenueUserPage extends React.Component {
 
            </div>
     </div>
+*/}
+
+
 </div>
-
-
-
                
            
-                 
-  </div>
-</div>
+
+
  
           );       
     }

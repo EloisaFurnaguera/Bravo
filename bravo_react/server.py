@@ -44,12 +44,7 @@ venue_ranking_dict ={ "venue_rent": {(1, 100):1, (101, 300):2, (301, 500):3, (50
 def adding_ranking(user_type, type_id):
 
 
-    print("GGGGGGGGGG ")
 
-   
-
-
-     
     if user_type == "venue":
 
         user_venue_chooses = {}
@@ -57,11 +52,6 @@ def adding_ranking(user_type, type_id):
         ranking_dict = venue_ranking_dict
 
         venue_info = Venue.query.filter_by(venue_id=type_id).first()
-
-
-
-    
-
 
         user_venue_chooses["venue_rent"] = venue_info.venue_rent
         user_venue_chooses["venue_free_rent"] = venue_info.venue_free_rent
@@ -108,13 +98,6 @@ def adding_ranking(user_type, type_id):
 
 
 def get_ranking(user_dict, big_dict):
-
-
-    print("user_dict")
-    print(user_dict)
-    print("big_dict")
-    print(big_dict)
-
 
     overall_score = 0
 
@@ -429,27 +412,10 @@ def venue_page_process():
 
 
 
-        # print("new_venue")
-        # print(new_venue)
-
-        # print("new_venue.venue_id")
-        # print(new_venue.venue_id)
-
-
-
-        # print("venue.time_id")
-        # print(new_venue.time_id)
-
-
-
 
         venue_rarking = adding_ranking("venue", new_venue.venue_id)
 
-        print("venue_rarking")
-        print(venue_rarking)
-
-
-
+    
 
 
         return jsonify(time_id=new_time.time_id,
@@ -1022,9 +988,7 @@ def getting_match():
 
     type_id = request.json.get("type_id")
 
-    print ("TTTTTTT")
-    print (user_type)
-    print (type_id)
+
 
     # show_id = request.json.get("show_id")
 

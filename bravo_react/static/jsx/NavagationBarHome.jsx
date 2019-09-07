@@ -30,7 +30,7 @@ class NavagationBarHome extends React.Component {
 
     handleTrying(e) {
              e.preventDefault();
-      this.props.changePage("MatchPage")
+      this.props.changePage("VenueUserPage")
     }
 
 

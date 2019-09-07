@@ -83,15 +83,16 @@ color: white;
 
 
 .nav-link{
-    color: #FFAF00;
-    font-size: 150%;
+color: #f35050;
+font-size: 150%;
 
 }
 
 #home-text{
-color: #FFAF00;
+color: #f35050;
 text-align: left;
-font-size: 160%;
+font-size: 360%;
+margin-left: 40px
 }
 
 
@@ -231,12 +232,6 @@ font-size: 160%;
 
 
 
-.producer-page {
-  background: url("/static/img/patterns/spiration dark.png") no-repeat center center;
-  background-size: cover;
-  color: white;
-}
-
 
 
 .my-text{ 
@@ -256,7 +251,6 @@ font-size: 160%;
   background-size: cover;
   color: white;
 }
-
 
 
 .shows-page {
@@ -292,6 +286,140 @@ border: transparent 1px !important;
 .table th{
     border: transparent 1px !important;
 }
+
+
+
+/*--------------------------*/
+/*Venue Page (vp)*/
+
+
+.backgroud-vp {
+  background: url("/static/img/patterns/spiration dark.png") no-repeat center;
+  background-size: cover;
+  color: white;
+}
+
+
+.top-container-vp {
+  display: flex;
+  height: 150px;
+}
+
+
+
+
+.user-name-container-vp{
+  display: flex;
+  height: 150px;
+}
+
+
+
+
+.top-links-container-vp{
+  display: flex;
+  flex-direction: row-reverse;
+  margin-left: auto;
+  height: 150px;
+}
+
+
+
+
+
+.top-line-vp {
+  border: 1px solid white;
+}
+
+
+
+
+.text-container-vp{
+
+  display: flex;
+
+}
+
+
+
+.text-mid-container-vp{
+
+  display: flex;
+  flex-direction: column;
+  height: 300%;
+  border-radius: 25px;
+  box-shadow: 2px 4px 12px 2px #6c757d82, 0 6px 20px 0 #6c757d8c;
+
+  margin-left: 15%;
+  padding: 20px;        
+  background-image: linear-gradient(45deg, #1d212478, #41474cbd);
+  color: white;
+}
+
+
+
+.info-table-vp{
+
+  padding: 150px;
+}
+
+
+
+
+
+
+
+
+
+
+
+.info-container-vp {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+
+.info-column-vp {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+
+
+
+.form-line-vp {
+  border: 1px solid white;
+}
+
+
+.big-letter-M-White-vp{
+font-size: 130%;
+font-family: "Montserrat" sans-serif;
+color: white;
+}
+
+
+
+.big-letter-M-White-vp{
+font-size: 200%;
+font-family: "Montserrat" sans-serif;
+color: white;
+}
+
+
+
+.little-letter-info-vp{
+ justify-content: space-between;
+
+}
+
+
+
+
+
+
+
 
 
 
