@@ -29,7 +29,7 @@ class VenueUpdateForm extends React.Component {
    
 
     
-
+    this.handleUserHome = this.handleUserHome.bind(this);
     this.handleVenueUpdate = this.handleVenueUpdate.bind(this);
     this.handleVenueUpdateInput = this.handleVenueUpdateInput.bind(this);
     this.handleVenueUpdateSelect = this.handleVenueUpdateSelect.bind(this);
@@ -65,11 +65,16 @@ class VenueUpdateForm extends React.Component {
 
 
   handleLogOut(e) {
-             e.preventDefault();
+          e.preventDefault();
       this.props.changePage("LogOut")
     }
 
 
+   handleUserHome(e) {
+       e.preventDefault();
+      this.props.changePage("VenueUserPage")         
+
+    };
 
 
 
@@ -114,11 +119,32 @@ class VenueUpdateForm extends React.Component {
    
 
 
-      <div className="col-3">                      
-             <a className="big-letter-M-White" href="#" onClick= {this.handleLogOut}>Log Out</a>
-      </div>
+      <div className="d-flex flex-row-reverse bd-highlight">
 
-         
+            <div className="p-2 bd-highlight"> 
+                  <a className="big-letter-Lato" href="#" onClick= {this.handleLogOut}>Log Out</a>
+            </div>
+            <div className="p-2 bd-highlight"> 
+                  <a className="big-letter-Lato" href="#" onClick= {this.handleUserHome}>Home</a>
+
+
+
+
+
+
+
+            </div>        
+     </div>
+
+      
+
+    <div className="container col-md-8 .col-md-offset-3">
+  
+            <div className="big2-row-update"> </div>
+
+               <div className="mid-letter-uv">
+                Fill out the following information as completely as possible
+              </div>       
 
 
               
@@ -315,13 +341,13 @@ class VenueUpdateForm extends React.Component {
 
 
             <div className="row justify-content-center">
-            <button type="submit" className="btn btn-default">Submit</button>
+            <button type="submit" className="btn btn-default big-letter-Lato">Submit</button>
                 </div>
                   
 
               </form>           
      
-
+</div> 
 </div> 
   
 

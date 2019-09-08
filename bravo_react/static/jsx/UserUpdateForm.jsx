@@ -8,7 +8,10 @@ class UserUpdateForm extends React.Component {
                        email:" ",
                        password:" "}
                   
-       
+    
+
+    this.handleLogOut = this.handleLogOut.bind(this);
+    this.handleUserHome = this.handleUserHome.bind(this);
     this.handleUserUpdate = this.handleUserUpdate.bind(this);
     this.handleUserUpdateInput = this.handleUserUpdateInput.bind(this);
  
@@ -24,6 +27,28 @@ class UserUpdateForm extends React.Component {
 
       this.setState({ [name]: value });
     };
+
+
+
+
+  handleLogOut(e) {
+          e.preventDefault();
+      this.props.changePage("LogOut")
+    }
+
+
+  handleUserHome(e) {
+       e.preventDefault();
+
+    if (this.props.type === "venue"){
+           this.props.changePage("VenueUserPage")  
+    }
+
+    else{              
+      this.props.changePage("ProducerPage") 
+    }        
+
+  }
 
 
 
@@ -60,78 +85,100 @@ class UserUpdateForm extends React.Component {
 
 
 
-    render(){
-        return(
+render(){
+    return(
+
+
+
+
+<div className ="backgroud-up">
+
+
+<div className="top-container-vp">
+
+          <div className="user-name-container-vp">
+
+                <div className="nornal-letter-M-White-vp"> 
+                   <p className="little-letter-M-White-vp">Signed as: </p>
+                     <h1 className= "user-name-vp">{this.props.user_fname}</h1> 
+                   </div>
+          </div>   
+
+
+          <div className="top-links-container-vp">
+
+                  <div><a className="nornal-letter-M-White-vp" href="#" onClick= {this.handleLogOut}>Log Out</a>
+                      </div>
+
+
+                         <div><a className="nornal-letter-M-White-vp" href="#" onClick= {this.handleUserHome}>Home</a>
+                           </div>
+                   
+           </div>
+  </div>
 
 
 
 
 
 
-
- <div>
-    <NavagationBar changePage={this.props.changePage} />
+   
 
 
+   <div className="container col-md-8 .col-md-offset-3">
+  
+            <div className="big2-row-update"> </div>
+
+                  
 
 
 
-<div className ="producer-page">
-
-    <div className="container-fluid">
-
-    <div className="form_login">
 
             <form onSubmit= {this.handleUserUpdate}>
 
-       
-
                <div className="form-group">
-                        <input type="fname" name="fname" 
+               <label>First Name</label>  
+                        <input type="fname" className="form-up" name="fname" 
                                onChange={this.handleUserUpdateInput} placeholder= {this.props.user_fname} required />                                    
                </div>
 
 
-               <div className="form-group">        
-                        <input type="lname" name="lname" 
+
+               <div className="form-group">
+               <label>Last Name</label>        
+                        <input type="lname" className="form-up" className="form-up" name="lname" 
                              onChange={this.handleUserUpdateInput} placeholder={this.props.user_lname} required />                             
                 </div>
 
 
-                <div className="form-group">            
-                      <input type="email" name="email" 
+                <div className="form-group">
+                <label>Email</label>              
+                      <input type="email" className="form-up" name="email" 
                         onChange={this.handleUserUpdateInput} placeholder= {this.props.user_email} required />                       
                 </div> 
 
-
                 <div className="form-group"> 
-
-                        <input type="password" name="password" 
+                <label>New Password</label>  
+                        <input type="password" className="form-up" name="password" 
                              onChange={this.handleUserUpdateInput} placeholder="New password" required />   
 
                 </div>
 
      
                <div className="align-center_login"> 
-
-
                       <button type="submit" className="btn btn-default">Submit</button>
                 </div>
+          </form>
 
-
-            </form>
-
-         </div>
-     </div>
-   
     </div>
              
-</div>
+
+ </div>
 
 
 
-          );
+    );
           
-    }
+  }
 
 }

@@ -51,15 +51,16 @@ class VenueUserPage extends React.Component {
     }
 
 
-    handleVenueUpdate(e) {
+    handleVenueUpdate(e, id) {
       e.preventDefault();
-      this.props.changePage("VenueUpdateForm")
+      this.props.changePage("VenueUpdateForm", id)
     };
 
 
-     handleMatchPage(e , id, type) {
+     handleMatchPage(e , id, user_fname, type="venue") {
       e.preventDefault();
-      this.props.changePage("MatchPage", id, "venue")
+      this.props.changePageUserUpdate("MatchPage", id, type, user_fname)
+ 
     };
 
 
@@ -131,117 +132,137 @@ render(){
 
 
 
-    <div className="top-container-vp">
+<div className="top-container-vp">
+
+          <div className="user-name-container-vp">
+
+                <div className="nornal-letter-M-White-vp"> 
+                   <p className="little-letter-M-White-vp">Signed as: </p>
+                     <h1 className= "user-name-vp">{this.state.user_fname}</h1> 
+                   </div>
+          </div>   
 
 
-        <div className="user-name-container-vp">
-             <div className="big-letter-M-White"> Signed in as: <h1>{this.state.user_fname}</h1> </div>
-              </div>
+          <div className="top-links-container-vp">
+
+                  <div><a className="nornal-letter-M-White-vp" href="#" onClick= {this.handleLogOut}>Log Out</a>
+                      </div>
+
+                        <div><a className="nornal-letter-M-White-vp" href="#" onClick= {(e) => this.handleUpdateUserInfo( e, 
+                                                                                        this.state.user_id,
+                                                                                        this.state.user_fname,
+                                                                                        this.state.user_lname,
+                                                                                        this.state.user_email )}>Account</a>
+                           
+                          </div>
+
+                         <div><a className="nornal-letter-M-White-vp" href="#" onClick= {(e) => this.handleVenueUpdate( e, 
+                                                                                                                        this.state.venue_id,
+                                                                                                                        this.state.user_fname)}>Edit</a>
+                           </div>
+                   
+           </div>
+  </div>
 
 
-           <div className="top-links-container-vp">
 
-              <div> <a className="big-letter-M-White" href="#" onClick= {this.handleVenueUpdate}>Edit Venue</a> 
+
+
+
+ <div className="top-line-vp"></div>
+
+
+    <div className ="text-mid-container-vp">
+
+
+        <div className ="info-container-vp">
+          
+              
+              <div className ="info-column-vp little-letter-info-vp">
+                <div className="flex-vp">
+                    <p className = "p-vp">NAME: </p>
+                    <p className="p2-vp">{this.state.venue_name}</p>       
                   </div>
 
-                     <div><a className="big-letter-M-White" href="#" onClick= {(e) => this.handleUpdateUserInfo( e, 
-                                                                                  this.state.user_id,
-                                                                                  this.state.user_fname,
-                                                                                  this.state.user_lname,
-                                                                                  this.state.user_email )}>Account</a>
-                        </div>
-                            <div><a className="big-letter-M-White" href="#" onClick= {this.handleLogOut}>Log Out</a>
-                              </div>
-      
+                <div className="flex-vp">
+                    <p className = "p-vp">WEBSITE: </p>
+                    <p className="p2-vp">{this.state.venue_url}</p> 
+                  </div>
+
+                <div className="flex-vp">             
+                    <p className = "p-vp">EMAIL: </p>
+                    <p className="p2-vp">{this.state.venue_email}</p>
+                  </div>
+
+                <div className="flex-vp">
+                    <p className = "p-vp">ADDRESS: </p>
+                    <p className="p2-vp">{this.state.venue_address}</p>
+                  </div>
+
+                <div className="flex-vp">
+                    <p className = "p-vp">CITY:</p>
+                    <p className="p2-vp">{this.state.venue_city}</p>
+                  </div>
+
+                <div className="flex-vp">
+                    <p className = "p-vp">BACK SPACE:</p>
+                    <p className="p2-vp">{this.state.venue_backspace}</p>
+                  </div>
+
+                 <div className="flex-vp">
+                    <p className = "p-vp">CAPACITY: </p>
+                    <p className="p2-vp">{this.state.venue_capacity}</p>
+                  </div>
+
+                <div className="flex-vp">
+                    <p className = "p-vp">CABARET LICENSE: </p>
+                    <p className="p2-vp">{this.state.venue_license}</p>
+                  </div>
+
+                <div className="flex-vp">
+                    <p className = "p-vp">RENTING FOR: </p>                   
+                    <p className="p2-vp">${this.state.venue_rent}</p>
+                  </div>
+
           </div>
-
+       </div>
     </div>
 
+       
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div className ="text-container-vp">
-
-
-<div className ="text-mid-container-vp">
-
-
-
-
-{/*<table className ="info-table-vp">*/}
   
-    <th>Name:</th>
-    <td>{this.state.venue_name}</td>
- 
+<div className ="text-time-container-vp">
 
 
-    <th>Website:</th>
-    <td>{this.state.venue_url}</td>
+        <div className="time-little-letter-vp">
+                <p>MONDAY:</p> <p className="time-little2-letter-vp">{this.state.monday}</p>
+              </div>
 
+        <div className="time-little-letter-vp">
+                <p>TUESDAT:</p> <p className="time-little2-letter-vp">{this.state.tuesday}</p>
+              </div>
 
-  <tr>
-    <th>Email:</th>
-    <td>{this.state.venue_email}</td>
-  </tr>
+        <div className="time-little-letter-vp">
+                <p>WEDNESDAY:</p> <p className="time-little2-letter-vp">{this.state.wednesday}</p>
+              </div>
 
- <tr>
-    <th>Adddress:</th>
-    <td>{this.state.venue_address}</td>
-  </tr>
+        <div className="time-little-letter-vp">
+                <p>THURSDAY:</p> <p className="time-little2-letter-vp">{this.state.thursday}</p>
+              </div>
 
-  <tr>
-    <th>City:</th>
-    <td>{this.state.venue_city}</td>
-  </tr>
+        <div className="time-little-letter-vp">
+                <p>FRIDAY:</p> <p className="time-little2-letter-vp">{this.state.friday}</p>
+              </div>
 
-  <tr>
-    <th>Backspace:</th>
-    <td>{this.state.venue_backspace}</td>
-  </tr>
+        <div className="time-little-letter-vp">
+                <p>SATURDAY:</p> <p className="time-little2-letter-vp">{this.state.saturday}</p>
+              </div>
 
-<tr>
-    <th>Capacity:</th>
-  <td>{this.state.venue_capacity}</td>
-  </tr>
-
-  <tr>
-    <th>Cabaret license:</th>
-    <td>{this.state.venue_license}</td>
-  </tr>
-
-  <tr>
-    <th>Renting for:</th>
-    <td>{this.state.venue_rent}</td>
-  </tr>
-
-
-
-
-
-{/*</table>*/}
-
-
-</div>
-
+        <div className="time-little-letter-vp">
+                <p>SUNDAY:</p> <p className="time-little2-letter-vp">{this.state.sunday}</p>
+              </div>              
 
 </div>
 
@@ -250,131 +271,49 @@ render(){
 
 
 
-                       
-
-                
-                
-
-                 
-                  
-
-                
-                    
-                   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{/*          
-
-
-
-<div className ="line"> </div>
-
-
-<div className="d-flex flex-row-reverse bd-highlight">
-             <div className ="p-2 bd-highlight">
-             <a className="big-letter-M-White" href="#" onClick={(e) => this.handleMatchPage(e, this.state.venue_id)}>Match</a>
-            </div>
-
-</div>
-*/}
-
-
- 
-{/*<div className ="info-container-vp">
-  
-      
-      <div className ="info-column-vp little-letter-info-vp">
-
-          <p>Name: </p>
-          <p>Website: </p>              
-          <p>Email: </p>
-          <p>Adddress: </p>
-          <p>City:</p>
-          <p>Backspace:</p>
-          <p>Capacity: </p>
-          <p>Cabaret license: </p>
-          <p>Renting for: </p>
-
-      </div>
-*/}
-      
-
-  {/*     <div className ="info-column-vp big-letter-M-White-vp">
-
-                    <p>{this.state.venue_name}</p>       
-
-                    <p>{this.state.venue_url}</p>
-                
-
-                    <p>{this.state.venue_email}</p>
-                    <p>{this.state.venue_address}</p>
-                    <p>{this.state.venue_city}</p>
-
-                    <p>{this.state.venue_backspace}</p>
-                    <p>{this.state.venue_capacity}</p>
-                    <p>{this.state.venue_license}</p>
-                    <p>{this.state.venue_rent}</p>
-
-       </div>*/}
+<div className ="text-time2-container-vp">
    
-   
-  
-
-
-
-{/*  <div className ="container-fluid">        
-      <div className ="row">
-          <div className ="col">
-
-                    <ul>
-
-                        <li>monday: {this.state.monday}</li>
-                        <li>tuesday: {this.state.tuesday}</li>
-                        <li>wednesday: {this.state.wednesday}</li>
-                        <li>thursday: {this.state.thursday}</li>
-                        <li>friday: {this.state.friday}</li>
-                        <li>saturday: {this.state.saturday}</li>
-                        <li>sunday: {this.state.sunday}</li>
-                        <li>morning: {this.state.morning}</li>
-                        <li>late_morning: {this.state.late_morning}</li>
-                        <li>early_night: {this.state.early_night}</li>
-                        <li>late_night: {this.state.late_night}</li>
-
-
-                    </ul>
-                 
-
+       <div className="time-little-letter-vp">    
+           <p>MORNING:</p> <p className="time-little2-letter-vp">{this.state.morning}</p>
            </div>
-    </div>
-*/}
 
+        <div className="time-little-letter-vp">  
+           <p>LATE MORNING:</p> <p className="time-little2-letter-vp">{this.state.late_morning}</p>
+           </div>
 
+        <div className="time-little-letter-vp">  
+           <p>EARLY NIGHT:</p> <p className="time-little2-letter-vp">{this.state.early_night}</p>
+           </div>
+
+        <div className="time-little-letter-vp">  
+           <p>LATE NIGHT:</p> <p className="time-little2-letter-vp">{this.state.late_night}</p>
+           </div>
+        
 </div>
+
+
+
+
+
+
+<div className ="button-vp">
+             
+      <a className="big-letter-M-White" 
+             href="#" onClick={(e) => this.handleMatchPage(e, this.state.venue_id, this.state.user_fname)}>Find
+             Matches</a>
+          
+   </div>
+
+
+
+
+
+
+
+ </div>
                
-           
-
-
  
-          );       
+       );       
     }
 
 }
