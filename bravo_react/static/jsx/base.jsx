@@ -110,7 +110,7 @@ render(){
                                changePageUserUpdate={this.changePageUserUpdate} 
                                id={this.state.id} 
                                type={this.state.type} 
-                               user_fname={this.state.user_fname} />,
+                              user_fname={this.state.user_fname} />,
          
          LogOut: <LogOut changePage={this.changePage} name={this.state} />,
          LogIn: <LogIn changePage={this.changePage} name={this.state} />,

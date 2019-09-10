@@ -704,7 +704,6 @@ def new_show_page_process():
                     show_dressing_room=show_dressing_room,
                     show_length=show_length,
                     show_ticket_price=show_ticket_price,
-                    time_id=new_time.time_id,
                     show_rent=show_rent,
                     show_id=new_show.show_id,
                  
@@ -763,7 +762,6 @@ def single_show_info():
                     show_dressing_room=show_info.show_dressing_room,
                     show_length=show_info.show_length,
                     show_ticket_price=show_info.show_ticket_price,
-                    time_id=show_info.time_id,
                     show_rent=show_info.show_rent,
                                     
                     berkeley=show_location.berkeley,
@@ -792,11 +790,15 @@ def process_update_show_info():
 
     update_show_info = Show.query.filter_by(show_id=show_id).first()
 
+
+
     update_show_time = Time.query.filter_by(time_id=update_show_info.time_id).first()
+
+
 
     update_show_location = Location.query.filter_by(location_id=update_show_info.location_id).first()
 
- 
+
 
     monday = request.json.get("monday")
     tuesday = request.json.get("tuesday")
@@ -883,6 +885,8 @@ def process_update_show_info():
 
     db.session.commit()
 
+    
+
 
     return jsonify(monday=monday,
                     tuesday=tuesday,
@@ -906,7 +910,7 @@ def process_update_show_info():
                     show_rent=show_rent,
                              
                     berkeley=berkeley,
-                    burlingame=surlingame,
+                    burlingame=burlingame,
                     daly_city=daly_city,
                     dublin=dublin,
                     emeryville=emeryville,

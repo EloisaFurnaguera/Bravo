@@ -144,7 +144,6 @@ class ShowPage extends React.Component {
                       show_dressing_room: showPageResponse.show_dressing_room,
                       show_length: showPageResponse.show_length,
                       show_ticket_price: showPageResponse.show_ticket_price,
-                      time_id: showPageResponse.time_id,
                       show_rent: showPageResponse.show_rent,
                          
                       berkeley: showPageResponse.berkeley,

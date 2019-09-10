@@ -16,16 +16,16 @@ class ShowUdateForm extends React.Component {
                       early_night:"No",
                       late_night:"No",
                      
-                      show_name:"",
-                      show_type:"",
-                      show_url:"",
-                      show_amount_people:"",
-                      show_dressing_room:"",
-                      show_length:"",
-                      show_ticket_price:"",
-                      time_id:"",
-                      show_rent:"",
-                      show_free_rent:"",
+                      show_name:this.props.show_name,
+                      show_type:this.props.show_type,
+                      show_url:this.props.show_url,
+                      show_amount_people:this.props.show_amount_people,
+                      show_dressing_room:this.props.show_dressing_room,
+                      show_length:this.props.show_length,
+                      show_ticket_price:this.props.show_ticket_price,
+                      show_rent:this.props.show_rent,
+                      show_free_rent:this.props.show_free_rent,
+                      show_id:this.props.show_id,
 
                       berkeley:"No",
                       burlingame:"No",
@@ -100,14 +100,16 @@ class ShowUdateForm extends React.Component {
       headers:{'Content-Type': 'application/json'} 
         })
 
-
+      
       .then(res1 => res1.json())
       .then(res2 =>{
-      const ShowUpdateResponse = JSON.stringify(res2)
-      this.props.changePage("ShowPage", showUpdateResponse) 
-      console.log('Success:', JSON.stringify(showUpdateResponse))   
+      const showUpdateResponse = JSON.stringify(res2)
+      this.props.changePageShowUpdate("ProducerPage", showUpdateResponse) 
       
 
+      console.log('Success:')   
+      
+  
     })
 
 
@@ -163,10 +165,10 @@ render(){
         <div className="form-group">
             <label >Type of Show</label>
                 <select className="form-control" value={this.state.show_type} name="show_type"
-                                                  onChange={this.handleShowInput} 
-                                                  placeholder={this.props.show_type} required >
+                                                  onChange={this.handleShowInput} required >
+                                                  
                       
-                      <option value="" disabled ></option>
+                      <option value={this.props.show_type}>{this.props.show_type}</option>
                       <option value="Burlesque">Burlesque</option>
                       <option value="Improv">Improv</option>
                       <option value="Music">Music</option>
@@ -235,18 +237,21 @@ render(){
 
     <div className="form-group">
       <label>How many performers are in the show</label>
-         <input type="number" min="1" className="form-control" name="show_amount_people"  value={this.state.show_amount_people} 
-                               onChange={this.handleShowInput} placeholder={this.props.show_amount_people}  required />         
-           </div>
+         <input type="number" min="1" className="form-control" name="show_amount_people"  
+                                                               value={this.state.show_amount_people} 
+                                                               onChange={this.handleShowInput} 
+                                                               placeholder={this.props.show_amount_people} required />         
+            </div>
 
 
     <div className="form-group">
        <label >Do you need a dressing room</label>
            <select className="form-control form-control" value={this.state.show_dressing_room} 
                                                          name="show_dressing_room" 
-                                                         onChange={this.handleShowInput} 
-                                                        placeholder={this.props.show_dressing_room}>
-                    <option value="" disabled ></option>
+                                                         onChange={this.handleShowInput} required > 
+                                                         
+
+                    <option value={this.props.show_dressing_room}>{this.props.show_dressing_room}</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>           
                 </select>
@@ -256,9 +261,12 @@ render(){
 
     <div className="form-group">
         <label >How long is the show</label>
-                <select className="form-control" value={this.state.show_length} name="show_length"
-                                                    onChange={this.handleShowInput}>
+                <select className="form-control" value={this.state.show_length} 
+                                                 name="show_length"
+                                                    onChange={this.handleShowInput} required >
+                                                    
 
+                      <option value={this.props.show_dressing_room}>{this.props.show_dressing_room}</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
@@ -335,7 +343,7 @@ render(){
               <select className="form-control" value={this.state.show_ticket_price} name="show_ticket_price"
                                                     onChange={this.handleShowInput} required >
 
-                      <option value="" disabled ></option>
+                      <option value={this.props.show_ticket_price}>{this.props.show_ticket_price}</option>
                       <option value="0">Free</option>>
                       <option value="5">From $1 to $10</option>
                       <option value="15">From $11 to $20</option>
@@ -354,9 +362,10 @@ render(){
       <div className="form-group">
           <label >How much are you looking to pay for rent?</label>
               <select className="form-control" value={this.state.show_rent} name="show_rent"
-                                                    onChange={this.handleShowInput} required >
+                                                onChange={this.handleShowInput} 
+                                                placeholder={this.props.show_rent} required >
 
-                      <option value="" disabled ></option>
+                      <option value={this.props.show_rent}>{this.props.show_rent}</option>
                       <option value="0">Free</option>>
                       <option value="40">From $10 to $40</option>
                       <option value="100">From $50 to $100</option>
@@ -379,7 +388,7 @@ render(){
       <div className="form-group">
             <label>Website</label>
                <input type="text" className="form-control" name="show_url" value={this.state.show_url} 
-                                 onChange={this.handleShowInput} placeholder={this.props.show_url}  />         
+                                 onChange={this.handleShowInput} placeholder={this.props.show_url} />         
                 </div>
 
 

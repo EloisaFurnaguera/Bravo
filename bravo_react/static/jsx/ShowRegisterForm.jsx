@@ -35,7 +35,6 @@ class ShowRegisterForm extends React.Component {
                       show_dressing_room:"",
                       show_length:"",
                       show_ticket_price:"",
-                      time_id:"",
                       show_rent:"",
                       show_free_rent:""}; 
 
@@ -109,7 +108,6 @@ class ShowRegisterForm extends React.Component {
 }
 
         
-
 
 
 
@@ -244,7 +242,7 @@ render(){
       <div className="form-group">
             <label >How long is the show</label>
                 <select className="form-control" value={this.state.show_length} 
-                                                 name="show_length" onChange={this.handleShowInput}>   
+                                                 name="show_length" onChange={this.handleShowInput} required >   
 
                       <option value="" disabled ></option>
                       <option value="1">1 hour</option>
