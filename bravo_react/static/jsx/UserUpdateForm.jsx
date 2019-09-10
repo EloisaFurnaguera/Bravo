@@ -96,25 +96,23 @@ render(){
 
 <div className="top-container-vp">
 
-          <div className="user-name-container-vp">
-
-                <div className="nornal-letter-M-White-vp"> 
-                   <p className="little-letter-M-White-vp">Signed as: </p>
-                     <h1 className= "user-name-vp">{this.props.user_fname}</h1> 
+      <div className="user-name-container-vp">
+            <div className="nornal-letter-M-White-vp"> 
+                <p className="little-letter-M-White-vp">Signed as: </p>
+                  <h1 className= "user-name-vp">{this.props.user_fname}</h1> 
                    </div>
-          </div>   
+                       </div>   
 
 
-          <div className="top-links-container-vp">
+  <div className="top-links-container-vp">
 
-                  <div><a className="nornal-letter-M-White-vp" href="#" onClick= {this.handleLogOut}>Log Out</a>
-                      </div>
+        <div><a className="nornal-letter-M-White-vp" href="#" onClick= {this.handleLogOut}>Log Out</a>
+          </div>
 
 
-                         <div><a className="nornal-letter-M-White-vp" href="#" onClick= {this.handleUserHome}>Home</a>
-                           </div>
-                   
-           </div>
+        <div><a className="nornal-letter-M-White-vp" href="#" onClick= {this.handleUserHome}>Home</a>
+            </div>                   
+               </div>
   </div>
 
 
@@ -134,7 +132,7 @@ render(){
 
 
 
-            <form onSubmit= {this.handleUserUpdate}>
+            <form className="form2-up" onSubmit= {this.handleUserUpdate}>
 
                <div className="form-group">
                <label>First Name</label>  

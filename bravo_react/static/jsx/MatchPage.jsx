@@ -33,7 +33,7 @@ handlePage(e , id, type) {
    }
 
    else{
-    is.props.changePage("VenueUserPage", id, "venue")
+    this.props.changePage("VenueUserPage", id, "venue")
 
    }
     
@@ -123,66 +123,33 @@ render() {
 
  <div className="top-line-m"></div>
 
-
     <div className ="text-mid-container-m">
-
 
         <div className ="info-container-m">
 
 
+<div className ="ind-info-container-m">
+        <div>
+          <h1 className= "nornal-letter-M-White-m">MATCHES</h1> 
+            </div>
 
 
-
-           <div>
-                 <h1 className= "nornal-letter-M-White-m">MATCHES</h1>              
-              <div>
-              {this.state.matched_list.map(match =>
+        <div className="nornal3-letter-M-White-m">
+            {this.state.matched_list.map(match =>
                 <div key={match.id}> 
-                    <a className="nornal-letter-M-White-m" href="#" onClick={(e) => this.handlePage(e, match.id, match.type)}>{match.name}, {match.type}, {match.id}</a>
+                  <a href="#" onClick={(e) => this.handlePage
+                                                (e, match.id, match.type)}>{match.name},{match.type}, {match.id}</a>
                 </div>)}
-              <div>
-          </div>
+            </div>
+    </div>
 
 
 
 
 
-
-
-
-
-
-
-
-
+     </div>
+  </div>
 </div>
-</div>
-
-</div>
-
-
-
-
-
-
-
-/*
-           <div>
-                 <h1 className= "text-center">matches</h1>              
-
-              {this.state.matched_list.map(match =>
-                <div key={match.id}> 
-                    <a className="big-letter-Lato" href="#" onClick={(e) => this.handlePage(e, match.id, match.type)}>{match.name}, {match.type}, {match.id}</a>
-                </div>)}
-          </div>
-*/
-
-
-
-
-
-
-
 
 
 

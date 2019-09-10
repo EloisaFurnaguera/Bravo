@@ -30,7 +30,7 @@ class NavagationBarHome extends React.Component {
 
     handleTrying(e) {
              e.preventDefault();
-      this.props.changePage("VenueUserPage")
+      this.props.changePage("ProducerPage")
     }
 
 
@@ -57,19 +57,24 @@ class NavagationBarHome extends React.Component {
 
               <ul className="nav">
                
+
+
+
+                  <li className="nav-item">
+                      <a className="nav-link" href="#" onClick= {this.handleTrying}>trying</a>
+                  </li>
+               
               
                   <li className="nav-item">
                       <a className="nav-link" href="#" onClick= {this.handleLogIn}>Login</a>
                   </li>
                   <li className="nav-item">
-                      <a className="nav-link" href="#" onClick= {this.handleSingIn}>Sign in</a>
+                      <a className="nav-link" href="#" onClick= {this.handleSingIn}>Sign up</a>
                   </li>
 
 
 
-                   <li className="nav-item">
-                      <a className="nav-link" href="#" onClick= {this.handleTrying}>trying</a>
-                  </li>
+
                
                
             </ul>

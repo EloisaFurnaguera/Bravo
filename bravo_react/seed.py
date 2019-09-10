@@ -71,19 +71,18 @@ def load_locations(file_user):
     for row in (open(file_user)):
         row = row.strip()
 
-        anywhere, location_1, location_2, location_3, location_4, location_5, location_6, location_7, location_8, location_9, location_10 = row.split(",")
+        berkeley, burlingame, daly_city, dublin, emeryville, palo_alto, san_francisco, san_jose, santa_clara, sunnyvale = row.split(",")
 
-        new_location = Location(anywhere=anywhere,
-                                location_1=location_1,
-                                location_2=location_2,
-                                location_3=location_3,
-                                location_4=location_4,
-                                location_5=location_5,
-                                location_6=location_6,
-                                location_7=location_7,
-                                location_8=location_8,
-                                location_9=location_9,
-                                location_10=location_10)
+        new_location = Location(berkeley=berkeley,
+                                burlingame=burlingame,
+                                daly_city=daly_city,
+                                dublin=dublin,
+                                emeryville=emeryville,
+                                palo_alto=palo_alto,
+                                san_francisco=san_francisco,
+                                san_jose=san_jose,
+                                santa_clara=santa_clara,
+                                sunnyvale=sunnyvale)
                
         db.session.add(new_location)
         db.session.commit()
@@ -97,7 +96,7 @@ def load_shows(file_user):
     for row in (open(file_user)):
         row = row.strip()
 
-        user_id, show_name, show_type, show_url, show_amount_people, show_dressing_room, show_length, location_id, time_id, show_ticket_price, show_rent, show_free_rent, show_ranking  = row.split(",")
+        user_id, show_name, show_type, show_url, show_amount_people, show_dressing_room, show_length, location_id, time_id, show_ticket_price, show_rent, show_ranking  = row.split(",")
 
      
          # IF YOU ADD THE ACT PREFERRED: ADD THE show_venue_preferred TO THE UMPAKING
@@ -109,12 +108,10 @@ def load_shows(file_user):
                         show_amount_people=show_amount_people,
                         show_dressing_room=show_dressing_room,
                         show_length=show_length,
-                        # show_venue_preferred=show_venue_preferred,
                         location_id=location_id,
                         time_id=time_id,
                         show_ticket_price=show_ticket_price, 
                         show_rent=show_rent,
-                        show_free_rent=show_free_rent,
                         show_ranking=show_ranking)
                            
         db.session.add(new_show)

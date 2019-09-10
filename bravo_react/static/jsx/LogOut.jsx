@@ -9,46 +9,33 @@ class LogOut extends React.Component {
 
 
 
+  componentDidMount() {
 
+    fetch("/logout", 
+    {method: "POST",
+    body: JSON.stringify("1"),
+    headers:{"Content-Type": "application/json"}    
+              })
 
-    componentDidMount() {
+    .then(res1 => res1.json())
+    .then(res2 =>{
+    console.log("Success: LogOut");
 
-        fetch("/logout", 
-        {method: "POST",
-        body: JSON.stringify("1"),
-        headers:{"Content-Type": "application/json"}    
-                  })
-
-              .then(res1 => res1.json())
-              .then(res2 =>{
-              console.log("Success:", JSON.stringify(res2));
-
-             })
-
-          }
+  })
+}
 
 
 
 
+        
 
+render(){
+  return(
 
-
-
-
-
-
-
-    render(){
-        return(
-
-             <div>
-
-             <h1>BYE</h1>
-
+    <div>
+        <BravoApp changePage={this.props.changePage} />
             </div>
-
-          );
-          
-    }
-
+ 
+  );          
+ }
 }

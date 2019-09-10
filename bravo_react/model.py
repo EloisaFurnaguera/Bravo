@@ -21,7 +21,7 @@ class User(db.Model):
     user_email = db.Column(db.String(100), nullable=False)
     user_fname = db.Column(db.String(64), nullable=False)
     user_lname = db.Column(db.String(64), nullable=False)
-    user_type = db.Column(db.String(64), nullable=False)
+    user_type = db.Column(db.String(10), nullable=False)
 
 
 
@@ -52,18 +52,17 @@ class Location(db.Model):
 
     __tablename__ = "locations"
 
-    location_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    anywhere = db.Column(db.String(20))
-    location_1 = db.Column(db.String(20))
-    location_2 = db.Column(db.String(20))
-    location_3 = db.Column(db.String(20))
-    location_4 = db.Column(db.String(20))
-    location_5 = db.Column(db.String(20))
-    location_6 = db.Column(db.String(20))
-    location_7 = db.Column(db.String(20))
-    location_8 = db.Column(db.String(20))
-    location_9 = db.Column(db.String(20))
-    location_10 = db.Column(db.String(20))
+    location_id = db.Column(db.Integer, autoincrement=True, primary_key=True)  
+    berkeley = db.Column(db.String(20))
+    burlingame = db.Column(db.String(20))
+    daly_city = db.Column(db.String(20))
+    dublin = db.Column(db.String(20))
+    emeryville = db.Column(db.String(20))
+    palo_alto = db.Column(db.String(20))
+    san_francisco = db.Column(db.String(20))
+    san_jose = db.Column(db.String(20))
+    santa_clara = db.Column(db.String(20))
+    sunnyvale = db.Column(db.String(20))
    
     
 
@@ -83,14 +82,11 @@ class Venue(db.Model):
     venue_city = db.Column(db.String(100))
     venue_type = db.Column(db.String(100))
     venue_backspace = db.Column(db.String(200))
-    venue_capacity = db.Column(db.String(100))
+    venue_capacity = db.Column(db.String(50))
     venue_license = db.Column(db.String(100))
-    # I AM NOT I SHOULD ASK THE VENUE WHAT KIND OF ACT THEY WANT
-    # act_id = db.Column(db.Integer, db.ForeignKey('acts.act_id'))
-    # venue_show_preferred = db.Column(db.String(100))
     time_id = db.Column(db.Integer, db.ForeignKey('times.time_id'))
-    venue_free_rent = db.Column(db.String(200))
-    venue_rent = db.Column(db.String(200))
+    venue_free_rent = db.Column(db.String(50))
+    venue_rent = db.Column(db.String(20))
     venue_ranking = db.Column(db.Integer)
    
 
@@ -107,16 +103,13 @@ class Show(db.Model):
     show_name = db.Column(db.String(100))
     show_type = db.Column(db.String(100))
     show_url = db.Column(db.String(200))
-    show_amount_people = db.Column(db.String(200))
+    show_amount_people = db.Column(db.Integer)
     show_dressing_room = db.Column(db.String(200))
     show_length = db.Column(db.String(200))
-    # I AM NOT  I SHOULD ASK THE SHOW WHAT KIND OF VENUE THEY WANT
-    # show_venue_preferred = db.Column(db.String(200))
     location_id = db.Column(db.Integer, db.ForeignKey('locations.location_id'))
     time_id = db.Column(db.Integer, db.ForeignKey('times.time_id'))
-    show_ticket_price = db.Column(db.String(200))
-    show_rent = db.Column(db.String(200))
-    show_free_rent = db.Column(db.String(200))
+    show_ticket_price = db.Column(db.String(50))
+    show_rent = db.Column(db.String(20))
     show_ranking = db.Column(db.Integer)
 
 
@@ -135,31 +128,6 @@ class City(db.Model):
     county = db.Column(db.String(100))
 
 
-
-
-
-
-#///////////////////////////////////////////////////////////
-
-#I AM NOT SURE I AM GOING TO USE THIS
-
-# NOT SURE I AM GOING TO USE THIS 
-# class Act(db.Model):
-#     """Shows type od show table"""
-
-#     __tablename__ = "acts"
-
-#     act_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-#     show_id = db.Column(db.Integer, db.ForeignKey('shows.show_id')) 
-#     venue_id = db.Column(db.Integer, db.ForeignKey('venues.venue_id'))
-#     stand_up = db.Column(db.String(20))
-#     burlesque = db.Column(db.String(20))
-#     improv = db.Column(db.String(20))
-#     music = db.Column(db.String(20))
-#     sketch = db.Column(db.String(20))
-#     dj = db.Column(db.String(20))
-#     spoken_word = db.Column(db.String(20))
-    
 
 
 
