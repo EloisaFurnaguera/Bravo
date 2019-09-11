@@ -1,9 +1,9 @@
-class ShowPage extends React.Component {
+class ShowPageForVenue extends React.Component {
 
     constructor(props) {
         super(props);
  
-        this.state = {user_fname:this.prpos.user_fname,
+        this.state = {user_fname:"",
                       monday:"No",
                       tuesday:"No",
                       wednesday:"No",
@@ -43,73 +43,24 @@ class ShowPage extends React.Component {
 
 
       this.handleLogOut = this.handleLogOut.bind(this)
-      this.handleShowUpdate = this.handleShowUpdate.bind(this);
-      this.handleMatchPage = this.handleMatchPage.bind(this); 
-      this.handleProducerPage = this.handleProducerPage.bind(this)                   
+      this.handleHomePage = this.handleHomePage.bind(this);
+                 
    
 }
   
 
 
   handleLogOut(e) {
-             e.preventDefault();
+          e.preventDefault();
       this.props.changePage("LogOut")
     }
 
 
-   handleShowUpdate(e,  
-                    id,
-                    type="show",
-                    user_fname,
-                    user_lname,
-                    user_email,
 
-                    show_id,
-                    show_name,
-                    show_type,
-                    show_url,
-                    show_amount_people,
-                    show_dressing_room,
-                    show_length,
-                    show_ticket_price,
-                    show_rent)
-   {
+
+  handleHomePage(e) {
       e.preventDefault();
-    this.props.changePageShowUpdate("ShowUdateForm", 
-                                      id,
-                                      type,
-                                      user_fname,
-                                      user_lname,
-                                      user_email,
-
-                                      show_id,
-                                      show_name,
-                                      show_type,
-                                      show_url,
-                                      show_amount_people,
-                                      show_dressing_room,
-                                      show_length,
-                                      show_ticket_price,
-                                      show_rent)
-                            
-   }   
-
-
-    handleMatchPage(e , id, type, user_fname) {
-      e.preventDefault();
-      
-      
-
-      this.props.changePage("MatchPage", id, "show", user_fname)
-    };
-
-
-
-
-
-    handleProducerPage(e) {
-      e.preventDefault();
-      this.props.changePage("ProducerPage")
+      this.props.changePage("VenueUserPage")
     }
 
 
@@ -161,7 +112,8 @@ class ShowPage extends React.Component {
       
       
       
-  })
+      })
+      
 
 }
   
@@ -192,33 +144,32 @@ render(){
 
           <div className="top-links-container-sp">
 
-                  <div><a className="little-letter-M-White-sp" 
-                           href="#" onClick= {this.handleLogOut}>Log Out</a>
-                            </div>
+                  <div><a className="little-letter-M-White-sp" href="#" onClick= {this.handleLogOut}>Log Out</a>
+                      </div>
 
-                      <div><a className="little-letter-M-White-sp" href="#" 
-                                       onClick= {(e) => this.handleShowUpdate( e, 
-                                                                            this.state.show_id,
-                                                                            this.state.type,
-                                                                            this.state.user_fname,
-                                                                            this.state.user_lname,
-                                                                            this.state.user_email,
+    {/*                      <div><a className="little-letter-M-White-sp" 
+                                   href="#" onClick= {(e) => this.handleShowUpdate( e, 
+                                                                                  this.state.show_id,
+                                                                                  this.state.type,
 
-                                                                            this.state.show_id,
-                                                                            this.state.show_name,
-                                                                            this.state.show_type,
-                                                                            this.state.show_url,
-                                                                            this.state.show_amount_people,
-                                                                            this.state.show_dressing_room,
-                                                                            this.state.show_length,
-                                                                            this.state.show_ticket_price,
-                                                                            this.state.show_rent)}>Edit</a>
+                                                                                  this.state.user_fname,
+                                                                                  this.state.user_lname,
+                                                                                  this.state.user_email,
 
-                           </div>
+                                                                                  this.state.show_id,
+                                                                                  this.state.show_name,
+                                                                                  this.state.show_type,
+                                                                                  this.state.show_url,
+                                                                                  this.state.show_amount_people,
+                                                                                  this.state.show_dressing_room,
+                                                                                  this.state.show_length,
+                                                                                  this.state.show_ticket_price,
+                                                                                  this.state.show_rent)}>Edit</a>
 
-                               <div><a className="little-letter-M-White-sp" 
-                                               href="#" onClick= {this.handleProducerPage}>Home</a>
-                                  </div>
+                           </div>*/}
+
+                        <div><a className="little-letter-M-White-sp" href="#" onClick= {this.handleHomePage}>Home</a>
+                          </div>
 
                            
                    
@@ -226,7 +177,12 @@ render(){
   </div>
 
 
+
 <div className="top-line-sp"></div>
+
+
+
+
 
 
 
@@ -236,7 +192,8 @@ render(){
 <h2 className= "text-center nornal4-letter-M-White-pp">Show Info</h2> 
   <div className ="info-container-sp">
 
- 
+
+          
               
               <div className ="info-column-sp little-letter-info-sp">
                 <div className="flex-sp">
@@ -356,25 +313,25 @@ render(){
 
    <div className="in-sp">
        <div className="time-little-letter-sp">    
-           <p >Morning:</p> <p className="time-little2-letter-sp">{this.state.morning}</p>
-           </div>
+           <p>Morning:</p> 
+           <p className="time-little2-letter-sp">{this.state.morning}</p>
+        </div>
 
-     
         <div className="time-little-letter-sp">  
-           <p >Late morning:</p> <p className="time-little2-letter-sp">{this.state.late_morning}</p>
-           </div>
+           <p >Late morning:</p> 
+           <p className="time-little2-letter-sp">{this.state.late_morning}</p>
+        </div>
            
-    
         <div className="time-little-letter-sp">  
-           <p >Early night:</p> <p className="time-little2-letter-sp">{this.state.early_night}</p>
-           </div>
+           <p>Early night:</p> 
+           <p className="time-little2-letter-sp">{this.state.early_night}</p>
+        </div>
            
-     
         <div className="time-little-letter-sp">  
-           <p >Late night:</p> <p className="time-little2-letter-sp">{this.state.late_night}</p>
-           </div>
-        
-</div>
+           <p>Late night:</p> 
+           <p className="time-little2-letter-sp">{this.state.late_night}</p>
+        </div>
+    </div>
 </div>
 
 
@@ -447,20 +404,39 @@ render(){
 
 
 
-
+{/*
 <div className ="button-vp">
              
       <a className="big-letter-M-White-sp" 
-             href="#" onClick={(e) => this.handleMatchPage(e, this.state.show_id, type, this.props.user_fname)}>Find
+             href="#" onClick={(e) => this.handleMatchPage(e, this.state.show_id, this.props.user_fname)}>Find
              Matches</a>
           
-   </div>
+   </div>*/}
 
 
 
 
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

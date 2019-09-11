@@ -23,17 +23,18 @@ class MatchPage extends React.Component {
 
 
 
-handlePage(e , id, type) {
+handlePage(e , id, type, user_fname) {
      e.preventDefault();
 
 
    if (type === "show"){
-    this.props.changePage("ShowPage", id, "show")
+    this.props.changePage("ShowPageForVenue", id, "show", user_fname)
 
    }
 
    else{
-    this.props.changePage("VenueUserPage", id, "venue")
+
+    this.props.changePage("VenueUserForProducer", id, "venue", user_fname)
 
    }
     
@@ -47,6 +48,7 @@ handlePage(e , id, type) {
        e.preventDefault();
 
     if (this.props.type === "venue"){
+
            this.props.changePage("VenueUserPage")  
     }
 
@@ -138,7 +140,7 @@ render() {
             {this.state.matched_list.map(match =>
                 <div key={match.id}> 
                   <a href="#" onClick={(e) => this.handlePage
-                                                (e, match.id, match.type)}>{match.name},{match.type}, {match.id}</a>
+                                                (e, match.id, match.type, this.props.user_fname)}>{match.name},{match.type},{match.id}</a>
                 </div>)}
             </div>
     </div>

@@ -3,10 +3,10 @@ class UserUpdateForm extends React.Component {
     constructor(props) {
         super(props);
  
-        this.state = { fname:" ",
-                       lname:" ",
-                       email:" ",
-                       password:" "}
+        this.state = { fname:this.props.user_fname,
+                       lname:this.props.user_lname,
+                       email:this.props.user_email,
+                       password:""}
                   
     
 
@@ -125,52 +125,50 @@ render(){
 
    <div className="container col-md-8 .col-md-offset-3">
   
-            <div className="big2-row-update"> </div>
+      <div className="big2-row-update"> </div>
 
                   
 
+      <form className="form2-up" onSubmit= {this.handleUserUpdate}>
 
+        <div className="form-group">
+          <label>First Name</label>  
+              <input type="fname" className="form-up" onChange={this.handleUserUpdateInput} 
+                                                      name="fname" 
+                                                     
+                                                      placeholder= {this.props.user_fname} required />                                    
+                   </div>
 
-
-            <form className="form2-up" onSubmit= {this.handleUserUpdate}>
-
-               <div className="form-group">
-               <label>First Name</label>  
-                        <input type="fname" className="form-up" name="fname" 
-                               onChange={this.handleUserUpdateInput} placeholder= {this.props.user_fname} required />                                    
-               </div>
-
-
-
-               <div className="form-group">
-               <label>Last Name</label>        
-                        <input type="lname" className="form-up" className="form-up" name="lname" 
-                             onChange={this.handleUserUpdateInput} placeholder={this.props.user_lname} required />                             
+        <div className="form-group">
+          <label>Last Name</label>        
+              <input type="lname" className="form-up" onChange={this.handleUserUpdateInput} 
+                                                      name="lname" 
+                                                    
+                                                      placeholder={this.props.user_lname} required />                             
                 </div>
 
-
-                <div className="form-group">
-                <label>Email</label>              
-                      <input type="email" className="form-up" name="email" 
-                        onChange={this.handleUserUpdateInput} placeholder= {this.props.user_email} required />                       
+        <div className="form-group">
+          <label>Email</label>              
+            <input type="email" className="form-up" onChange={this.handleUserUpdateInput} 
+                                                    name="email" 
+                                                   
+                                                    placeholder= {this.props.user_email} required />                       
                 </div> 
 
-                <div className="form-group"> 
-                <label>New Password</label>  
-                        <input type="password" className="form-up" name="password" 
-                             onChange={this.handleUserUpdateInput} placeholder="New password" required />   
-
-                </div>
+        <div className="form-group"> 
+          <label>New Password</label>  
+                <input type="password" className="form-up" onChange={this.handleUserUpdateInput}
+                                                           name="password" 
+                                                           placeholder="New password" required />   
+                  </div>
 
      
-               <div className="align-center_login"> 
-                      <button type="submit" className="btn btn-default">Submit</button>
+          <div className="align-center_login"> 
+              <button type="submit" className="btn btn-default">Submit</button>
+            
                 </div>
-          </form>
-
-    </div>
-             
-
+      </form>
+    </div>             
  </div>
 
 

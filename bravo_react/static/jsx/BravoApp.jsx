@@ -35,10 +35,8 @@ handleSigInSubmit(e) {
 handleTrySubmit(e) {
       e.preventDefault();
 
-      this.props.changePage("VenueUserPage")
+      this.props.changePage("VenueUserForProducer")
     };
-
-
 
 
 

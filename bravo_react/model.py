@@ -85,7 +85,6 @@ class Venue(db.Model):
     venue_capacity = db.Column(db.String(50))
     venue_license = db.Column(db.String(100))
     time_id = db.Column(db.Integer, db.ForeignKey('times.time_id'))
-    venue_free_rent = db.Column(db.String(50))
     venue_rent = db.Column(db.String(20))
     venue_ranking = db.Column(db.Integer)
    

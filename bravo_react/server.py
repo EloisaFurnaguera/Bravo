@@ -23,17 +23,16 @@ show_ranking_dict ={ "show_rent": {(0, 0):0, (10, 40):1, (50, 100):2, (101, 200)
                      "show_length": {(1, 2):2, (2, 3):3, (4, 10):4},   
                      "show_dressing_room": {True:1, False:0, "yes":1, "no":0, "Yes":1, "No":0},                                            
                      "show_amount_people": {(1, 2):1, (3, 6):2, (7, 1000000):3},                           
-                     "show_type": {"stand_up":1, "spoken_word":1,"improv":3, "music":2, "Ted_talk":2,  
-                                   "skecks":3, "burlesque":4, "play":4} }   
+                     "show_type": {"Stand up":1, "Spoken Word":1,"Improv":3, "Music":2, "Ted Talk":2,  
+                                   "Skecks":3, "Burlesque":4, "Play":4} }   
 
 
 
-venue_ranking_dict ={"venue_rent": {(1, 100):1, (101, 300):2, (301, 500):3, (500, 10000000):4},
-                     "venue_free_rent": {True:1, False:0, "yes":1, "no":0, "Yes":1, "No":0},        
+venue_ranking_dict ={"venue_rent": {(0, 0):0, (10, 50):1, (51, 100):2, (101, 200):3, (201, 300):4, (301, 400):5, (401, 500):6,(501, 1000):7},      
                      "venue_backspace": {True:3, False:0, "yes":3, "no":0, "Yes":3, "No":0}, 
                      "venue_license": {True:3, False:0, "yes":3, "no":0, "Yes":3, "No":0},
-                     "venue_capacity": {(1, 20):1, (21, 40):2, (41, 80):3, (81, 100):4, (100, 10000000):5 },
-                     "venue_type": {"bar":1, "cafe":1,"restaurant":3, "night_club":3, "special_event":3, "theater":4}}  
+                     "venue_capacity": {(1, 20):1, (21, 40):2, (41, 80):3, (81, 100):4, (100, 1000):5 },
+                     "venue_type": {"Bar":1, "Cafe":1,"Restaurant":3, "Night_club":3, "Hall":5, "Special_event":3, "Theater":4, "Other":4}}  
 
 
 
@@ -43,21 +42,22 @@ venue_ranking_dict ={"venue_rent": {(1, 100):1, (101, 300):2, (301, 500):3, (500
 def adding_ranking(user_type, type_id):
 
 
-
     if user_type == "venue":
 
         user_venue_chooses = {}
 
         ranking_dict = venue_ranking_dict
 
-        venue_info = Venue.query.filter_by(venue_id=type_id).first()
+        venue_info = Venue.query.filter_by(user_id=type_id).first()
+
+  
 
         user_venue_chooses["venue_rent"] = venue_info.venue_rent
-        user_venue_chooses["venue_free_rent"] = venue_info.venue_free_rent
         user_venue_chooses["venue_backspace"] = venue_info.venue_backspace
         user_venue_chooses["venue_license"] = venue_info.venue_license
         user_venue_chooses["venue_capacity"] = venue_info.venue_capacity
         user_venue_chooses["venue_type"] = venue_info.venue_type
+
 
 
 
@@ -66,8 +66,6 @@ def adding_ranking(user_type, type_id):
         venue_info.venue_ranking = venue_score
 
         db.session.commit()
-
-
 
 
     else:
@@ -99,16 +97,27 @@ def adding_ranking(user_type, type_id):
 def get_ranking(user_dict, big_dict):
 
     overall_score = 0
-
-
+   
+    
+    print("user_dict")
+    print(user_dict)
+   
+   
     for (big_dict_key, big_dict_line) in big_dict.items():  
 
         user_value = user_dict[big_dict_key]
+
+        print("YYYYYYY")
+        print(user_value)
+   
+
    
         #because the key for both dict are the same (user_dict_key = big_dict_key) 
         #The user_dict[big_dict_key] is the value from the user dict ("show_rent": 100)
 
         score_for_big_dict_line = get_ranking_for_criteria(user_value, big_dict_line) 
+
+
 
         overall_score += score_for_big_dict_line
 
@@ -323,7 +332,6 @@ def venue_page_process():
     venue_backspace = request.json.get("venue_backspace")  
     venue_capacity = request.json.get("venue_capacity")
     venue_license = request.json.get("venue_license") 
-    venue_free_rent = request.json.get("venue_free_rent")
     venue_rent = request.json.get("venue_rent")
 
 
@@ -363,7 +371,6 @@ def venue_page_process():
                         venue_backspace=venue_backspace,
                         venue_capacity=venue_capacity,
                         venue_license=venue_license,
-                        venue_free_rent=venue_free_rent,
                         time_id=new_time.time_id,
                         venue_rent=venue_rent)
 
@@ -403,7 +410,6 @@ def venue_page_process():
                         venue_backspace=new_venue.venue_backspace,
                         venue_capacity=new_venue.venue_capacity,
                         venue_license=new_venue.venue_license,
-                        venue_free_rent=new_venue.venue_free_rent,
                         venue_rent=new_venue.venue_rent)
 
 
@@ -414,13 +420,15 @@ def venue_page_process():
 @app.route("/venue_page", methods=["POST"])
 def single_venue_info():
 
-    user_id = request.json.get("user_id")
+
+    venue_id = request.json.get("venue_id")
+
     user_id = session.get("user_id")
+
 
     user = User.query.filter_by(user_id=user_id).first()
 
     venue = Venue.query.filter_by(user_id=user_id).first()
-
 
     time = Time.query.filter_by(time_id=venue.time_id).first()
 
@@ -452,7 +460,7 @@ def single_venue_info():
                     venue_backspace=venue.venue_backspace,
                     venue_capacity=venue.venue_capacity,
                     venue_license=venue.venue_license,
-                    venue_free_rent=venue.venue_free_rent,
+                    venue_type=venue.venue_type,
                     venue_rent=venue.venue_rent)
 
 
@@ -469,7 +477,7 @@ def process_update_venue_info():
     user_id = session.get("user_id")
     venue_id = session.get("venue_id")
 
-    update_venue_info = Venue.query.filter_by(venue_id=venue_id).first()
+    update_venue_info = Venue.query.filter_by(user_id=user_id).first()
     update_venue_time = Time.query.filter_by(time_id=update_venue_info.time_id).first()
 
 
@@ -491,7 +499,6 @@ def process_update_venue_info():
     venue_backspace = request.json.get("venue_backspace")  
     venue_capacity = request.json.get("venue_capacity")
     venue_license = request.json.get("cabaret_license") 
-    venue_free_rent = request.json.get("venue_free")
     venue_rent = request.json.get("venue_rent")
 
 
@@ -514,13 +521,14 @@ def process_update_venue_info():
     update_venue_info.venue_capacity = venue_capacity
     update_venue_info.venue_backspace = venue_backspace
     update_venue_info.venue_license = venue_license
-    update_venue_info.venue_free_rent = venue_free_rent
     update_venue_info.venue_rent = venue_rent
 
-
+ 
     db.session.commit()
 
 
+
+    venue_rarking = adding_ranking("venue", update_venue_info.time_id)
 
     return jsonify(monday=monday,
                     tuesday=tuesday,
@@ -539,7 +547,7 @@ def process_update_venue_info():
                     venue_backspace=venue_backspace,
                     venue_capacity=venue_capacity,
                     venue_license=venue_license,
-                    venue_free_rent=venue_free_rent,
+                    venue_type=update_venue_info.venue_type,
                     venue_rent=venue_rent)
 
 
@@ -683,9 +691,12 @@ def new_show_page_process():
 
 
     show_rarking = adding_ranking("show", new_show.show_id)
+    user = User.query.filter_by(user_id=user_id).first()
 
     
-    return jsonify(monday=monday,
+    return jsonify( user_fname=user.user_fname,
+
+                    monday=monday,
                     tuesday=tuesday,
                     wednesday=wednesday,
                     thursday=thursday,
@@ -787,14 +798,9 @@ def process_update_show_info():
     show_id = request.json.get("show_id")
 
 
-
     update_show_info = Show.query.filter_by(show_id=show_id).first()
 
-
-
     update_show_time = Time.query.filter_by(time_id=update_show_info.time_id).first()
-
-
 
     update_show_location = Location.query.filter_by(location_id=update_show_info.location_id).first()
 

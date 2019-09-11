@@ -128,7 +128,7 @@ def load_venues(file_user):
         row = row.strip()
 
         
-        user_id, venue_name, venue_url, venue_email, venue_address, venue_city, venue_type, venue_backspace, venue_capacity, venue_license,time_id, venue_free_rent, venue_rent, venue_ranking = row.split(",")
+        user_id, venue_name, venue_url, venue_email, venue_address, venue_city, venue_type, venue_backspace, venue_capacity, venue_license,time_id, venue_rent, venue_ranking = row.split(",")
 
             # IF YOU ADD THE ACT PREFERRED: ADD THE venue_show_preferred TO THE UMPAKING
 
@@ -143,8 +143,7 @@ def load_venues(file_user):
                           venue_backspace=venue_backspace,
                           venue_capacity=venue_capacity,
                           venue_license=venue_license,
-                          time_id=time_id,
-                          venue_free_rent=venue_free_rent,
+                          time_id=time_id,      
                           venue_rent=venue_rent,
                           venue_ranking=venue_ranking)
                      

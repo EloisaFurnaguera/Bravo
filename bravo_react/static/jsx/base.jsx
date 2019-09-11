@@ -1,44 +1,49 @@
 
 
 class Base extends React.Component {
-    constructor(props) {
-        super(props);
-
-
+  constructor(props) {
+    super(props);
     this.state = {
-                  currentPage:"BravoApp",
-                  id:"",
-                  type:"",
-                  user_fname:"",
-                  user_lname:"",
-                  user_email:"",
-
-                  show_id:"",
-                  show_name:"",
-                  show_type:"",
-                  show_url:"",
-                  show_amount_people:"",
-                  show_dressing_room:"",
-                  show_length:"",
-                  show_ticket_price:"",
-                  show_rent:""}       
-
-
+      currentPage:"BravoApp",
+      id:"",
+      type:"",
+      user_fname:"",
+      user_lname:"",
+      user_email:"",
+      show_id:"",
+      show_name:"",
+      show_type:"",
+      show_url:"",
+      show_amount_people: "",
+      show_dressing_room: "",
+      show_length:"",
+      show_ticket_price:"",
+      show_rent:"",   
+      venue_id:"",
+      venue_name:"",
+      venue_url:"",
+      venue_email:"",
+      venue_address:"",
+      venue_city:"",
+      venue_backspace:"",
+      venue_capacity:"",
+      venue_license:"",
+      venue_rent:"",
+      venue_type:""
+    }
     this.changePage = this.changePage.bind(this);
     this.changePageUserUpdate = this.changePageUserUpdate.bind(this);
     this.changePageShowUpdate = this.changePageShowUpdate.bind(this);
+    this.changePageVenueUpdate = this.changePageVenueUpdate.bind(this);
+  }
 
-    }
-
-
-
-    changePage(newPage, id, type) {
-        this.setState({currentPage: newPage,
-                       id: id,
-                       type: type}); 
-
-
-    }
+  changePage(newPage, id, type, user_fname) {
+    this.setState({currentPage: newPage,
+                   id: id,
+                   type: type,
+                   user_fname:user_fname
+                 }); 
+  }
 
 
 
@@ -98,6 +103,56 @@ class Base extends React.Component {
     }
 
 
+
+
+  changePageVenueUpdate(newPage, 
+                        type,
+                        id,
+                        user_id,
+                        user_fname,
+                        user_lname,
+                        user_email,
+
+                        venue_id,
+                        venue_name,
+                        venue_url,
+                        venue_email,
+                        venue_address,
+                        venue_city,
+                        venue_backspace,
+                        venue_capacity,
+                        venue_license,
+                        venue_rent,
+                        venue_type)
+   {
+     
+      this.setState({currentPage: newPage,
+                      type:type, 
+                      id:id,
+                      type:type,
+                      user_id:user_id,
+                      user_fname:user_fname,
+                      user_lname:user_lname,
+                      user_email:user_email,
+
+                      venue_id:venue_id,
+                      venue_name:venue_name,
+                      venue_url:venue_url,
+                      venue_email:venue_email,
+                      venue_address:venue_address,
+                      venue_city:venue_city,
+                      venue_backspace:venue_backspace,
+                      venue_capacity:venue_capacity,
+                      venue_license:venue_license,
+                      venue_rent:venue_rent,
+                      venue_type:venue_type})
+ }
+
+
+
+
+
+
 render(){
 
   const  pages = {
@@ -110,14 +165,14 @@ render(){
                                changePageUserUpdate={this.changePageUserUpdate} 
                                id={this.state.id} 
                                type={this.state.type} 
-                              user_fname={this.state.user_fname} />,
+                               user_fname={this.state.user_fname} />,
          
          LogOut: <LogOut changePage={this.changePage} name={this.state} />,
          LogIn: <LogIn changePage={this.changePage} name={this.state} />,
 
          UserRegisterForm: <UserRegisterForm changePage={this.changePage} name={this.state } />,   
          VenueRegisterForm: <VenueRegisterForm changePage={this.changePage} name={this.state} />, 
-         ShowRegisterForm: <ShowRegisterForm changePage={this.changePage} name={this.state} />, 
+       
 
 
          UserUpdateForm: <UserUpdateForm changePage={this.changePage} 
@@ -128,7 +183,27 @@ render(){
                                           user_lname={this.state.user_lname}
                                           user_email={this.state.user_email}/>, 
 
-         VenueUpdateForm: <VenueUpdateForm changePage={this.changePage} name={this.state} />,
+         VenueUpdateForm: <VenueUpdateForm changePage={this.changePage}
+                                           changePageUserUpdate={this.changePageUserUpdate} 
+                                           
+                                           id={this.state.id}
+                                           type={this.state.type}
+                                           user_fname={this.state.user_fname}
+                                           user_lname={this.state.user_lname}
+                                           user_email={this.state.user_email} 
+
+                                           venue_id={this.state.venue_id}
+                                           venue_name={this.state.venue_name}
+                                           venue_url={this.state.venue_url}
+                                           venue_email={this.state.venue_email}
+                                           venue_address={this.state.venue_address}
+                                           venue_city={this.state.venue_city}
+                                           venue_backspace={this.state.venue_backspace}
+                                           venue_capacity={this.state.venue_capacity}
+                                           venue_license={this.state.venue_license}
+                                           venue_rent={this.state.venue_rent}
+                                           venue_type={this.state.venue_type}/>,  
+
 
          ShowUdateForm: <ShowUdateForm changePage={this.changePage} 
                                        changePageShowUpdate={this.changePageShowUpdate} 
@@ -158,11 +233,43 @@ render(){
                               user_fname={this.state.user_fname}
                               user_lname={this.state.user_lname}
                               user_email={this.state.user_email}/>,
+
+        ShowPageForVenue: <ShowPageForVenue changePage={this.changePage} 
+                                           changePageUserUpdate={this.changePageUserUpdate} 
+                                           changePageShowUpdate={this.changePageShowUpdate} 
+                                            id={this.state.id}
+                                            type={this.state.type}
+                                            user_fname={this.state.user_fname}
+                                            user_lname={this.state.user_lname}
+                                            user_email={this.state.user_email}/>,
+
+         ShowRegisterForm: <ShowRegisterForm changePage={this.changePage} 
+                                             changePageUserUpdate={this.changePageUserUpdate} 
+                                             changePageShowUpdate={this.changePageShowUpdate} 
+                                              id={this.state.id}
+                                              type={this.state.type}
+                                              user_fname={this.state.user_fname}
+                                              user_lname={this.state.user_lname}
+                                              user_email={this.state.user_email}/>,
          
          VenueUserPage: <VenueUserPage changePage={this.changePage} 
                                        changePageUserUpdate={this.changePageUserUpdate} 
-                                       id={this.state.id} 
-                                       user_fname={this.state.user_fname}/>,
+                                       changePageVenueUpdate={this.changePageVenueUpdate}
+                                       id={this.state.id}
+                                       type={this.state.type}
+                                       user_fname={this.state.user_fname}
+                                       user_lname={this.state.user_lname}
+                                       user_email={this.state.user_email}/>,
+
+         VenueUserForProducer: <VenueUserForProducer changePage={this.changePage} 
+                                                     changePageUserUpdate={this.changePageUserUpdate} 
+                                                     id={this.state.id} 
+                                                     user_fname={this.state.user_fname}/>,
+
+
+
+
+
                                                                                         
          ProducerPage: <ProducerPage changePage={this.changePage} 
                                      changePageUserUpdate={this.changePageUserUpdate} 
@@ -177,28 +284,13 @@ render(){
          
          }
 
-             
-
-        return( 
-   
-               <div> 
-
-               {pages[this.state.currentPage]}
-
-               
-               </div>
-   
-
-       )
+        return ( 
+          <div> 
+            {pages[this.state.currentPage]}
+          </div>
+        )
     }
 }
-
-
-
-
-
-
-
 
 ReactDOM.render(<Base />, document.getElementById('root'));
 

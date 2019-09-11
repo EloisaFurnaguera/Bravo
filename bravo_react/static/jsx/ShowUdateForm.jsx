@@ -82,7 +82,7 @@ class ShowUdateForm extends React.Component {
 
 
 
-     handleProducerPage(e) {
+handleProducerPage(e) {
              e.preventDefault();
       this.props.changePage("ProducerPage")
     }
@@ -280,37 +280,37 @@ render(){
 
 
 
-          <div>
-             <label>Which days do you preferred</label>
+      <div>
+        <label>Which days do you preferred</label>
           </div>
-          <div className="form-check">
-              <input className="form-check-input" type="checkbox" name="monday" onChange={this.handleShowInput}/>
-              <label className="form-check-label">Monday</label>
-          </div>
-          <div className="form-check">
-              <input className="form-check-input" type="checkbox" name="tuesday" onChange={this.handleShowInput}/>
-              <label className="form-check-label">Tuesday</label>
-          </div>
-           <div className="form-check">
-              <input className="form-check-input" type="checkbox" name="wednesday" onChange={this.handleShowInput}/>
-              <label className="form-check-label">Wednesday</label>
-          </div>
-           <div className="form-check">
-              <input className="form-check-input" type="checkbox" name="thursday" onChange={this.handleShowInput}/>
-              <label className="form-check-label">Thursday</label>
-          </div>
-          <div className="form-check">
-              <input className="form-check-input" type="checkbox" name="friday" onChange={this.handleShowInput}/>
-              <label className="form-check-label">Friday</label>
-          </div>
-           <div className="form-check">
-              <input className="form-check-input" type="checkbox" name="saturday" onChange={this.handleShowInput}/>
-              <label className="form-check-label">Saturday</label>
-          </div>
-           <div className="form-check">
-              <input className="form-check-input" type="checkbox" name="sunday" onChange={this.handleShowInput}/>
-              <label className="form-check-label">Sunday</label>
-          </div>
+      <div className="form-check">
+        <input className="form-check-input" type="checkbox" name="monday" onChange={this.handleShowInput}/>
+          <label className="form-check-label">Monday</label>
+            </div>
+      <div className="form-check">
+        <input className="form-check-input" type="checkbox" name="tuesday" onChange={this.handleShowInput}/>
+          <label className="form-check-label">Tuesday</label>
+            </div>
+      <div className="form-check">
+        <input className="form-check-input" type="checkbox" name="wednesday" onChange={this.handleShowInput}/>
+          <label className="form-check-label">Wednesday</label>
+             </div>
+      <div className="form-check">
+        <input className="form-check-input" type="checkbox" name="thursday" onChange={this.handleShowInput}/>
+          <label className="form-check-label">Thursday</label>
+            </div>
+      <div className="form-check">
+        <input className="form-check-input" type="checkbox" name="friday" onChange={this.handleShowInput}/>
+          <label className="form-check-label">Friday</label>
+             </div>
+      <div className="form-check">
+        <input className="form-check-input" type="checkbox" name="saturday" onChange={this.handleShowInput}/>
+           <label className="form-check-label">Saturday</label>
+             </div>
+      <div className="form-check">
+        <input className="form-check-input" type="checkbox" name="sunday" onChange={this.handleShowInput}/>
+           <label className="form-check-label">Sunday</label>
+             </div>
          
 
           
@@ -362,9 +362,8 @@ render(){
       <div className="form-group">
           <label >How much are you looking to pay for rent?</label>
               <select className="form-control" value={this.state.show_rent} name="show_rent"
-                                                onChange={this.handleShowInput} 
-                                                placeholder={this.props.show_rent} required >
-
+                                                onChange={this.handleShowInput} required > 
+                                     
                       <option value={this.props.show_rent}>{this.props.show_rent}</option>
                       <option value="0">Free</option>>
                       <option value="40">From $10 to $40</option>

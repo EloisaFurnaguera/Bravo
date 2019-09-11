@@ -53,22 +53,18 @@ class ShowRegisterForm extends React.Component {
 
 
   handleShowInput(e) { 
-
     const target = e.target;
     const value = target.value;
     const name = target.name;
-
     this.setState({ [name]: value });
 
     };
 
 
   handleShowSelect(e) { 
-
     const target = e.target;
     const value = target.checked;
     const name = target.name;
-
     this.setState({ [name]: value });
 
     };
@@ -80,7 +76,7 @@ class ShowRegisterForm extends React.Component {
     }
 
 
- handleProducerPage(e) {
+  handleProducerPage(e) {
     e.preventDefault();
       this.props.changePage("ProducerPage")
     }
@@ -99,9 +95,9 @@ class ShowRegisterForm extends React.Component {
     .then(res1 => res1.json())
     .then(res2 =>{
     const showRegResponse = JSON.stringify(res2)
-    this.props.changePage("ShowPage", showRegResponse) 
+    this.props.changePage("ProducerPage", showRegResponse) 
 
-      console.log("Success: showRegResponse") 
+      console.log("Success: showRegResponse", showRegResponse) 
    
 
     })
@@ -156,14 +152,14 @@ render(){
                                                     onChange={this.handleShowInput} required >
 
                       <option value="" disabled ></option>
-                      <option value="burlesque">Burlesque</option>
-                      <option value="improv">Improv</option>
-                      <option value="music">Music</option>
-                      <option value="play">Play</option>
-                      <option value="skecks">Skecks</option>
-                      <option value="spoken_word">Spoken Word</option>
-                      <option value="stand_up">Stand up</option>
-                      <option value="Ted_talk">Ted talk</option>
+                      <option value="Burlesque">Burlesque</option>
+                      <option value="Improv">Improv</option>
+                      <option value="Music">Music</option>
+                      <option value="Play">Play</option>
+                      <option value="Skecks">Skecks</option>
+                      <option value="Spoken Word">Spoken Word</option>
+                      <option value="Stand up">Stand up</option>
+                      <option value="Ted Talk">Ted Talk</option>
                  </select>
                      </div>
 

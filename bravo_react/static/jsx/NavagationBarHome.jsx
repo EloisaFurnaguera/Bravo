@@ -30,7 +30,7 @@ class NavagationBarHome extends React.Component {
 
     handleTrying(e) {
              e.preventDefault();
-      this.props.changePage("ProducerPage")
+      this.props.changePage("VenueUserPage")
     }
 
 
@@ -59,11 +59,11 @@ class NavagationBarHome extends React.Component {
                
 
 
-
+{/*
                   <li className="nav-item">
                       <a className="nav-link" href="#" onClick= {this.handleTrying}>trying</a>
                   </li>
-               
+               */}
               
                   <li className="nav-item">
                       <a className="nav-link" href="#" onClick= {this.handleLogIn}>Login</a>
