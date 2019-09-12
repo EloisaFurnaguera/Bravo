@@ -19,6 +19,7 @@ def load_users(file_user):
         row = row.strip()
 
 
+
         password, user_email, user_fname, user_lname, user_type = row.split(",")
 
 
@@ -35,17 +36,13 @@ def load_users(file_user):
 
 def load_times(file_user):
    
-    # Time.query.delete()
 
-
-    for row in (open(file_user)):
-        
+    for row in (open(file_user)):   
         row = row.strip()
 
+    
         monday, tuesday, wednesday, thursday, friday, saturday, sunday, morning, late_morning, early_night, late_night = row.split(",")
-        
-
-
+     
 
         time_preference = Time(monday=monday,
                               tuesday=tuesday,
@@ -66,10 +63,16 @@ def load_times(file_user):
 
 
 def load_locations(file_user):
+
+    
+
    
 
     for row in (open(file_user)):
         row = row.strip()
+
+        print("row")
+        print(row)
 
         berkeley, burlingame, daly_city, dublin, emeryville, palo_alto, san_francisco, san_jose, santa_clara, sunnyvale = row.split(",")
 
@@ -95,6 +98,7 @@ def load_shows(file_user):
 
     for row in (open(file_user)):
         row = row.strip()
+
 
         user_id, show_name, show_type, show_url, show_amount_people, show_dressing_room, show_length, location_id, time_id, show_ticket_price, show_rent, show_ranking  = row.split(",")
 
@@ -124,11 +128,18 @@ def load_venues(file_user):
    
     # Venue.query.delete()
 
+    print("file_user")
+
+    print(file_user)
+
     for row in (open(file_user)):
         row = row.strip()
 
+        print("row")
+        print(row)
+
         
-        user_id, venue_name, venue_url, venue_email, venue_address, venue_city, venue_type, venue_backspace, venue_capacity, venue_license,time_id, venue_rent, venue_ranking = row.split(",")
+        user_id, venue_name, venue_url, venue_email, venue_address, venue_city, venue_type, venue_backspace, venue_capacity, venue_license, time_id, venue_rent, venue_ranking = row.split(",")
 
             # IF YOU ADD THE ACT PREFERRED: ADD THE venue_show_preferred TO THE UMPAKING
 
@@ -139,7 +150,6 @@ def load_venues(file_user):
                           venue_address=venue_address,
                           venue_city=venue_city,
                           venue_type=venue_type,
-                          # venue_show_preferred=venue_show_preferred,
                           venue_backspace=venue_backspace,
                           venue_capacity=venue_capacity,
                           venue_license=venue_license,
@@ -152,9 +162,6 @@ def load_venues(file_user):
 
 
  
-
-
-
 
 
 
@@ -180,35 +187,6 @@ def load_cities(file_user):
 
 
 
-# ////////////////////////////////////////////////////////////////////////////////
-
-#I AM NOT SURE I AM GOING TO USE THIS
-
-
-# def load_acts(file_user):
-   
-#     Act.query.delete()
-
-#     for row in (open(file_user)):
-#         row = row.strip()
-
-#         show_id, venue_id, stand_up, burlesque, improv, music, sketch, dj, spoken_word = row.split(",")
-
-#         act_preference = Show(show_id=show_id,
-#                   venue_id=venue_id, 
-#                   stand_up=stand_up, 
-#                   burlesque=burlesque,
-#                   improv=improv,
-#                   music=music,
-#                   sketch=sketch,
-#                   dj=dj,
-#                   spoken_word=spoken_word)
-        
-#         db.session.add(act_preference)
-#         db.session.commit()
-
-
-
 
 
 if __name__ == "__main__":
@@ -223,8 +201,7 @@ load_shows("data/show_data.txt")
 load_venues("data/venue_data.txt")
 load_cities("data/city_data.txt")
 
-# load_act("data/act_data.txt")
-# load_day("data/day_data.txt")
+
 
 
   

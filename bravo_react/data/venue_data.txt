@@ -1,8 +1,9 @@
-6,venue_name_1,venue1.com,venue1@gmail.com,venue_address_1,San Francico,bar,no,30,no,60,10
-7,venue_name_2,venue2.com,venue2@gmail.com,venue_address_2,San Jose,theater,yes,100,yes,300,20
-8,venue_name_3,venue3.com,venue3@gmail.com,venue_address_3,Oakland,hall,no,24,no,50,20
-9,venue_name_4,venue4.com,venue4@gmail.com,venue_address_4,San Francico,theater,yes,70,yes,9,250,30
-10,venue_name_5,venue3.com,venue3@gmail.com,venue_address_5,Oakland,hall,no,116,no,10,30,40
-11,venue_name_6,venue3.com,venue3@gmail.com,venue_address_6,Oakland,hall,no,116,no,10,30,30
-12,venue_name_7,venue3.com,venue3@gmail.com,venue_address_7,Oakland,hall,no,116,no,10,30,20
-13,venue_name_8,venue3.com,venue3@gmail.com,venue_address_8,Oakland,hall,no,116,no,10,30,20
+6,venue_name_1,venue1.com,venue1@gmail.com,venue_address_1,San Francico,Bar,No,30,No,6,0,30
+7,venue_name_2,venue2.com,venue2@gmail.com,venue_address_2,San Jose,Theater,Yes,100,Yes,7,300,40
+8,venue_name_3,venue3.com,venue3@gmail.com,venue_address_3,Oakland,Hall,No,24,Yes,8,100,20
+9,venue_name_4,venue4.com,venue4@gmail.com,venue_address_4,San Jose,Theater,Yes,70,No,9,100,20
+10,venue_name_5,venue5.com,venue5@gmail.com,venue_address_5,Oakland,Bar,No,30,No,10,50,40
+11,venue_name_6,venue6.com,venue6@gmail.com,venue_address_6,Oakland,Theater,Yes,100,Yes,11,100,40
+12,venue_name_7,venue7.com,venue7@gmail.com,venue_address_7,San Jose,Hall,No,24,Yes,12,50,10
+13,venue_name_8,venue8.com,venue8@gmail.com,venue_address_8,San Francico,Theater,Yes,70,Yes,13,50,40
+

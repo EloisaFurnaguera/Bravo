@@ -11,7 +11,6 @@ class VenueRegisterForm extends React.Component {
                       venue_backspace:"",
                       venue_capacity:"",
                       venue_license:"",
-                      venue_free_rent:" ",
                       venue_rent:"",
                       venue_type:"",
 
@@ -208,21 +207,15 @@ render(){
 
 
 
-     <div className="form-group">
-        <label >Do you have a cabaret license:</label>
-          <select className="form-control form-control" value={this.state.venue_license} 
-                                                        name="venue_license" 
-                                                        onChange={this.handleVenueInput} 
-                                                        required >
-
-                    <option value="" disabled ></option>                                   
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>           
-                </select>
-            </div>      
-
-
-                                              
+  
+      <div className="form-group">
+        <label>Capacity</label>
+          <input type="number" type="number" min="10" className="form-control" 
+                                                      name="venue_capacity"  
+                                                      value={this.state.venue_capacity} 
+                                                      onChange={this.handleVenueInput} 
+                                                      required />  
+                </div>                              
 
 
                

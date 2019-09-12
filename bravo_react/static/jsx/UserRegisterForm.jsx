@@ -58,8 +58,8 @@ handleUserRegister(e){
 
     .then(res1 => res1.json())
     .then(res2 =>{
-    const RegUserResponse = JSON.stringify(res2)
-    console.log("Success: Siging up");
+    const RegUserResponse = res2
+    console.log("Success: Siging up", RegUserResponse.user_id, RegUserResponse);
      
     if (RegUserResponse === '"Email_already_in_data"'){
        alert("This email is allready register")
@@ -67,7 +67,11 @@ handleUserRegister(e){
     }
 
     else if(this.state.user_type === "venue"){
-      this.props.changePage("VenueRegisterForm")
+      console.log("Venue register form change page", RegUserResponse.user_id, RegUserResponse)
+      this.props.changePage("VenueRegisterForm",
+                    RegUserResponse.user_id,
+                    RegUserResponse.user_type,
+                    RegUserResponse.user_fname)
     }
 
     else{
@@ -120,7 +124,7 @@ render(){
 
         <div className="form-check form-check-inline" onChange={this.handleTypeUserChange}>
 
-            <label className="radio-inline">
+            <label className="radio-inline little-b">
                 <input type="radio" name="user_type" value="venue" />Venue
                    </label>
 

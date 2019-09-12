@@ -43,3 +43,8 @@ type_play,3
 type_skecks,3
 type_spoken_word,1
 type_stand_up,1
+
+
+
+
+background-image: linear-gradient(45deg, #787777, #998e8fc9);

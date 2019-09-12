@@ -107,7 +107,7 @@ margin-left: 40px
     padding:20px;
     border-radius:10px;
     border:1px solid #fff;
-    height: 320px;
+    height: 350px;
 
   }
 
@@ -212,7 +212,7 @@ margin-left: 40px
 
 
 .backgroud-vp {
-  background: url("/static/img/patterns/spiration-light.png") no-repeat center;
+  background: url("/static/img/patterns/memphis-colorful.png") no-repeat center;
   background-size: cover;
   color: black;
   display: flex;
@@ -254,7 +254,7 @@ margin-left: 40px
 .nornal-letter-M-White-vp{
 font-family: "Montserrat" sans-serif;
 color: white;
-font-size: 20px;
+font-size: 18px;
 margin-left: 30px;
 }
 
@@ -416,19 +416,37 @@ margin-left: 30px;
 /*-----------------------*/
 /*Venue Update*/
 
-.mid-letter-uv{
-  font-size: 130%;
-  margin-block-end: 10%;
-
+.backgroud-uv {
+  background: url("/static/img/patterns/ignasi_pattern_s.png") no-repeat center;
+  background-size: cover;
+  color: black;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 180vh;
 }
 
 
+.mid-letter-uv{
+  font-size: 110%;
+  margin-block-end: 05%;
+
+}
+.top-letter-uv{
+  font-size: 130%;
+  color: black;
+
+}
+
+.button-letter-uv{
+  font-size: 120%;
+}
 
 /*-----------------------*/
 /*User Update*/
 
 .backgroud-up {
-  background: url("/static/img/patterns/spiration-light.png") no-repeat center;
+  background: url("/static/img/patterns/ignasi_pattern_s.png") no-repeat center;
   background-size: cover;
   color: black;
   display: flex;
@@ -452,7 +470,7 @@ margin-left: 30px;
 /*Matching*/
 
 .backgroud-m {
-  background: url("/static/img/patterns/spiration-light.png") no-repeat center;
+  background: url("/static/img/patterns/ignasi_pattern_s.png") no-repeat center;
   background-size: cover;
   color: black;
   display: flex;
@@ -492,14 +510,14 @@ color: white;
 font-family: "Montserrat" sans-serif;
 color: white;
 margin-right: 15px;
-font-size: 20px;
+font-size: 15px;
 margin-left: 10px;
 }
 
 .nornal3-letter-M-White-m{
 font-family: "Montserrat" sans-serif;
 color: white;
-margin-left: 3%;
+/*margin-left: 3%;*/
 
 }
 
@@ -528,7 +546,7 @@ margin-left: 3%;
 .ind-info-container-m {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
 }
 
 .text-mid-container-m{
@@ -540,7 +558,7 @@ margin-left: 3%;
   margin-right: 15%;
   margin-left: 15%;
   padding: 20px;        
-  background-image: linear-gradient(45deg, #bca5a5, #7e7677);
+  background-image: linear-gradient(45deg, #787777, #998e8fc9);
   color: white;
 }
 
@@ -549,7 +567,7 @@ margin-left: 3%;
 /*Producer Page*/
 
 .backgroud-pp {
-  background: url("/static/img/patterns/spiration-light.png") no-repeat center;
+  background: url("/static/img/patterns/hypnotize.png") no-repeat center;
   background-size: cover;
   color: white;
   display: flex;
@@ -630,7 +648,7 @@ color: #f1d6b5;
   margin-right: 15%;
   margin-left: 15%;
   padding: 20px;        
-  background-image: linear-gradient(45deg, #bca5a5, #7e7677);
+  background-image: linear-gradient(45deg, #787777, #998e8fc9);
   color: white;
 }
 
@@ -653,7 +671,7 @@ color: #f1d6b5;
 
 
 .shows-update {
-  background: url("/static/img/patterns/spiration-light.png") no-repeat center center;
+  background: url("/static/img/patterns/ignasi_pattern_s.png") no-repeat center center;
   background-size: cover;
   color: black;
 }
@@ -681,7 +699,18 @@ color: #f1d6b5;
 /*Show Page*/
 
 .backgroud-sp {
-  background: url("/static/img/patterns/spiration-light.png") no-repeat center;
+  background: url("/static/img/patterns/memphis-colorful.png") no-repeat center;
+  background-size: cover;
+  color: white;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 180vh;
+}
+
+
+.backgroud2-sp {
+  background: url("/static/img/patterns/tic-tac-toe.png") no-repeat center;
   background-size: cover;
   color: white;
   display: flex;
@@ -758,7 +787,7 @@ color: white;
   margin-right: 15%;
   margin-left: 15%;
   padding: 20px;        
-  background-image: linear-gradient(45deg, #bca5a5, #7e7677);
+  background-image: linear-gradient(45deg, #787777, #998e8fc9);
   color: white;
 }
 
@@ -819,7 +848,7 @@ color: white;
   margin-right: 6%;
   margin-left: 6%;
   padding: 30px;        
-  background-image: linear-gradient(45deg, #bca5a5, #7e7677);
+  background-image: linear-gradient(45deg, #787777, #998e8fc9);
   color: white;
   align-items: center;
   justify-content: center;
@@ -837,7 +866,7 @@ color: white;
   margin-right: 6%;
   margin-left: 6%;
  /* padding: 30px;   */     
-  background-image: linear-gradient(45deg, #bca5a5, #7e7677);
+  background-image: linear-gradient(45deg, #787777, #998e8fc9);
   color: white;
   align-items: center;
   justify-content: center;
@@ -854,7 +883,7 @@ color: white;
   margin-right: 15%;
   margin-left: 15%;
   padding: 20px;        
-  background-image: linear-gradient(45deg, #bca5a5, #7e7677);
+  background-image: linear-gradient(45deg, #787777, #998e8fc9);
   color: white;
 }
 
@@ -891,7 +920,6 @@ color: #f1d6b5;
 }
 
 
-
 .in-sp{
 display: flex;
 justify-content: center;
@@ -906,4 +934,10 @@ justify-content: center;
     color: white;
     font-size: 100%;
 }
+
+
+
+.little-b{
+
+margin-right: 1%;
 }
