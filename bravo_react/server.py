@@ -166,7 +166,6 @@ def login_process():
 
         if check_venue_info == None:
             return jsonify("Register_Venue")
-
         else:
                 session["user_id"] = user.user_id
                 session["venue_id"] = check_venue_info.venue_id

@@ -12,12 +12,10 @@ class ShowPageForVenue extends React.Component {
                       saturday:"No",
                       saturday:"No",
                       sunday:"no",
-
                       morning:"No",
                       late_morning:"No",
                       early_night:"No",
                       late_night:"No",
-                     
                       show_id:"",
                       show_name:"",
                       show_type:"",
@@ -27,8 +25,7 @@ class ShowPageForVenue extends React.Component {
                       show_length:"",
                       show_ticket_price:"",
                       time_id:"",
-                      show_rent:"",
-                                           
+                      show_rent:"",                                           
                       berkeley:"No",
                       burlingame:"No",
                       daly_city:"No",

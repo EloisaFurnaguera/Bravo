@@ -115,7 +115,7 @@ render(){
                </div>
 
       <div className="form-group">
-          <input type="text" name="password" className="form-control" 
+          <input type="password" name="password" className="form-control" 
                           onChange={this.handleUserRedInput} placeholder="Password" required /><br /> 
               </div>
 
