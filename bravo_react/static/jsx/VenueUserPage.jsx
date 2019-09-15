@@ -7,7 +7,6 @@ class VenueUserPage extends React.Component {
                 user_lname: "",
                 user_email: "",
                 type: "venue",       
-                time_id: "No",
                 monday: "No",
                 tuesday: "No",
                 wednesday: "No",
@@ -63,10 +62,10 @@ class VenueUserPage extends React.Component {
                     type="venue",
                     id,
                     user_id,
+                    venue_id,
                     user_fname,
                     user_lname,
                     user_email,
-                    venue_id,
                     venue_name,
                     venue_url,
                     venue_email,
@@ -75,19 +74,17 @@ class VenueUserPage extends React.Component {
                     venue_backspace,
                     venue_capacity,
                     venue_license,
-                    venue_rent,
-                    venue_type)
+                    venue_type,
+                    venue_rent)
   {
   e.preventDefault();
   this.props.changePageVenueUpdate("VenueUpdateForm",
                                     type, 
                                     id,
-                                    type,
-                                    user_id,
+                                    venue_id,
                                     user_fname,
                                     user_lname,
                                     user_email,
-                                    venue_id,
                                     venue_name,
                                     venue_url,
                                     venue_email,
@@ -96,12 +93,12 @@ class VenueUserPage extends React.Component {
                                     venue_backspace,
                                     venue_capacity,
                                     venue_license,
-                                    venue_rent,
-                                    venue_type
-                                    )                            
+                                    venue_type,
+                                    venue_rent)                            
 };
 
   componentDidMount() {     
+    window.scrollTo(0, 0)
     fetch("/venue_page", 
     {method: "POST",
     body: JSON.stringify(this.state),
@@ -176,10 +173,10 @@ return(
              href="#" onClick= {(e) => this.handleVenueUpdate(e, 
                                                               this.state.type,                                                                                          
                                                               this.state.user_id,
+                                                              this.state.venue_id,
                                                               this.state.user_fname,
                                                               this.state.user_lname,
                                                               this.state.user_email,
-                                                              this.state.venue_id,
                                                               this.state.venue_name,
                                                               this.state.venue_url,
                                                               this.state.venue_email,
@@ -188,8 +185,8 @@ return(
                                                               this.state.venue_backspace,
                                                               this.state.venue_capacity,
                                                               this.state.venue_license,
-                                                              this.state.venue_rent,
-                                                              this.state.venue_type)}>Edit</a>       
+                                                              this.state.venue_type,
+                                                              this.state.venue_rent)}>Edit</a>       
       </div>                 
     </div>
   </div>
@@ -224,6 +221,11 @@ return(
       <div className="flex-sp">
         <p className = "p-sp">City:</p>
         <p className="p2-sp">{this.state.venue_city}</p>
+      </div>
+
+      <div className="flex-sp">
+        <p className = "p-sp">Venue Type:</p>
+        <p className="p2-sp">{this.state.venue_type}</p>
       </div>
 
       <div className="flex-sp">

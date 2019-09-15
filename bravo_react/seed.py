@@ -92,37 +92,6 @@ def load_locations(file_user):
 
 
 
-def load_shows(file_user):
-   
-    # Show.query.delete()
-
-    for row in (open(file_user)):
-        row = row.strip()
-
-
-        user_id, show_name, show_type, show_url, show_amount_people, show_dressing_room, show_length, location_id, time_id, show_ticket_price, show_rent, show_ranking  = row.split(",")
-
-     
-         # IF YOU ADD THE ACT PREFERRED: ADD THE show_venue_preferred TO THE UMPAKING
-         
-        new_show = Show(user_id=user_id,
-                        show_name=show_name, 
-                        show_type=show_type, 
-                        show_url=show_url,
-                        show_amount_people=show_amount_people,
-                        show_dressing_room=show_dressing_room,
-                        show_length=show_length,
-                        location_id=location_id,
-                        time_id=time_id,
-                        show_ticket_price=show_ticket_price, 
-                        show_rent=show_rent,
-                        show_ranking=show_ranking)
-                           
-        db.session.add(new_show)
-        db.session.commit()
-
-
-
 
 def load_venues(file_user):
    
@@ -161,7 +130,44 @@ def load_venues(file_user):
         db.session.commit()
 
 
- 
+
+
+
+
+def load_shows(file_user):
+   
+    # Show.query.delete()
+
+    for row in (open(file_user)):
+        row = row.strip()
+
+
+        user_id, show_name, show_type, show_url, show_amount_people, show_dressing_room, show_length, location_id, time_id, show_ticket_price, show_rent, show_ranking  = row.split(",")
+
+     
+         # IF YOU ADD THE ACT PREFERRED: ADD THE show_venue_preferred TO THE UMPAKING
+         
+        new_show = Show(user_id=user_id,
+                        show_name=show_name, 
+                        show_type=show_type, 
+                        show_url=show_url,
+                        show_amount_people=show_amount_people,
+                        show_dressing_room=show_dressing_room,
+                        show_length=show_length,
+                        location_id=location_id,
+                        time_id=time_id,
+                        show_ticket_price=show_ticket_price, 
+                        show_rent=show_rent,
+                        show_ranking=show_ranking)
+                           
+        db.session.add(new_show)
+        db.session.commit()
+
+
+
+
+
+
 
 
 
@@ -197,8 +203,8 @@ if __name__ == "__main__":
 load_users("data/user_data.txt")
 load_times("data/time_data.txt")
 load_locations("data/locations_data.txt")
-load_shows("data/show_data.txt")
 load_venues("data/venue_data.txt")
+load_shows("data/show_data.txt")
 load_cities("data/city_data.txt")
 
 

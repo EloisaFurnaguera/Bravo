@@ -99,7 +99,7 @@ return(
     <div className="p-as">Fill out the following information as completely as possible</div>
 
             
-<form onSubmit= {this.handleShowRegister}>  
+<form autoComplete="off" onSubmit= {this.handleShowRegister}>  
 
   <div className="form-group">
      <label>Name of Show / Group / Act</label>
@@ -120,7 +120,7 @@ return(
           <option value="Improv">Improv</option>
           <option value="Music">Music</option>
           <option value="Play">Play</option>
-          <option value="Skecks">Skecks</option>
+          <option value="Sketch Comedy">Sketch Comedy</option>
           <option value="Spoken Word">Spoken Word</option>
           <option value="Stand up">Stand up</option>
           <option value="Ted Talk">Ted Talk</option>
@@ -372,7 +372,7 @@ return(
           <option value="200">From $101 to $200</option>
           <option value="300">From $201 to $300</option>
           <option value="400">From $301 to $400</option>
-          <option value="500">FFrom $401 to $500</option>
+          <option value="500">From $401 to $500</option>
           <option value="600">$600 and up</option>                     
         </select>
     </div>

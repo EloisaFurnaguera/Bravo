@@ -3,17 +3,18 @@ class UserRegisterForm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { fname: " ",
-                       lname: " ",
-                       email: " ",
-                       password: " ",
-                       user_type: " ",
-                       user_id: " "};
+        this.state = { fname: "",
+                       lname: "",
+                       email: "",
+                       password: "",
+                       user_type: "",
+                       user_id: ""};
        
     this.handleUserRegister = this.handleUserRegister.bind(this);
     this.handleUserRedInput = this.handleUserRedInput.bind(this);
     this.handleTypeUserChange = this.handleTypeUserChange.bind(this);
     this.handleLogIn = this.handleLogIn.bind(this); 
+
 
     }
 
@@ -56,17 +57,17 @@ handleUserRegister(e){
     headers:{"Content-Type": "application/json"}
     }) 
 
-    .then(res1 => res1.json())
-    .then(res2 =>{
+    .then((res1) => {
+      if (res1.ok) { 
+        return res1.json()
+      } else {
+        res1.json().then((text) => alert(text))
+      }
+    }).then(res2 =>{
     const RegUserResponse = res2
     console.log("Success: Siging up", RegUserResponse.user_id, RegUserResponse);
      
-    if (RegUserResponse === '"Email_already_in_data"'){
-       alert("This email is allready register")
-       this.props.changePage("LogIn")
-    }
-
-    else if(this.state.user_type === "venue"){
+    if (this.state.user_type === "venue") {
       console.log("Venue register form change page", RegUserResponse.user_id, RegUserResponse)
       this.props.changePage("VenueRegisterForm",
                     RegUserResponse.user_id,
@@ -96,7 +97,7 @@ render(){
             <div className="col-md-4 col-md-offset-4 centered">
         
 
-  <form className="form-sigin" onSubmit= {this.handleUserRegister}>
+  <form autoComplete="off" className="form-sigin" onSubmit= {this.handleUserRegister}>
 
       <div className="form-group">
           <input type="text" name="fname" className="form-control" 
@@ -109,12 +110,12 @@ render(){
                 </div>
 
       <div className="form-group">
-          <input type="email" name="email"className="form-control" 
+          <input type="email" name="email" className="form-control" 
                         onChange={this.handleUserRedInput} placeholder="Enter email" required /><br />   
                </div>
 
       <div className="form-group">
-          <input type="text" name="password"className="form-control" 
+          <input type="text" name="password" className="form-control" 
                           onChange={this.handleUserRedInput} placeholder="Password" required /><br /> 
               </div>
 
@@ -122,7 +123,7 @@ render(){
 
     <div className="align-center_login"> 
 
-        <div className="form-check form-check-inline" onChange={this.handleTypeUserChange}>
+        <div className="form-check form-check-inline" onChange={this.handleTypeUserChange} required >
 
             <label className="radio-inline little-b">
                 <input type="radio" name="user_type" value="venue" />Venue

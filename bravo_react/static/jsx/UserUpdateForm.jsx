@@ -81,7 +81,7 @@ render(){
   <div className="container col-md-8 .col-md-offset-3"> 
     <div className="big2-row-update"></div>
 
-  <form className="form2-up" onSubmit={this.handleUserUpdate}>
+  <form autoComplete="off" className="form2-up" onSubmit={this.handleUserUpdate}>
 
     <div className="form-group">
       <label>First Name</label>  

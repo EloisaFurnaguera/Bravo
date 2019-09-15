@@ -1,5 +1,54 @@
-1,show_name1,music,show1.com,2,No,1,1,1,0,50,30
-2,show_name2,burlesque,show2.com,5,Yes,2,2,2,10,300,40
-3,show_name3,improv,show3.com,8,Yes,2,3,3,20,100,20
-4,show_name4,music,show4.com,4,No,2,4,4,5,100,20
-5,show_name5,dj,show4.com,1,No,5,5,5,0,50,40
+1,Hubba Hubba Revue,Burlesque,moonfruit.com,8,Yes,1,1,1,10,50,10
+1,DIVA OR DIE Burlesque,Burlesque,arstechnica.com,8,Yes,1,2,2,10,40,10
+26,Little Minsky's Cabaret,Burlesque,little.com,8,Yes,2,3,3,10,80,7
+26,“Tindervention” Stand Up Comedy,Stand up,Comedy.com,6,No,2,36,36,10,100,7
+26,Downtown Comedy Night,Stand up,downtowncomedy .com,6,No,1,37,37,0,0,7
+26,Best of the bay Stand-Up Comedy,Stand up,best.com,6,No,2,38,38,10,60,7
+26,Corkscrewed Stand-up Comedy,Stand up,corkscrewed.com,6,No,2,39,39,5,60,7
+2,RagTag Improv Presents,Improv,example.com,20,Yes,1,4,4,20,100,10
+3,Endgames Harold Night,Improv,shareasale.com,5,No,1,5,5,20,200,10
+4,The Improv Show,Improv,webmd.com,5,No,2,6,6,20,100,10
+4,That's Not How I Remember It!,Improv,princeton.edu,5,No,1,7,7,20,200,10
+5,Pan improv show,Improv,latimes.com,5,Yes,1,8,8,20,100,10
+5,Moment Players Improv Society,Improv,eepurl.com,5,No,1,9,9,20,100,10
+6,Bats Improv,Improv,state.gov,5,Yes,2,10,10,20,150,10
+7,Chance the Rapper,Music,livejournal.com,3,Yes,1,11,11,0,0,10
+8,Swedish electro-pop trio,Music,goo.gl,3,No,1,12,12,0,0,10
+9,Blues/Rock,Music,earthlink.net,3,No,2,13,13,0,0,10
+9,NightLife Duckwrth,Music,foxnews.com,3,Yes,1,14,14,0,0,10
+10,Live Music featuring Mama Matiz,Music,google.com,2,No,2,15,15,20,0,10
+10,Night Jazz ,Other,google.cn,2,Yes,2,16,16,30,80,10
+10,Anastasia The Musical,Play,sogou.com,10,Yes,2,17,17,30,200,20
+11,Exit Strategy,Play,sohu.com,10,Yes,2,18,18,30,300,20
+12,2 Infinite 2 Wrench,Play,toplist.cz,10,Yes,2,19,19,40,300,20
+13,Top Girls,Play,cnet.com,10,Yes,2,20,20,30,200,20
+14,The Infinite Wrench,Play,desdev.cn,10,Yes,2,21,21,60,200,20
+14,Off-Broadway, Off-Script, Off-Kilter,Play,cmu.edu,10,Yes,2,22,22,35,200,20
+15,Hamlet,Play,themeforest.net,10,Yes,2,23,23,30,400,20
+16,The SF Magic Hour,Other,1688.com,1,Yes,1,24,24,20,50,10
+16,Dan Chan Magic Show,Other,dedecms.com,1,Yes,2,25,25,10,50,10
+17,The Tarot Show,Sketch Comedy,163.com,1,Yes,1,26,26,5,40,10
+18,San Francisco Tonight,Sketch Comedy,4shared.com,1,Yes,2,27,27,5,60,10
+19,ALL CAPS Sketch Comedy,Sketch Comedy,amazon.com,6,Yes,1,28,28,10,100,10
+20,Killing My Lobster,Sketch Comedy,t-online.de,6,Yes,1,29,29,10,100,10
+20,Model Minority Report,Sketch Comedy,usgs.gov,6,No,1,30,30,10,100,10
+20,Open Mic Event,Spoken Word,nationalgeographic.com,2,No,2,31,31,0,0,10
+20,Poem Jam,Spoken Word,pcworld.com,2,No,1,32,32,0,0,10
+21,Dope Era Poetry,Spoken Word,delicious.com,2,No,2,33,33,0,0,10
+21,HellaFunny Fridays: A San Francisco Comedy Showcase,Stand up,blogtalkradio.com,6,No,1,34,34,0,0,6
+22,Indian Curry, Comedy Show,Stand up,blogger.com,6,No,2,35,35,10,40,6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

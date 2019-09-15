@@ -92,8 +92,8 @@ class VenueUserForProducer extends React.Component {
                             venue_backspace: venueResponse.venue_backspace,
                             venue_capacity: venueResponse.venue_capacity,
                             venue_license: venueResponse.venue_license,
-                            venue_free_rent: venueResponse.venue_free_rent,
-                            venue_rent: venueResponse.venue_rent,
+                            venue_type: venueResponse.venue_type,
+                            venue_rent: venueResponse.venue_rent
                                  })
     console.log("Success: Venue")
                     
@@ -158,6 +158,11 @@ return(
           <div className="flex-sp">
             <p className = "p-sp">City:</p>
             <p className="p2-sp">{this.state.venue_city}</p>
+          </div>
+
+          <div className="flex-sp">
+            <p className = "p-sp">Venue Type:</p>
+            <p className="p2-sp">{this.state.venue_type}</p>
           </div>
 
           <div className="flex-sp">

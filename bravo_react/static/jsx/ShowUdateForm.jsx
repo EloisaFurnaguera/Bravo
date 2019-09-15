@@ -105,7 +105,7 @@ return(
   </div>
 
 
-  <form onSubmit= {this.handleShowUdate}>  
+  <form autoComplete="off" onSubmit= {this.handleShowUdate}>  
 
     <div className="form-group">
       <label>Name of Show / Group / Act</label>
@@ -125,7 +125,7 @@ return(
             <option value="Improv">Improv</option>
             <option value="Music">Music</option>
             <option value="Play">Play</option>
-            <option value="Skecks">Skecks</option>
+            <option value="Sketch Comedy">Sketch Comedy</option>
             <option value="Spoken Word">Spoken Word</option>
             <option value="Stand Up">Stand up</option>
             <option value="Ted Talk">Ted talk</option>

@@ -32,7 +32,8 @@ class MatchPage extends React.Component {
                     }        
   }
 
-  componentDidMount() {        
+  componentDidMount() { 
+    window.scrollTo(0, 0)       
     fetch("/get_match", 
     {method: "POST",
     body: JSON.stringify({user_type: this.props.type,
@@ -75,10 +76,10 @@ render() {
      
 
         <div>
-          <h1 className= "nornal-letter-M-White-m">MATCHES</h1> 
+          <h1 className= "nornal-letter-M-White-m matching_color">MATCHES</h1> 
         </div>
 
-        <div className="nornal3-letter-M-White-m">
+        <div className="nornal3-letter-M-White-m mat_letter">
             {this.state.matched_list.map(match =>
               <div key={match.id}> 
                  <a href="#" className="nornal3-letter-M-White-m" 
@@ -86,9 +87,7 @@ render() {
                                                                match.id, 
                                                                match.type, 
                                                                this.props.user_fname)}>
-                                                               {match.name},
-                                                               {match.type},
-                                                               {match.id}</a>
+                                                               {match.name}</a>
         </div>                         )}
       </div>
     </div>

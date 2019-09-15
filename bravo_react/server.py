@@ -13,19 +13,19 @@ app = Flask(__name__)
 app.secret_key = "mama"
 
 
-show_ranking_dict ={ "show_rent": {(0, 0):0, (10, 40):1, (50, 100):2, (101, 200):3, (201, 300):4, (301, 400):5, (401, 500):6, (600, 1000):7}, 
-                     "show_ticket_price": {(0, 0):0, (0, 10):1, (11, 20):2, (21, 30):3, (31, 40):4, (50, 1000):5},  
+show_ranking_dict ={ "show_rent": {(0, 0):1, (10, 40):1, (50, 100):2, (101, 200):3, (201, 300):4, (301, 400):5, (401, 500):6, (600, 1000):7}, 
+                     "show_ticket_price": {(0, 0):1, (0, 10):1, (11, 20):2, (21, 30):3, (31, 40):4, (50, 1000):5},  
                      "show_length": {(1, 2):2, (2, 3):3, (4, 10):4},   
-                     "show_dressing_room": {True:1, False:0, "yes":1, "no":0, "Yes":1, "No":0},                                            
+                     "show_dressing_room": {True:2, False:1, "yes":2, "no":1, "Yes":2, "No":1},                                            
                      "show_amount_people": {(1, 2):1, (3, 6):2, (7, 1000000):3},                           
                      "show_type": {"Stand up":1, "Spoken Word":1,"Improv":3, "Music":2, "Ted Talk":2,  
-                                   "Skecks":3, "Burlesque":4, "Play":4} }   
+                                   "Sketch Comedy":3, "Burlesque":4, "Play":4} }   
 
-venue_ranking_dict ={"venue_rent": {(0, 0):0, (10, 50):1, (51, 100):2, (101, 200):3, (201, 300):4, (301, 400):5, (401, 500):6,(501, 1000):7},      
-                     "venue_backspace": {True:3, False:0, "yes":3, "no":0, "Yes":3, "No":0}, 
-                     "venue_license": {True:3, False:0, "yes":3, "no":0, "Yes":3, "No":0},
+venue_ranking_dict ={"venue_rent": {(0, 0):1, (10, 50):1, (51, 100):2, (101, 200):3, (201, 300):4, (301, 400):5, (401, 500):6,(501, 1000):7},      
+                     "venue_backspace": {True:2, False:1, "yes":2, "no":1, "Yes":2, "No":1}, 
+                     "venue_license": {True:2, False:1, "yes":2, "no":1, "Yes":2, "No":1},
                      "venue_capacity": {(1, 20):1, (21, 40):2, (41, 80):3, (81, 100):4, (100, 1000):5 },
-                     "venue_type": {"Bar":1, "Cafe":1,"Restaurant":3, "Night Club":3, "Hall":5, "Special Event":3, "Theater":4, "Other":4}}  
+                     "venue_type": {"Bar":1, "Cafe":1,"Restaurant":2, "Night Club":3, "Hall":5, "Special Event":3, "Theater":4, "Other":4}}  
 
 
 def adding_ranking(user_type, type_id):
@@ -75,6 +75,7 @@ def adding_ranking(user_type, type_id):
 def get_ranking(user_dict, big_dict):
 
     overall_score = 0
+
    
     for (big_dict_key, big_dict_line) in big_dict.items():  
 
@@ -132,18 +133,23 @@ def homepage():
 @app.route("/login", methods=['POST'])
 def login_process():
     """Process login info"""
+    
     user_email = request.json.get("email")
     password_user = request.json.get("password")
     user_type = request.json.get("user_type") 
+
     #search if user is already in the data and that enter the
     #right user name, pass and type of user
     user = User.query.filter_by(user_email=user_email).first()
+
+
 
     if not user:  
         return jsonify("No_such_user")
 
     if user.password != password_user: 
         return jsonify("Incorrect_Password")
+
 
     if user.user_type != user_type:
         return jsonify("Incorrect_user_type")
@@ -180,35 +186,41 @@ def logout():
 def register_process():
     """Register process"""
     #get user info
+
     fname = request.json.get("fname")
     lname = request.json.get("lname")
     user_email = request.json.get("email")
     password = request.json.get("password")
     user_type = request.json.get("user_type")   
-    #check if email already in the database
-    check_email = User.query.filter_by(user_email=user_email).first()
 
-    if not check_email:
+    if not all([user_type, fname, lname, user_email, password]):
+        return jsonify("Please complete the form"), 400
+    else:
 
-        new_user = User(password=password, 
-                        user_email=user_email, 
-                        user_fname=fname, 
-                        user_lname=lname, 
-                        user_type=user_type)
+        #check if email already in the database
+        check_email = User.query.filter_by(user_email=user_email).first()
 
-        db.session.add(new_user)
-        db.session.commit()
-        db.session.refresh(new_user)
+        if not check_email:
 
-        session["user_id"] = new_user.user_id
-     
-        return jsonify(user_id=new_user.user_id,
-                       user_fname=new_user.user_fname,
-                       email=new_user.user_email,
-                       user_type=new_user.user_type)     
-    
-    return jsonify("Email_already_in_data")
-  
+            new_user = User(password=password, 
+                            user_email=user_email, 
+                            user_fname=fname, 
+                            user_lname=lname, 
+                            user_type=user_type)
+
+            db.session.add(new_user)
+            db.session.commit()
+            db.session.refresh(new_user) 
+
+            session["user_id"] = new_user.user_id
+         
+            return jsonify(user_id=new_user.user_id,
+                           user_fname=new_user.user_fname,
+                           email=new_user.user_email,
+                           user_type=new_user.user_type)     
+        
+        return jsonify("Email_already_in_data"), 400
+      
 
 @app.route("/user_info_update", methods=["POST"])
 def user_info_update_process():
@@ -232,14 +244,15 @@ def user_info_update_process():
     return jsonify(user_fname=fname, 
                    user_lname=lname,
                    user_email=email)
-         
+             
 
 @app.route("/register_venue", methods=["POST"])
 def venue_page_process():
     """Process new venue"""
     user_id = session.get("user_id")
-    
+
     user = User.query.filter_by(user_id=user_id).first()
+
     
     monday = request.json.get("monday")
     tuesday = request.json.get("tuesday")
@@ -337,9 +350,15 @@ def single_venue_info():
     user_id = session.get("user_id")
     venue_id = session.get("venue_id")
 
-    user = User.query.filter_by(user_id=user_id).first()
-    venue = Venue.query.filter_by(venue_id=venue_id).first()
-    time = Time.query.filter_by(time_id=venue.time_id).first()
+    if venue_id:
+        user = User.query.filter_by(user_id=user_id).first()
+        venue = Venue.query.filter_by(venue_id=venue_id).first()
+        time = Time.query.filter_by(time_id=venue.time_id).first()
+    else:
+        user = User.query.filter_by(user_id=user_id).first()
+        venue = Venue.query.filter_by(user_id=user_id).first()
+        time = Time.query.filter_by(time_id=venue.time_id).first()
+
 
     return jsonify( user_id=user.user_id,
                     user_email=user.user_email, 
@@ -367,7 +386,6 @@ def single_venue_info():
                     venue_license=venue.venue_license,
                     venue_type=venue.venue_type,
                     venue_rent=venue.venue_rent)
-
 
 
 
@@ -406,16 +424,18 @@ def venue_info_for_producers():
                     venue_capacity=venue.venue_capacity,
                     venue_license=venue.venue_license,
                     venue_type=venue.venue_type,
-                    venue_rent=venue.venue_rent)    
+                    venue_rent=venue.venue_rent)   
+
 
 
 @app.route("/venue_update", methods=["POST"])
 def process_update_venue_info():
     """Process update info"""
     user_id = session.get("user_id")
-    venue_id = session.get("venue_id")
-
+    venue_id = request.json.get("venue_id")
+    
     update_venue_info = Venue.query.filter_by(venue_id=venue_id).first()
+
     update_venue_time = Time.query.filter_by(time_id=update_venue_info.time_id).first()
 
     monday = request.json.get("monday")
@@ -475,7 +495,7 @@ def process_update_venue_info():
                     venue_backspace=venue_backspace,
                     venue_capacity=venue_capacity,
                     venue_license=venue_license,
-                    venue_type=update_venue_info.venue_type,
+                    venue_type=venue_type,
                     venue_rent=venue_rent)
 
 
@@ -824,11 +844,12 @@ def getting_match():
 
         venue_id = session.get("venue_id")
 
-        venue_info = Venue.query.filter_by(venue_id=venue_id).first()
+
+        venue_info = Venue.query.filter_by(venue_id=type_id).first()
 
         venue_ranking = venue_info.venue_ranking
 
-        small_ranking = venue_ranking - 9
+        small_ranking = venue_ranking - 5
         big_ranking = venue_ranking + 10
 
         matched_shows = Show.query.filter(Show.show_ranking.between(small_ranking, big_ranking)).all()
@@ -846,7 +867,7 @@ def getting_match():
         show_info = Show.query.filter_by(show_id=type_id).first()
 
         show_ranking = show_info.show_ranking
-        small_ranking = show_ranking - 10
+        small_ranking = show_ranking - 5
         big_ranking = show_ranking + 10
                
         matched_venues = Venue.query.filter(Venue.venue_ranking.between(small_ranking, big_ranking)).all()

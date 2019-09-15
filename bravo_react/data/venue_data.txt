@@ -1,9 +1,45 @@
-6,venue_name_1,venue1.com,venue1@gmail.com,venue_address_1,San Francico,Bar,No,30,No,6,0,30
-7,venue_name_2,venue2.com,venue2@gmail.com,venue_address_2,San Jose,Theater,Yes,100,Yes,7,300,40
-8,venue_name_3,venue3.com,venue3@gmail.com,venue_address_3,Oakland,Hall,No,24,Yes,8,100,20
-9,venue_name_4,venue4.com,venue4@gmail.com,venue_address_4,San Jose,Theater,Yes,70,No,9,100,20
-10,venue_name_5,venue5.com,venue5@gmail.com,venue_address_5,Oakland,Bar,No,30,No,10,50,40
-11,venue_name_6,venue6.com,venue6@gmail.com,venue_address_6,Oakland,Theater,Yes,100,Yes,11,100,40
-12,venue_name_7,venue7.com,venue7@gmail.com,venue_address_7,San Jose,Hall,No,24,Yes,12,50,10
-13,venue_name_8,venue8.com,venue8@gmail.com,venue_address_8,San Francico,Theater,Yes,70,Yes,13,50,40
-
+39,Monroe,plala.or.jp,gelesanderd@ed.gov,6 Surrey Circle,Berkeley,Bar,No,50,No,53,50,6
+43,War Eagle,nbcnews.com,mhambeltonh@cargocollective.com,0 Pepper Wood Street,Berkeley,Bar,No,100,No,57,0,6
+44,The Nick,time.com,ajindaceki@discovery.com,23321 Parkside Pass,San Francisco,Bar,No,100,No,58,0,7
+45,Marlintini’s Lounge,google.fr,frultenj@e-recht24.de,46812 Doe Crossing Drive,San Francisco,Bar,No,50,No,59,0,7
+47,The Metro,who.int,tschultesl@godaddy.com,44888 Huxley Lane,San Francisco,Bar,Yes,40,Yes,61,40,7
+57,The Troubadour,businesswire.com,tdov@theglobeandmail.com,7 Johnson Lane,San Francisco,Bar,No,100,No,71,100,7
+60,Club 369,nasa.gov,haverilly@jimdo.com,605 Eastwood Road,San Francisco,Bar,No,100,No,74,100,7
+29,Maiden,cbc.ca,apfiffer3@amazon.de,739 Melvin Terrace,San Francisco,Cafe,No,60,No,43,60,7
+33,The Bently Reserve,about.me,aturbard7@comsenz.com,2 Declaration Hill,San Francisco,Cafe,Yes,60,Yes,47,0,7
+34,Gibson,spiegel.de,dsay8@jugem.jp,097 Monica Alley,San Francisco,Cafe,No,50,No,48,0,7
+41,RocketSpace,europa.eu,wmacrorief@pagesperso-orange.fr,2 Banding Court,San Francisco,Cafe,No,80,No,55,0,7
+46,Brownie’s,seattletimes.com,nuck@nifty.com,794 Dovetail Pass,San Francisco,Cafe,No,50,No,60,0,7
+49,Happy Endings Coffeehouse,geocities.com,rwoolfalln@virginia.edu,4 Nelson Park,San Francisco,Cafe,Yes,60,Yes,63,0,7
+51,Caffe Lena,tumblr.com,ccocklinp@fema.gov,9 6th Road,San Francisco,Cafe,No,60,No,65,60,7
+55,Lost Horizon,webmd.com,dgrimwadt@tinypic.com,1 Bellgrove Drive,San Francisco,Cafe,Yes,80,Yes,69,80,7
+36,Terra Gallery & Events,smugmug.com,tdrona@hao123.com,4988 Carpenter Place,Burlingame,Hall,Yes,50,Yes,50,50,100
+40,Minna Gallery,photobucket.com,msidnelle@privacy.gov.au,94561 Northwestern Terrace,San Francisco,Hall,No,30,No,54,30,100
+50,Northern Lights,123-reg.co.uk,sdonativoo@etsy.com,01 Norway Maple Pass,Berkeley,Hall,No,80,No,64,80,100
+52,The Stephen Talkhouse,ibm.com,mgallq@telegraph.co.uk,655 Corscot Terrace,Burlingame,Hall,Yes,60,Yes,66,60,100
+42,Runway,wikipedia.org,nbullantg@gnu.org,12008 Garrison Way,Dublin,Night Club,No,60,No,56,0,100
+53,B.B. King Blues Club,aboutads.info,twebenr@example.com,195 Doe Crossing Parkway,Burlingame,Night Club,No,60,No,67,60,100
+61,Club Boomerang,wordpress.com,gtattersfieldz@pbs.org,2 8th Street,Burlingame,Night Club,Yes,100,Yes,75,100,100
+48,Borders Books & Music,wordpress.org,ktantm@wunderground.com,7 Manufacturers Parkway,Berkeley,Other,No,100,No,62,0,100
+56,Dragonfly,huffingtonpost.com,eedessu@ow.ly,1 Boyd Road,Burlingame,Other,No,100,No,70,100,100
+26,The Farewell,state.tx.us,lmendes0@cdbaby.com,63829 Raven Alley,Berkeley,Restaurant,No,50,No,40,0,100
+27,One Child Nation,statcounter.com,egoldsmith1@slideshare.net,88 Hoard Center,San Francisco,Restaurant,Yes,60,Yes,41,60,100
+28,Rocketman,oracle.com,ldammarell2@freewebs.com,85873 Park Meadow Plaza,Berkeley,Restaurant,Yes,50,Yes,42,150,100
+31,Gallery 308 at Fort Mason,privacy.gov.au,ddenisco5@webmd.com,06061 La Follette Drive,Emeryville,Restaurant,No,50,No,45,20,100
+35,Eddie RickenBacker's,wufoo.com,drobers9@sfgate.com,27 Lakeland Lane,Santa Clara,Restaurant,Yes,50,Yes,49,50,100
+38,Magnolia Brewing - Dogpatch,ftc.gov,jtansliec@irs.gov,6845 Northwestern Crossing,San Francisco,Restaurant,No,100,No,52,100,100
+54,The Bitter End,eepurl.com,rangraves@dedecms.com,61654 David Center,Berkeley,Restaurant,Yes,60,Yes,68,60,100
+59,Viva Cantina,apache.org,ckuhlex@marketwatch.com,366 Loftsgordon Crossing,Berkeley,Restaurant,Yes,100,Yes,73,100,100
+30,The Village,drupal.org,dfroment4@simplemachines.org,343 Morning Pass,Berkeley,Theater,Yes,100,Yes,44,100,100
+32,Bespoke,unicef.org,ogrumbridge6@sogou.com,76262 4th Trail,Santa Clara,Theater,No,100,No,46,10,100
+37,The Box SF,berkeley.edu,btweedyb@dagondesign.com,9 Golden Leaf Pass,San Francisco,Theater,No,80,Yes,51,0,100
+58,The Roxy,cnn.com,ashervilw@chron.com,500 Starling Hill,San Jose,Theater,Yes,80,Yes,72,80,100
+62,Bindlestiff Studio,over-blog.com,mdewdney10@hostgator.com,1468 8th Place,Emeryville,Theater,Yes,200,Yes,76,200,100
+63,Brava Theater,pinterest.com,kclarabut11@blogtalkradio.com,83 International Trail,San Francisco,Theater,Yes,60,Yes,77,200,100
+64,Exit Theatre,google.fr,oeagleton12@joomla.org,55 Welch Circle,Burlingame,Theater,Yes,80,Yes,78,150,100
+65,The Marsh,theatlantic.com,gconklin13@merriam-webster.com,56 Boyd Terrace,Berkeley,Theater,Yes,100,Yes,79,170,100
+66,Z Space,prlog.org,mcordet14@etsy.com,50915 Warrior Point,San Francisco,Theater,Yes,50,Yes,80,250,100
+67,Berkeley Playhouse,accuweather.com,lballchin15@google.ru,9 Lakewood Terrace,Berkeley,Theater,No,60,No,81,200,100
+68,Theater San Jose,disqus.com,sgauson16@unicef.org,032 Golf Pass,San Jose,Theater,Yes,90,Yes,82,300,100
+69,Lyric Theater,house.gov,orassmann17@ycombinator.com,91189 Utah Alley,Burlingame,Theater,Yes,100,Yes,83,200,100
+70,Santa Clara Players,shop-pro.jp,blongfoot18@fda.gov,1 Dahle Center,Santa Clara,Theater,Yes,100,Yes,84,400,100

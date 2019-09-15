@@ -35,7 +35,7 @@ class ProducerPage extends React.Component {
                                                                      };
 
   componentDidMount() {
-        
+    window.scrollTo(0, 0)
     fetch("/producer_page", 
     {method: "POST",
     body: JSON.stringify(this.state),

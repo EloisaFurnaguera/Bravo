@@ -1,7 +1,7 @@
 class VenueUpdateForm extends React.Component {
   constructor(props) {
   super(props);
-  this.state = {venue_id: this.props.id,
+  this.state = {venue_id: this.props.venue_id,
                 venue_name: this.props.venue_name,
                 venue_url: this.props.venue_url,
                 venue_email: this.props.venue_email,
@@ -94,7 +94,7 @@ return(
           Fill out the following information as completely as possible
     </div>       
             
-  <form onSubmit= {this.handleVenueUpdate}>        
+  <form autoComplete="off" onSubmit= {this.handleVenueUpdate}>        
 
     <div className="form-group">
       <label>Venue Name</label>

@@ -42,7 +42,7 @@ class LogIn extends React.Component {
     .then(res1 => res1.json())
     .then(res2 =>{
     const logInResponse = JSON.stringify(res2)
-    console.log("Success:", logInResponse);
+    console.log("Success:");
     if (logInResponse === '"Incorrect_user_type"'){
        alert("Incorrect User Type")
                                                   }
