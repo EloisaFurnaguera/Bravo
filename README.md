@@ -46,7 +46,7 @@ On a particular show’s profile page, there is a button to click that will quic
 
 
 
-### Requirements:
+## Requirements:
 
 - PostgreSQL
 - Python 3
