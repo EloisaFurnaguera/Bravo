@@ -8,12 +8,12 @@ class ProducerPage extends React.Component {
       user_lname: "",
       user_email: "",
       show_list: [],
-  }; 
+    }; 
     this.handleLogOut = this.handleLogOut.bind(this)
     this.handleShowRegister = this.handleShowRegister.bind(this); 
     this.handleShowPage = this.handleShowPage.bind(this); 
     this.handleUpdateUserInfo = this.handleUpdateUserInfo.bind(this); 
-                  }
+  };
 
   handleShowRegister(e) {
     e.preventDefault();
@@ -67,53 +67,50 @@ render(){
   return(
 
     <div className ="backgroud-pp">
-
-    <div className="top-container-pp">
-
-      <div className="user-name-container-pp">
-
-        <div className="nornal-letter-M-White-pp"> 
-           <p className="little-letter-M-White-pp">Signed as: </p>
-             <h1 className= "user-name-pp">{this.state.user_fname}</h1> 
-            </div>
+      <div className="top-container-pp">
+        <div className="user-name-container-pp">
+          <div className="nornal-letter-M-White-pp"> 
+            <p className="little-letter-M-White-pp">Signed as: </p>
+            <h1 className= "user-name-pp">{this.state.user_fname}</h1> 
+          </div>
         </div>   
 
-    <div className="top-links-container-pp">
-
-      <div><a className="little-letter-M-White-pp" 
-                href="#" onClick= {this.handleLogOut}>Log Out</a>
+        <div className="top-links-container-pp">
+          <div>
+            <a className="little-letter-M-White-pp" 
+                  href="#" onClick= {this.handleLogOut}>Log Out</a>
+          </div>
+          <div>
+            <a className="little-letter-M-White-pp" 
+                  href="#" onClick= {(e) => this.handleUpdateUserInfo(e, 
+                                                                    this.state.user_id,
+                                                                    this.state.user_fname,
+                                                                    this.state.user_lname,
+                                                                    this.state.user_email )}>Account</a>                    
+          </div>
+          <div>
+            <a className="little-letter-M-White-pp" 
+                  href="#" onClick= {this.handleShowRegister}>Add Shows</a>
+          </div>               
+        </div>
       </div>
-      <div><a className="little-letter-M-White-pp" 
-                href="#" onClick= {(e) => this.handleUpdateUserInfo(e, 
-                                                                  this.state.user_id,
-                                                                  this.state.user_fname,
-                                                                  this.state.user_lname,
-                                                                  this.state.user_email )}>Account</a>                    
-      </div>
-        <div><a className="little-letter-M-White-pp" 
-                href="#" onClick= {this.handleShowRegister}>Add Shows</a>
-        </div>               
-      </div>
-    </div>
 
       <div className="top-line-pp"></div>
-        <div className ="text-mid-container-pp">
-          <div className ="info-container-pp"> 
-
-            <h2 className= "text-center nornal3-letter-M-White-pp">Your Shows</h2>              
-              <div className= "text-center">
-                  {this.state.show_list.map(show =>
-                     <div key={show.show_id}> 
-                         <a className="text-center nornal2-letter-M-White-pp" 
-                            href="#" onClick={(e) => this.handleShowPage(e, 
-                                                                        show.show_id, 
-                                                                        this.state.type, 
-                                                                        this.state.user_fname)}>{show.show_name}</a></div>)}   
-                </div>
-            </div>
-         </div>
-      </div>
-       
+      <div className ="text-mid-container-pp">
+        <div className ="info-container-pp"> 
+          <h2 className= "text-center nornal3-letter-M-White-pp">Your Shows</h2>              
+          <div className= "text-center">
+            {this.state.show_list.map(show =>
+              <div key={show.show_id}> 
+                <a className="text-center nornal2-letter-M-White-pp" 
+                          href="#" onClick={(e) => this.handleShowPage(e, 
+                                                                      show.show_id, 
+                                                                      this.state.type, 
+                                                                      this.state.user_fname)}>{show.show_name}</a></div>)}   
+              </div>
+          </div>
+        </div>
+      </div>       
     );       
   }
 }

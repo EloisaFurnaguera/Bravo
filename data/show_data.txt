@@ -23,7 +23,7 @@
 12,2 Infinite 2 Wrench,Play,toplist.cz,10,Yes,2,19,19,40,300,20
 13,Top Girls,Play,cnet.com,10,Yes,2,20,20,30,200,20
 14,The Infinite Wrench,Play,desdev.cn,10,Yes,2,21,21,60,200,20
-14,Off-Broadway, Off-Script, Off-Kilter,Play,cmu.edu,10,Yes,2,22,22,35,200,20
+14,Off-Broadway Off-Script Off-Kilter,Play,cmu.edu,10,Yes,2,22,22,35,200,20
 15,Hamlet,Play,themeforest.net,10,Yes,2,23,23,30,400,20
 16,The SF Magic Hour,Other,1688.com,1,Yes,1,24,24,20,50,10
 16,Dan Chan Magic Show,Other,dedecms.com,1,Yes,2,25,25,10,50,10
@@ -36,19 +36,4 @@
 20,Poem Jam,Spoken Word,pcworld.com,2,No,1,32,32,0,0,10
 21,Dope Era Poetry,Spoken Word,delicious.com,2,No,2,33,33,0,0,10
 21,HellaFunny Fridays: A San Francisco Comedy Showcase,Stand up,blogtalkradio.com,6,No,1,34,34,0,0,6
-22,Indian Curry, Comedy Show,Stand up,blogger.com,6,No,2,35,35,10,40,6
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+22,Indian Curry Comedy Show,Stand up,blogger.com,6,No,2,35,35,10,40,6

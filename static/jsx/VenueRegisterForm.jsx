@@ -163,7 +163,7 @@ class VenueRegisterForm extends React.Component {
 
           <div className="form-group">
             <label>Capacity</label>
-            <input type="number" type="number" min="10" className="form-control" 
+            <input type="number" type="number" min="10" max="1000" className="form-control" 
                                                           name="venue_capacity"  
                                                           value={this.state.venue_capacity} 
                                                           onChange={this.handleVenueInput} required />  
