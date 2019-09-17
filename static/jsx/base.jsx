@@ -1,6 +1,7 @@
 
 
 class Base extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -31,42 +32,33 @@ class Base extends React.Component {
       venue_rent:"",
       venue_type:"",
       venue_rent:""
-    }
+    };
     this.changePage = this.changePage.bind(this);
     this.changePageUserUpdate = this.changePageUserUpdate.bind(this);
     this.changePageShowUpdate = this.changePageShowUpdate.bind(this);
     this.changePageVenueUpdate = this.changePageVenueUpdate.bind(this);
-  }
+  };
 
   changePage(newPage, id, type, user_fname) {
     this.setState({currentPage: newPage,
                    id: id,
                    type: type,
                    user_fname:user_fname
-                 }); 
-  }
+    }); 
+  };
 
-
-
-    changeState(state){
-        this.setState(state);
-
-    }
-
-
-
+  changeState(state){
+      this.setState(state);
+  };
 
   changePageUserUpdate(newPage, id, type, user_fname, user_lname, user_email) {
-        this.setState({currentPage: newPage,
-                       id: id,
-                       type:type,
-                       user_fname:user_fname,
-                       user_lname:user_lname,
-                       user_email:user_email})                
-    }
-
-
-
+    this.setState({currentPage: newPage,
+                   id: id,
+                   type:type,
+                   user_fname:user_fname,
+                   user_lname:user_lname,
+                   user_email:user_email})                
+  };
 
   changePageShowUpdate(newPage, 
                         id,
@@ -84,25 +76,22 @@ class Base extends React.Component {
                         show_ticket_price,
                         show_rent)
   {
-        this.setState({currentPage: newPage,
-                       id: id,
-                       type:type,
-                       user_fname:user_fname,
-                       user_lname:user_lname,
-                       user_email:user_email, 
-                       show_id:show_id,
-                       show_name:show_name,
-                       show_type:show_type,
-                       show_url:show_url,
-                       show_amount_people:show_amount_people,
-                       show_dressing_room:show_dressing_room,
-                       show_length:show_length,
-                       show_ticket_price:show_ticket_price,
-                       show_rent:show_rent})               
-    }
-
-
-
+    this.setState({currentPage: newPage,
+                   id: id,
+                   type:type,
+                   user_fname:user_fname,
+                   user_lname:user_lname,
+                   user_email:user_email, 
+                   show_id:show_id,
+                   show_name:show_name,
+                   show_type:show_type,
+                   show_url:show_url,
+                   show_amount_people:show_amount_people,
+                   show_dressing_room:show_dressing_room,
+                   show_length:show_length,
+                   show_ticket_price:show_ticket_price,
+                   show_rent:show_rent})               
+  };
 
   changePageVenueUpdate(newPage, 
                         type,
@@ -121,30 +110,25 @@ class Base extends React.Component {
                         venue_license,
                         venue_type,
                         venue_rent)
-   {
-     
-      this.setState({currentPage: newPage,
-                      type:type, 
-                      id:id,
-                      venue_id:venue_id,
-                      user_fname:user_fname,
-                      user_lname:user_lname,
-                      user_email:user_email,
-                      venue_name:venue_name,
-                      venue_url:venue_url,
-                      venue_email:venue_email,
-                      venue_address:venue_address,
-                      venue_city:venue_city,
-                      venue_backspace:venue_backspace,
-                      venue_capacity:venue_capacity,
-                      venue_license:venue_license,
-                      venue_type:venue_type,
-                      venue_rent:venue_rent})
- }
-
-
-
-
+  {    
+    this.setState({currentPage: newPage,
+                    type:type, 
+                    id:id,
+                    venue_id:venue_id,
+                    user_fname:user_fname,
+                    user_lname:user_lname,
+                    user_email:user_email,
+                    venue_name:venue_name,
+                    venue_url:venue_url,
+                    venue_email:venue_email,
+                    venue_address:venue_address,
+                    venue_city:venue_city,
+                    venue_backspace:venue_backspace,
+                    venue_capacity:venue_capacity,
+                    venue_license:venue_license,
+                    venue_type:venue_type,
+                    venue_rent:venue_rent})
+  }
 
 
 render(){

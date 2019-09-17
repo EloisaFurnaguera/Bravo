@@ -24,8 +24,6 @@ class User(db.Model):
     user_type = db.Column(db.String(10), nullable=False)
 
 
-
-
 class Time(db.Model):
     """Shows available times table"""
 
@@ -45,10 +43,7 @@ class Time(db.Model):
     late_night = db.Column(db.String(20))
 
 
-
-
 class Location(db.Model):
-
 
     __tablename__ = "locations"
 
@@ -64,9 +59,6 @@ class Location(db.Model):
     santa_clara = db.Column(db.String(20))
     sunnyvale = db.Column(db.String(20))
    
-    
-
-
 
 class Venue(db.Model):
     """Venues table"""
@@ -89,9 +81,6 @@ class Venue(db.Model):
     venue_ranking = db.Column(db.Integer)
    
 
-
-
-
 class Show(db.Model):
     """Shows info table"""
 
@@ -112,11 +101,6 @@ class Show(db.Model):
     show_ranking = db.Column(db.Integer)
 
 
-
-
-
-
-
 class City(db.Model):
     """Shows Cities table"""
 
@@ -125,11 +109,6 @@ class City(db.Model):
     city_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     city = db.Column(db.String(100))
     county = db.Column(db.String(100))
-
-
-
-
-
 
 
 

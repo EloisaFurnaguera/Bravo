@@ -18,8 +18,6 @@ def load_users(file_user):
     for row in (open(file_user)):
         row = row.strip()
 
-
-
         password, user_email, user_fname, user_lname, user_type = row.split(",")
 
 
@@ -36,7 +34,6 @@ def load_users(file_user):
 
 def load_times(file_user):
    
-
     for row in (open(file_user)):   
         row = row.strip()
 
@@ -60,13 +57,8 @@ def load_times(file_user):
         db.session.commit()
 
 
-
-
 def load_locations(file_user):
 
-    
-
-   
 
     for row in (open(file_user)):
         row = row.strip()
@@ -92,7 +84,6 @@ def load_locations(file_user):
 
 
 
-
 def load_venues(file_user):
    
     # Venue.query.delete()
@@ -103,10 +94,6 @@ def load_venues(file_user):
 
     for row in (open(file_user)):
         row = row.strip()
-
-        print("row")
-        print(row)
-
         
         user_id, venue_name, venue_url, venue_email, venue_address, venue_city, venue_type, venue_backspace, venue_capacity, venue_license, time_id, venue_rent, venue_ranking = row.split(",")
 
@@ -128,10 +115,6 @@ def load_venues(file_user):
                      
         db.session.add(new_venue)
         db.session.commit()
-
-
-
-
 
 
 def load_shows(file_user):
@@ -165,12 +148,6 @@ def load_shows(file_user):
 
 
 
-
-
-
-
-
-
 def load_cities(file_user):
    
     # City.query.delete()
@@ -185,12 +162,6 @@ def load_cities(file_user):
                
         db.session.add(new_city)
         db.session.commit()
-
-
-
-
-
-
 
 
 
