@@ -24,23 +24,28 @@ Users can sign up as either a producer of a show or a proprietor of a venue. The
 
 ![Venue Login ](static/gif/venue_login_data.gif)
 
+
 Once the venue is registered, you can see the acts that would create the best shows for that venue’s characteristics.
 
 ![Venue finds a match ](static/gif/venue_match.gif)
+
 
 On the flip side, producers log in to their homepage where they can view a listing of all the shows that they’ve entered into the system.
 
 ![Bravo Login](static/gif/login_producer.gif)
 
+
 Producers add a new show by filling out a form that provides information about their act needed to create good matches to venues.
 
 ![Add a show](static/gif/add_show.gif)
+
 
 On a particular show’s profile page, there is a button to click that will quickly show all the available venue matches for that show.
 
 ![Show finds a match](static/gif/show_match.gif)
 
-#### Requirements:
+
+### Requirements:
 
 - PostgreSQL
 - Python 3
