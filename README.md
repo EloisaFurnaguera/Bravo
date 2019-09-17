@@ -8,7 +8,7 @@ Users can sign up as either a producer of a show or a proprietor of a venue. The
 
 ## About the Developer
 
-Bravo was created by Eloisa Furnaguera, a Software Engineer, Stand-up comedian and producer of shows all around the Bay Area. Here, in her first project, she has combined years of show business experience with her technical knowledge to help with a problem she has seen one too many times in the real world. To find out more about her, visit her [LinkedIn](https://www.linkedin.com/in/eloisa-furnaguera/).
+**Bravo** was created by Eloisa Furnaguera, a Software Engineer, Stand-up comedian and producer of shows all around the Bay Area. Here, in her first project, she has combined years of show business experience with her technical knowledge to help with a problem she has seen one too many times in the real world. To find out more about her, visit her [LinkedIn](https://www.linkedin.com/in/eloisa-furnaguera/).
 
 ## Technologies
 
