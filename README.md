@@ -75,12 +75,12 @@ $ createdb bravo
 ```
 Create your database tables and seed example data.
 ```
-$ python model.py
+$ python3 model.py
 ```
 Run the app from the command line.
 ```
-$ python server.py
+$ python3 server.py
 ```
 If you want to use SQLAlchemy to query the database, run in interactive mode
 ```
-$ python -i model.py
+$ python3 -i model.py
