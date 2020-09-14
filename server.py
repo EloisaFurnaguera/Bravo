@@ -87,7 +87,7 @@ def get_ranking(user_dict, big_dict):
 
 
 def get_ranking_for_criteria(user_value, big_dict_line):
-
+                                                             
     for key in big_dict_line: 
 
         if type(key) is tuple:
@@ -192,7 +192,7 @@ def register_process():
     if not all([user_type, fname, lname, user_email, password]):
         return jsonify("Please complete the form"), 400
     else:
-
+                                                  
         #check if email already in the database
         check_email = User.query.filter_by(user_email=user_email).first()
 
